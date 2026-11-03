@@ -2,9 +2,8 @@
 
 [![ci](https://github.com/mahmoudzahran01/arabic-english-retrieval-eval/actions/workflows/ci.yml/badge.svg)](https://github.com/mahmoudzahran01/arabic-english-retrieval-eval/actions/workflows/ci.yml)
 
-Retrieval over mixed Arabic and English text is hard because Arabic's rich morphology and spelling variation defeat lexical matching, and a small multilingual
-embedder loses most of its quality when an Arabic query has to find an English passage (multilingual-e5-small: MRR@10 41.4 for ar->en against 87.8 for en->en),
-which is exactly the situation of a RAG system that serves Arabic users over bilingual documents.
+Search over mixed Arabic and English text is where small multilingual embedders break: off the shelf, multilingual-e5-small scores MRR@10 41.4 when an
+Arabic query has to find an English passage, against 87.8 for English to English. That is the everyday case for a RAG system serving Arabic users over bilingual documents.
 
 This repository contains:
 
@@ -14,6 +13,28 @@ This repository contains:
   alone (above the 568M bge-m3 at 74.8) and 83.3 with the fine-tuned reranker (ar->en 41.4 -> 72.3), plus findings on false negatives, hybrid fusion and Arabic normalization.
 * **A RAG-evaluation study**: LLM judges calibrated against planted errors (Cohen's kappa 0.42 -> 0.97), a deterministic wrong-language check that caught a defect
   Ragas missed, and an end-to-end acceptable-answer rate that went from 59.4% to 85.0%.
+
+## Use the models
+
+Both fine-tuned models are on Hugging Face: [`mzahran1/arabic-english-e5-small-retrieval`](https://huggingface.co/mzahran1/arabic-english-e5-small-retrieval) (embedder) and
+[`mzahran1/arabic-english-reranker-mminilm`](https://huggingface.co/mzahran1/arabic-english-reranker-mminilm) (reranker).
+
+```python
+from sentence_transformers import SentenceTransformer, CrossEncoder
+
+embedder = SentenceTransformer("mzahran1/arabic-english-e5-small-retrieval")
+reranker = CrossEncoder("mzahran1/arabic-english-reranker-mminilm")
+
+query = "متى تأسست جامعة الملك عبدالله للعلوم والتقنية؟"
+passages = [
+    "The King Abdullah University of Science and Technology was founded in 2009 in Thuwal.",
+    "Riyadh is the capital of Saudi Arabia and its largest city.",
+]
+# first stage: e5 prefixes are required
+scores = embedder.similarity(embedder.encode(["query: " + query]), embedder.encode(["passage: " + p for p in passages]))
+# second stage: rerank the top candidates (no prefixes)
+rerank_scores = reranker.predict([(query, p) for p in passages])
+```
 
 ## Results
 
