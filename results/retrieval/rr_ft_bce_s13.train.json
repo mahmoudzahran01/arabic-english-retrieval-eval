@@ -1,0 +1,47 @@
+{
+ "name": "rr_ft_bce_s13",
+ "args": {
+  "name": "rr_ft_bce_s13",
+  "base": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+  "neg_model": "e5-small-xl",
+  "pick": "hardest",
+  "n_neg": 4,
+  "rank_hi": 30,
+  "margin": 0.0,
+  "no_margin": false,
+  "xling": true,
+  "loss": "bce",
+  "epochs": 1,
+  "bs": 32,
+  "lr": 2e-05,
+  "max_len": 256,
+  "frac": 1.0,
+  "seed": 13
+ },
+ "rows": 104590,
+ "queries": 20918,
+ "train_seconds": 1352.3,
+ "peak_gpu_gb": 3.18,
+ "first_loss": 0.6492269134521484,
+ "last_loss": 0.3693456268310547,
+ "mining": {
+  "gold": 20421,
+  "rank_window": 1463780,
+  "margin": 53127,
+  "near_dup": 68,
+  "same_title": 0,
+  "kept": 79604,
+  "short_lists": 1039,
+  "policy": {
+   "n_neg": 4,
+   "rank_lo": 1,
+   "rank_hi": 30,
+   "margin": 0.0,
+   "use_margin": true,
+   "dup_jaccard": 0.8,
+   "same_title": false,
+   "pick": "hardest",
+   "seed": 13
+  }
+ }
+}

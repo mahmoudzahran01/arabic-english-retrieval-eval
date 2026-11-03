@@ -1,0 +1,48 @@
+{
+ "name": "e5s_inb_e1_s14",
+ "args": {
+  "name": "e5s_inb_e1_s14",
+  "base": "e5-small",
+  "neg_model": "none",
+  "n_neg": 0,
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.0,
+  "no_margin": false,
+  "same_title": false,
+  "pick": "hardest",
+  "frac": 1.0,
+  "xling": false,
+  "epochs": 1,
+  "bs": 64,
+  "lr": 3e-05,
+  "scale": 20.0,
+  "loss": "mnrl",
+  "mini_batch": 32,
+  "max_len": 256,
+  "seed": 14,
+  "dev_curve": false,
+  "keep_model": false,
+  "skip_eval": false,
+  "data_seed": 14,
+  "q_prefix": "query: ",
+  "p_prefix": "passage: "
+ },
+ "train_seconds": 239.9,
+ "peak_gpu_gb": 5.57,
+ "steps": 256,
+ "first_loss": 0.8702156829833985,
+ "last_loss": 0.08935332298278809,
+ "data": {
+  "n_examples": 16419,
+  "padded_negatives": 0,
+  "by_slice": {
+   "train_arcd_ar": 414,
+   "train_squad_en": 6653,
+   "train_tydi_ar": 7328,
+   "train_tydi_en": 2024
+  }
+ },
+ "mining": null,
+ "dev_curve": []
+}

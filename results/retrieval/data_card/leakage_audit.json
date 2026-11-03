@@ -1,0 +1,133 @@
+{
+  "gold_outside_pool": 0,
+  "duplicate_pids_across_pools": 0,
+  "questions_in_multiple_splits": 1,
+  "question_split_pairs": {
+    "dev+train": "1"
+  },
+  "title_overlap_all_passages(incl. distractors)": {
+    "train&test": 10,
+    "train&dev": 16,
+    "dev&test": 0
+  },
+  "title_overlap_gold_passages_only": {
+    "train&test": 0,
+    "train&dev": 9,
+    "dev&test": 0
+  },
+  "note_title_overlap": "Overlap with distractor-only articles comes from the per-source title hash (the same Wikipedia article can be a TyDi distractor in the test pool and an ARCD train article); identical paragraphs are removed by text key. Gold test articles are excluded from train/dev by construction (see build_data).",
+  "near_duplicate_passages(6-gram containment)": {
+    "test_vs_train": {
+      "passages_checked": 9817,
+      "containment>=0.5": 26,
+      "containment>=0.8": 14,
+      "gold_queries_affected": 14,
+      "examples": [
+        {
+          "a": "ar-ae77a4b50516",
+          "b": "ar-80de3bf9c6d3",
+          "frac": 0.65
+        },
+        {
+          "a": "ar-49ef52e929f3",
+          "b": "ar-e9e040494650",
+          "frac": 0.6
+        },
+        {
+          "a": "en-5f1251d802d5",
+          "b": "en-e4f96fe24c8f",
+          "frac": 0.9
+        }
+      ]
+    },
+    "dev_vs_train": {
+      "passages_checked": 4037,
+      "containment>=0.5": 23,
+      "containment>=0.8": 13,
+      "gold_queries_affected": 50,
+      "examples": [
+        {
+          "a": "ar-0adca5c65f83",
+          "b": "ar-38cd2f0ce34f",
+          "frac": 0.93
+        },
+        {
+          "a": "ar-dc45f2a62f0a",
+          "b": "ar-025454a9571d",
+          "frac": 0.64
+        },
+        {
+          "a": "ar-4b65214810c6",
+          "b": "ar-9277e582e03e",
+          "frac": 0.81
+        }
+      ]
+    },
+    "test_vs_dev": {
+      "passages_checked": 9817,
+      "containment>=0.5": 6,
+      "containment>=0.8": 3,
+      "gold_queries_affected": 6,
+      "examples": [
+        {
+          "a": "ar-aca2aa84a564",
+          "b": "ar-6db3ff04802e",
+          "frac": 0.7
+        },
+        {
+          "a": "ar-5267b6445f78",
+          "b": "ar-6db3ff04802e",
+          "frac": 0.71
+        },
+        {
+          "a": "ar-98c25479c247",
+          "b": "ar-3d280a0c7715",
+          "frac": 0.55
+        }
+      ]
+    }
+  },
+  "near_duplicate_questions": {
+    "test": {
+      "queries_checked": 6823,
+      "near_dup_of_a_train_question(J>=0.8)": 8,
+      "examples": [
+        [
+          "ما هو الحمض النووي الريبوزي الصغير النووي ؟",
+          "ما هو الحمض النووي الريبوزي؟"
+        ],
+        [
+          "متى تأسست حركة حماس؟",
+          "متى تأسست حركة حماس العراق؟"
+        ],
+        [
+          "Where was Zheng He born?",
+          "Where was he born?"
+        ]
+      ]
+    },
+    "dev": {
+      "queries_checked": 3163,
+      "near_dup_of_a_train_question(J>=0.8)": 9,
+      "examples": [
+        [
+          "من هو جون ستيوارت ؟",
+          "من هو جون ستيوارت مل؟"
+        ],
+        [
+          "ماهي أعلى رتبة عسكرية في سلم الرتب العسكرية الإيراني؟",
+          "ماهي أعلى رتبة عسكرية في سلم الرتب العسكرية المصري؟"
+        ],
+        [
+          "ما هو الحمض النووي المؤتلف؟",
+          "ما هو الحمض النووي؟"
+        ]
+      ]
+    }
+  },
+  "translated_queries_with_foreign_source_split": 0,
+  "translated_queries": {
+    "dev": 500,
+    "train": 4499
+  }
+}

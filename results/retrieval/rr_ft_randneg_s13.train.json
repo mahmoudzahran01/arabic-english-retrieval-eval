@@ -1,0 +1,47 @@
+{
+ "name": "rr_ft_randneg_s13",
+ "args": {
+  "name": "rr_ft_randneg_s13",
+  "base": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+  "neg_model": "e5-small-xl",
+  "pick": "random_corpus",
+  "n_neg": 4,
+  "rank_hi": 30,
+  "margin": 0.0,
+  "no_margin": false,
+  "xling": true,
+  "loss": "bce",
+  "epochs": 1,
+  "bs": 32,
+  "lr": 2e-05,
+  "max_len": 256,
+  "frac": 1.0,
+  "seed": 13
+ },
+ "rows": 104590,
+ "queries": 20918,
+ "train_seconds": 1849.0,
+ "peak_gpu_gb": 3.18,
+ "first_loss": 0.3608366775512695,
+ "last_loss": 0.10251947402954102,
+ "mining": {
+  "gold": 0,
+  "rank_window": 0,
+  "margin": 0,
+  "near_dup": 0,
+  "same_title": 0,
+  "kept": 0,
+  "short_lists": 0,
+  "policy": {
+   "n_neg": 4,
+   "rank_lo": 1,
+   "rank_hi": 30,
+   "margin": 0.0,
+   "use_margin": true,
+   "dup_jaccard": 0.8,
+   "same_title": false,
+   "pick": "random_corpus",
+   "seed": 13
+  }
+ }
+}

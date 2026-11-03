@@ -1,0 +1,80 @@
+{
+  "seed": 13,
+  "title_splits(train,dev,dev_bg,test_bg)": {
+    "tydi_ar_train": [
+      0.5,
+      0.08,
+      0.12,
+      0.3
+    ],
+    "tydi_en_train": [
+      0.55,
+      0.1,
+      0.1,
+      0.25
+    ],
+    "arcd_train": [
+      0.75,
+      0.25,
+      0.0,
+      0.0
+    ],
+    "squad_train": [
+      0.2,
+      0.04,
+      0.04,
+      0.1
+    ]
+  },
+  "max_q_per_ctx": {
+    "squad_train": 2
+  },
+  "licenses": {
+    "tydi": "Apache-2.0 (google-research-datasets/tydiqa, secondary_task = GoldP)",
+    "arcd": "MIT (hsseinmz/arcd)",
+    "squad": "CC BY-SA 4.0 (rajpurkar/squad v1.1)",
+    "xquad": "CC BY-SA 4.0 (google/xquad)"
+  },
+  "dropped": {
+    "title_in_test_tydi_ar_train": 1094,
+    "title_in_test_tydi_en_train": 6,
+    "title_in_test_arcd_train": 306,
+    "passage_in_other_pool_arcd_train": 12,
+    "title_in_test_squad_train": 1610,
+    "passage_in_other_pool_tydi_ar_train": 4,
+    "dup_question_train_tydi_ar": 6,
+    "dup_question_train_arcd_ar": 3,
+    "dup_question_train_squad_en": 1
+  },
+  "passages_by_pool_lang": {
+    "dev/ar": 1982,
+    "dev/en": 2055,
+    "test/ar": 4325,
+    "test/en": 5492,
+    "train/ar": 5425,
+    "train/en": 5227
+  },
+  "queries_by_slice": {
+    "dev/dev_arcd_ar": 111,
+    "dev/dev_squad_en": 1661,
+    "dev/dev_tydi_ar": 1037,
+    "dev/dev_tydi_en": 354,
+    "test/arcd_ar": 702,
+    "test/tydi_ar": 921,
+    "test/tydi_en": 440,
+    "test/xquad_ar2ar": 1190,
+    "test/xquad_ar2en": 1190,
+    "test/xquad_en2ar": 1190,
+    "test/xquad_en2en": 1190,
+    "train/train_arcd_ar": 414,
+    "train/train_squad_en": 6653,
+    "train/train_tydi_ar": 7328,
+    "train/train_tydi_en": 2024
+  },
+  "xling_candidates": {
+    "dev/ar2en": 200,
+    "dev/en2ar": 300,
+    "train/ar2en": 1500,
+    "train/en2ar": 3000
+  }
+}

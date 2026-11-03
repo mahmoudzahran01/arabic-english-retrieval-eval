@@ -1,0 +1,95 @@
+{
+ "name": "e5s_hard1_e3_s13",
+ "args": {
+  "name": "e5s_hard1_e3_s13",
+  "base": "e5-small",
+  "neg_model": "e5-small",
+  "n_neg": 1,
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.02,
+  "no_margin": false,
+  "same_title": false,
+  "pick": "hardest",
+  "frac": 1.0,
+  "xling": false,
+  "epochs": 3,
+  "bs": 64,
+  "lr": 3e-05,
+  "scale": 20.0,
+  "loss": "mnrl",
+  "mini_batch": 32,
+  "max_len": 256,
+  "seed": 13,
+  "dev_curve": true,
+  "keep_model": false,
+  "skip_eval": false,
+  "data_seed": 13,
+  "q_prefix": "query: ",
+  "p_prefix": "passage: "
+ },
+ "train_seconds": 851.8,
+ "peak_gpu_gb": 8.99,
+ "steps": 768,
+ "first_loss": 1.864490966796875,
+ "last_loss": 0.09859856605529785,
+ "data": {
+  "n_examples": 16419,
+  "padded_negatives": 996,
+  "by_slice": {
+   "train_arcd_ar": 414,
+   "train_squad_en": 6653,
+   "train_tydi_ar": 7328,
+   "train_tydi_en": 2024
+  }
+ },
+ "mining": {
+  "gold": 16240,
+  "rank_window": 1149156,
+  "margin": 58403,
+  "near_dup": 11,
+  "same_title": 0,
+  "kept": 15423,
+  "short_lists": 996,
+  "policy": {
+   "n_neg": 1,
+   "rank_lo": 1,
+   "rank_hi": 30,
+   "margin": 0.02,
+   "use_margin": true,
+   "dup_jaccard": 0.8,
+   "same_title": false,
+   "pick": "hardest",
+   "seed": 13
+  }
+ },
+ "dev_curve": [
+  {
+   "epoch": 1.0,
+   "dev_macro_mrr@10": 0.8330201820894519,
+   "dev_by_direction": {
+    "ar->ar": 0.7916032680979643,
+    "en->en": 0.8744370960809396,
+    "macro": 0.8330201820894519
+   }
+  },
+  {
+   "epoch": 2.0,
+   "dev_macro_mrr@10": 0.8284295683909809,
+   "dev_by_direction": {
+    "ar->ar": 0.7809351437123857,
+    "en->en": 0.8759239930695761,
+    "macro": 0.8284295683909809
+   }
+  },
+  {
+   "epoch": 3.0,
+   "dev_macro_mrr@10": 0.8302363943771366,
+   "dev_by_direction": {
+    "ar->ar": 0.7830747109556173,
+    "en->en": 0.8773980777986559,
+    "macro": 0.8302363943771366
+   }
+  }
+ ]
+}

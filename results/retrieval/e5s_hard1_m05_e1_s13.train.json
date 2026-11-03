@@ -1,0 +1,67 @@
+{
+ "name": "e5s_hard1_m05_e1_s13",
+ "args": {
+  "name": "e5s_hard1_m05_e1_s13",
+  "base": "e5-small",
+  "neg_model": "e5-small",
+  "n_neg": 1,
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.05,
+  "no_margin": false,
+  "same_title": false,
+  "pick": "hardest",
+  "frac": 1.0,
+  "xling": false,
+  "epochs": 1,
+  "bs": 64,
+  "lr": 3e-05,
+  "scale": 20.0,
+  "loss": "mnrl",
+  "mini_batch": 32,
+  "max_len": 256,
+  "seed": 13,
+  "dev_curve": false,
+  "keep_model": false,
+  "skip_eval": false,
+  "data_seed": 13,
+  "q_prefix": "query: ",
+  "p_prefix": "passage: "
+ },
+ "train_seconds": 513.7,
+ "peak_gpu_gb": 8.95,
+ "steps": 256,
+ "first_loss": 1.2993067932128906,
+ "last_loss": 0.13205275535583497,
+ "data": {
+  "n_examples": 16419,
+  "padded_negatives": 3760,
+  "by_slice": {
+   "train_arcd_ar": 414,
+   "train_squad_en": 6653,
+   "train_tydi_ar": 7328,
+   "train_tydi_en": 2024
+  }
+ },
+ "mining": {
+  "gold": 16240,
+  "rank_window": 1149156,
+  "margin": 165772,
+  "near_dup": 0,
+  "same_title": 0,
+  "kept": 12659,
+  "short_lists": 3760,
+  "policy": {
+   "n_neg": 1,
+   "rank_lo": 1,
+   "rank_hi": 30,
+   "margin": 0.05,
+   "use_margin": true,
+   "dup_jaccard": 0.8,
+   "same_title": false,
+   "pick": "hardest",
+   "seed": 13
+  }
+ },
+ "dev_curve": []
+}

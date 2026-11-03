@@ -1,0 +1,65 @@
+{
+  "n_items": 186,
+  "n_excluded": 6,
+  "excluded": {
+    "M160": "short answer already contains the other fact",
+    "M161": "short answer already contains the other fact",
+    "M164": "pair references identical",
+    "M165": "pair references identical",
+    "M166": "short answer already contains the other fact",
+    "M171": "pair references identical"
+  },
+  "target": {
+    "clean": 24,
+    "clean_numeral": 10,
+    "wrong_number": 18,
+    "wrong_entity": 18,
+    "unsupported_claim": 18,
+    "omitted_fact": 14,
+    "wrong_language": 14,
+    "wrong_citation": 16,
+    "correct_abstention": 14,
+    "wrong_abstention": 14,
+    "halluc_unanswerable": 14,
+    "wrong_number_arindic": 12
+  },
+  "built": {
+    "wrong_number": 18,
+    "clean": 24,
+    "clean_numeral": 10,
+    "wrong_entity": 18,
+    "unsupported_claim": 18,
+    "wrong_language": 14,
+    "wrong_citation": 16,
+    "correct_abstention": 14,
+    "halluc_unanswerable": 14,
+    "wrong_abstention": 14,
+    "omitted_fact": 14,
+    "wrong_number_arindic": 12
+  },
+  "by_split": {
+    "dev": 89,
+    "test": 97
+  },
+  "by_q_lang": {
+    "ar": 92,
+    "en": 94
+  },
+  "acceptable_rate": 0.25806451612903225,
+  "bases_total": 190,
+  "bases_kept": 152,
+  "base_drop_reasons": {
+    "ref_missing": 38,
+    "wrong_lang": 13,
+    "abstained": 10,
+    "no_gold_cite": 10
+  },
+  "plant_rejections": {
+    "wrong_number: number token not found": 2,
+    "clean_numeral: no variant": 3,
+    "unsupported_claim: validation failed": 1,
+    "wrong_language: translation failed validation": 1,
+    "abstention: answer string present in no-gold context": 1,
+    "omitted_fact: pair incomplete": 4
+  }
+}

@@ -1,0 +1,69 @@
+{
+ "name": "e5s_hard1_xl_bgem3_e1_s13",
+ "args": {
+  "name": "e5s_hard1_xl_bgem3_e1_s13",
+  "base": "e5-small",
+  "neg_model": "bge-m3-xl",
+  "n_neg": 1,
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.02,
+  "no_margin": false,
+  "same_title": false,
+  "pick": "hardest",
+  "frac": 1.0,
+  "xling": true,
+  "epochs": 1,
+  "bs": 64,
+  "lr": 3e-05,
+  "scale": 20.0,
+  "loss": "mnrl",
+  "mini_batch": 32,
+  "max_len": 256,
+  "seed": 13,
+  "dev_curve": false,
+  "keep_model": false,
+  "skip_eval": false,
+  "data_seed": 13,
+  "q_prefix": "query: ",
+  "p_prefix": "passage: "
+ },
+ "train_seconds": 434.3,
+ "peak_gpu_gb": 8.95,
+ "steps": 326,
+ "first_loss": 1.8270161437988282,
+ "last_loss": 0.31995109558105467,
+ "data": {
+  "n_examples": 20918,
+  "padded_negatives": 965,
+  "by_slice": {
+   "train_arcd_ar": 414,
+   "train_squad_en": 6653,
+   "train_tydi_ar": 7328,
+   "train_tydi_en": 2024,
+   "train_xl_ar2en": 3000,
+   "train_xl_en2ar": 1499
+  }
+ },
+ "mining": {
+  "gold": 20616,
+  "rank_window": 1463932,
+  "margin": 55423,
+  "near_dup": 45,
+  "same_title": 0,
+  "kept": 19953,
+  "short_lists": 965,
+  "policy": {
+   "n_neg": 1,
+   "rank_lo": 1,
+   "rank_hi": 30,
+   "margin": 0.02,
+   "use_margin": true,
+   "dup_jaccard": 0.8,
+   "same_title": false,
+   "pick": "hardest",
+   "seed": 13
+  }
+ },
+ "dev_curve": []
+}

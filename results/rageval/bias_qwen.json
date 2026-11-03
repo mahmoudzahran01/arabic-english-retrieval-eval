@@ -1,0 +1,115 @@
+{
+  "model": "qwen",
+  "quality": {
+    "x_first": {
+      "n": 24,
+      "rate": 0.9583333333333334
+    },
+    "x_second": {
+      "n": 24,
+      "rate": 1.0
+    },
+    "x_overall": {
+      "n": 48,
+      "rate": 0.9791666666666666
+    },
+    "picks_position_A": {
+      "n": 48,
+      "rate": 0.4791666666666667
+    },
+    "order_consistent": {
+      "n": 24,
+      "rate": 0.9583333333333334
+    }
+  },
+  "equal": {
+    "x_first": {
+      "n": 24,
+      "rate": 0.9583333333333334
+    },
+    "x_second": {
+      "n": 24,
+      "rate": 0.8333333333333334
+    },
+    "x_overall": {
+      "n": 48,
+      "rate": 0.8958333333333334
+    },
+    "picks_position_A": {
+      "n": 48,
+      "rate": 0.5625
+    },
+    "order_consistent": {
+      "n": 24,
+      "rate": 0.7916666666666666
+    }
+  },
+  "pad_equal": {
+    "x_first": {
+      "n": 24,
+      "rate": 0.875
+    },
+    "x_second": {
+      "n": 24,
+      "rate": 0.041666666666666664
+    },
+    "x_overall": {
+      "n": 48,
+      "rate": 0.4583333333333333
+    },
+    "picks_position_A": {
+      "n": 48,
+      "rate": 0.9166666666666666
+    },
+    "order_consistent": {
+      "n": 24,
+      "rate": 0.16666666666666666
+    }
+  },
+  "pad_wrong": {
+    "x_first": {
+      "n": 24,
+      "rate": 0.9166666666666666
+    },
+    "x_second": {
+      "n": 24,
+      "rate": 0.9166666666666666
+    },
+    "x_overall": {
+      "n": 48,
+      "rate": 0.9166666666666666
+    },
+    "picks_position_A": {
+      "n": 48,
+      "rate": 0.5
+    },
+    "order_consistent": {
+      "n": 24,
+      "rate": 0.8333333333333334
+    }
+  },
+  "self": {
+    "x_first": {
+      "n": 40,
+      "rate": 0.325
+    },
+    "x_second": {
+      "n": 40,
+      "rate": 0.375
+    },
+    "x_overall": {
+      "n": 80,
+      "rate": 0.35
+    },
+    "picks_position_A": {
+      "n": 80,
+      "rate": 0.475
+    },
+    "order_consistent": {
+      "n": 40,
+      "rate": 0.7
+    },
+    "n_pairs": 40,
+    "qwen_over_gemma_length_ratio": 0.9379083132404263
+  }
+}

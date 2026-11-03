@@ -1,0 +1,82 @@
+{
+ "first_stage": "e5-small",
+ "n_queries_gpu": 60,
+ "n_queries_cpu": 12,
+ "note": "shared machine; see README",
+ "cpu_cores_visible": 20,
+ "mmarco-mMiniLM (off-the-shelf) | cuda | top20": {
+  "p50_ms": 38.5,
+  "p95_ms": 47.1,
+  "mean_ms": 36.3
+ },
+ "mmarco-mMiniLM (off-the-shelf) | cuda | top50": {
+  "p50_ms": 94.3,
+  "p95_ms": 120.4,
+  "mean_ms": 93.7
+ },
+ "mmarco-mMiniLM (off-the-shelf) | cpu 1thr | top20": {
+  "p50_ms": 3066.6,
+  "p95_ms": 3261.1,
+  "mean_ms": 3068.8
+ },
+ "mmarco-mMiniLM (off-the-shelf) | cpu 1thr | top50": {
+  "p50_ms": 7206.6,
+  "p95_ms": 7406.1,
+  "mean_ms": 7136.3
+ },
+ "mmarco-mMiniLM (off-the-shelf) | cpu 4thr | top20": {
+  "p50_ms": 933.6,
+  "p95_ms": 1280.2,
+  "mean_ms": 986.8
+ },
+ "mmarco-mMiniLM (off-the-shelf) | cpu 4thr | top50": {
+  "p50_ms": 3160.7,
+  "p95_ms": 3459.6,
+  "mean_ms": 3142.3
+ },
+ "mmarco-mMiniLM (off-the-shelf) | cpu 8thr | top20": {
+  "p50_ms": 1242.1,
+  "p95_ms": 1304.8,
+  "mean_ms": 1247.5
+ },
+ "mmarco-mMiniLM (off-the-shelf) | cpu 8thr | top50": {
+  "p50_ms": 3214.7,
+  "p95_ms": 3491.3,
+  "mean_ms": 3237.7
+ },
+ "bge-reranker-v2-m3 (off-the-shelf) | cuda | top20": {
+  "p50_ms": 262.0,
+  "p95_ms": 302.9,
+  "mean_ms": 263.9
+ },
+ "bge-reranker-v2-m3 (off-the-shelf) | cuda | top50": {
+  "p50_ms": 559.9,
+  "p95_ms": 594.6,
+  "mean_ms": 555.3
+ },
+ "bge-reranker-v2-m3 (off-the-shelf) | cpu 8thr | top20": {
+  "p50_ms": 10737.3,
+  "p95_ms": 12102.2,
+  "mean_ms": 10871.8
+ },
+ "embed one query | e5-small | cuda": {
+  "p50_ms": 16.0,
+  "p95_ms": 19.5,
+  "mean_ms": 15.9
+ },
+ "embed one query | e5-small | cpu 8thr": {
+  "p50_ms": 17.2,
+  "p95_ms": 33.8,
+  "mean_ms": 20.4
+ },
+ "embed one query | bge-m3 | cuda": {
+  "p50_ms": 39.3,
+  "p95_ms": 55.2,
+  "mean_ms": 38.9
+ },
+ "embed one query | bge-m3 | cpu 8thr": {
+  "p50_ms": 172.1,
+  "p95_ms": 218.0,
+  "mean_ms": 167.8
+ }
+}

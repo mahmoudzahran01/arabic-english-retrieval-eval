@@ -1,0 +1,115 @@
+{
+  "model": "gemma",
+  "quality": {
+    "x_first": {
+      "n": 8,
+      "rate": 1.0
+    },
+    "x_second": {
+      "n": 8,
+      "rate": 1.0
+    },
+    "x_overall": {
+      "n": 16,
+      "rate": 1.0
+    },
+    "picks_position_A": {
+      "n": 16,
+      "rate": 0.5
+    },
+    "order_consistent": {
+      "n": 8,
+      "rate": 1.0
+    }
+  },
+  "equal": {
+    "x_first": {
+      "n": 8,
+      "rate": 1.0
+    },
+    "x_second": {
+      "n": 8,
+      "rate": 1.0
+    },
+    "x_overall": {
+      "n": 16,
+      "rate": 1.0
+    },
+    "picks_position_A": {
+      "n": 16,
+      "rate": 0.5
+    },
+    "order_consistent": {
+      "n": 8,
+      "rate": 1.0
+    }
+  },
+  "pad_equal": {
+    "x_first": {
+      "n": 8,
+      "rate": 1.0
+    },
+    "x_second": {
+      "n": 8,
+      "rate": 1.0
+    },
+    "x_overall": {
+      "n": 16,
+      "rate": 1.0
+    },
+    "picks_position_A": {
+      "n": 16,
+      "rate": 0.5
+    },
+    "order_consistent": {
+      "n": 8,
+      "rate": 1.0
+    }
+  },
+  "pad_wrong": {
+    "x_first": {
+      "n": 8,
+      "rate": 1.0
+    },
+    "x_second": {
+      "n": 8,
+      "rate": 1.0
+    },
+    "x_overall": {
+      "n": 16,
+      "rate": 1.0
+    },
+    "picks_position_A": {
+      "n": 16,
+      "rate": 0.5
+    },
+    "order_consistent": {
+      "n": 8,
+      "rate": 1.0
+    }
+  },
+  "self": {
+    "x_first": {
+      "n": 19,
+      "rate": 0.3157894736842105
+    },
+    "x_second": {
+      "n": 19,
+      "rate": 0.47368421052631576
+    },
+    "x_overall": {
+      "n": 38,
+      "rate": 0.39473684210526316
+    },
+    "picks_position_A": {
+      "n": 38,
+      "rate": 0.42105263157894735
+    },
+    "order_consistent": {
+      "n": 19,
+      "rate": 0.7368421052631579
+    },
+    "n_pairs": 19,
+    "qwen_over_gemma_length_ratio": 0.9365750560820902
+  }
+}

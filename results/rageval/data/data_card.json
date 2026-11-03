@@ -1,0 +1,22 @@
+{
+  "source": "XQuAD (google-deepmind/xquad), Artetxe et al. 2020, https://arxiv.org/abs/1910.11856",
+  "license": "CC BY-SA 4.0 (dataset); underlying SQuAD v1.1 text is CC BY-SA 4.0 (Wikipedia)",
+  "corpus_passages": 220,
+  "corpus_by_lang": {
+    "en": 110,
+    "ar": 110
+  },
+  "eval_questions": 180,
+  "answerable": 160,
+  "unanswerable": 20,
+  "by_kind": {
+    "ar|mono": 40,
+    "en|cross": 40,
+    "ar|cross": 40,
+    "en|mono": 40,
+    "en|unanswerable": 10,
+    "ar|unanswerable": 10
+  },
+  "meta_pool_questions": 932,
+  "seed": 42
+}

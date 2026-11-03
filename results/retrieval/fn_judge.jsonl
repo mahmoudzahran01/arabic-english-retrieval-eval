@@ -1,0 +1,640 @@
+{"qid": "tydi_ar-train-arabic--6175078424954768091-0", "pid": "ar-7dbf660338d2", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--6175078424954768091-0", "pid": "ar-071eb1789c1b", "kind": "neg", "band": "rank 1-3", "gap": 0.1074, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6175078424954768091-0", "pid": "ar-020b566116eb", "kind": "neg", "band": "rank 4-10", "gap": 0.1166, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6695111278407177464-2", "pid": "ar-19a11545dc87", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--6175078424954768091-0", "pid": "ar-9c1bf124bc2e", "kind": "neg", "band": "rank 11-30", "gap": 0.1258, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6695111278407177464-2", "pid": "ar-93b4ad6d9ca2", "kind": "neg", "band": "rank 1-3", "gap": 0.0406, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6695111278407177464-2", "pid": "ar-ab7ab6cc63c3", "kind": "neg", "band": "rank 4-10", "gap": 0.046, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6695111278407177464-2", "pid": "ar-e4ba6d5c3fef", "kind": "neg", "band": "rank 11-30", "gap": 0.0765, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--462241968559233574-0", "pid": "ar-6b02aec1ce69", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--462241968559233574-0", "pid": "ar-6cb8a0b53d9f", "kind": "neg", "band": "rank 1-3", "gap": 0.1049, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--462241968559233574-0", "pid": "ar-0125680dcdb1", "kind": "neg", "band": "rank 4-10", "gap": 0.1223, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--462241968559233574-0", "pid": "ar-1728f83e73de", "kind": "neg", "band": "rank 11-30", "gap": 0.1258, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1991354784632518401-0", "pid": "ar-2bb083ccee69", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-1991354784632518401-0", "pid": "ar-9d6fe6c30b56", "kind": "neg", "band": "rank 1-3", "gap": 0.0666, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1991354784632518401-0", "pid": "ar-ae479de957fe", "kind": "neg", "band": "rank 4-10", "gap": 0.0752, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1991354784632518401-0", "pid": "ar-9df840b3abf0", "kind": "neg", "band": "rank 11-30", "gap": 0.1029, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6806785138345225044-0", "pid": "ar-420f8a4fb31c", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--6806785138345225044-0", "pid": "ar-5b4f69865dee", "kind": "neg", "band": "rank 1-3", "gap": 0.0873, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6806785138345225044-0", "pid": "ar-5e200783bd0c", "kind": "neg", "band": "rank 4-10", "gap": 0.1505, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6806785138345225044-0", "pid": "ar-b5a6753fe246", "kind": "neg", "band": "rank 11-30", "gap": 0.164, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3090305879253095015-0", "pid": "ar-c740b2ffd103", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-3090305879253095015-0", "pid": "ar-5b4f69865dee", "kind": "neg", "band": "rank 1-3", "gap": 0.0721, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3090305879253095015-0", "pid": "ar-a6fa5a726f2b", "kind": "neg", "band": "rank 4-10", "gap": 0.116, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3090305879253095015-0", "pid": "ar-b8a1bede028b", "kind": "neg", "band": "rank 11-30", "gap": 0.1223, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8332395329775588135-2", "pid": "ar-a3d60b89932b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--8332395329775588135-2", "pid": "ar-d281af4aef26", "kind": "neg", "band": "rank 1-3", "gap": -0.0086, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--8332395329775588135-2", "pid": "ar-a72e5d741b69", "kind": "neg", "band": "rank 4-10", "gap": 0.0806, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8332395329775588135-2", "pid": "ar-22f215ff5cd6", "kind": "neg", "band": "rank 11-30", "gap": 0.0842, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3995312411078705550-0", "pid": "ar-6c6f63f4f95c", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--3995312411078705550-0", "pid": "ar-89b6e96e7c3a", "kind": "neg", "band": "rank 1-3", "gap": 0.1164, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3995312411078705550-0", "pid": "ar-97fdba7b2d23", "kind": "neg", "band": "rank 4-10", "gap": 0.1321, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3995312411078705550-0", "pid": "ar-555ec0fdb510", "kind": "neg", "band": "rank 11-30", "gap": 0.1403, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8608233643461587033-0", "pid": "ar-ae4cabdee678", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--8608233643461587033-0", "pid": "ar-2f92b1770378", "kind": "neg", "band": "rank 1-3", "gap": 0.101, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8608233643461587033-0", "pid": "ar-837524786cff", "kind": "neg", "band": "rank 4-10", "gap": 0.1219, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8608233643461587033-0", "pid": "ar-593467c77164", "kind": "neg", "band": "rank 11-30", "gap": 0.1312, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7800292842205736831-0", "pid": "ar-5bdb4df5b135", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--7800292842205736831-0", "pid": "ar-454b17999afe", "kind": "neg", "band": "rank 1-3", "gap": 0.1042, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7800292842205736831-0", "pid": "ar-efc8f3d75270", "kind": "neg", "band": "rank 4-10", "gap": 0.1135, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7800292842205736831-0", "pid": "ar-c39f7738c131", "kind": "neg", "band": "rank 11-30", "gap": 0.1254, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6920480198286785953-0", "pid": "ar-921bcfe33108", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-6920480198286785953-0", "pid": "ar-b6cfb64e3aeb", "kind": "neg", "band": "rank 1-3", "gap": 0.0218, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6920480198286785953-0", "pid": "ar-683e766dff47", "kind": "neg", "band": "rank 4-10", "gap": 0.1302, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6920480198286785953-0", "pid": "ar-a230e2bedf11", "kind": "neg", "band": "rank 11-30", "gap": 0.1399, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2721326429415194007-1", "pid": "ar-298283bc7a72", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--2721326429415194007-1", "pid": "ar-0463e0693c7d", "kind": "neg", "band": "rank 1-3", "gap": 0.0234, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2721326429415194007-1", "pid": "ar-369cf9266e15", "kind": "neg", "band": "rank 4-10", "gap": 0.0367, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2721326429415194007-1", "pid": "ar-401cc503c1b4", "kind": "neg", "band": "rank 11-30", "gap": 0.0554, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6068501739176163833-0", "pid": "ar-2309d5ebc263", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-6068501739176163833-0", "pid": "ar-254a580e7bf9", "kind": "neg", "band": "rank 1-3", "gap": 0.0623, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6068501739176163833-0", "pid": "ar-55cab7f7a2f1", "kind": "neg", "band": "rank 4-10", "gap": 0.0735, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6068501739176163833-0", "pid": "ar-f5f9d11c3719", "kind": "neg", "band": "rank 11-30", "gap": 0.0835, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2084330005961843448-1", "pid": "ar-e21753e2c075", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2084330005961843448-1", "pid": "ar-16763a415aaa", "kind": "neg", "band": "rank 1-3", "gap": 0.0043, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2084330005961843448-1", "pid": "ar-786c2d94c2d8", "kind": "neg", "band": "rank 4-10", "gap": 0.0157, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2084330005961843448-1", "pid": "ar-8c14137956c1", "kind": "neg", "band": "rank 11-30", "gap": 0.0276, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6564205807894524509-18", "pid": "ar-8285bfeb1628", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-6564205807894524509-18", "pid": "ar-917179a4c946", "kind": "neg", "band": "rank 1-3", "gap": 0.0123, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6564205807894524509-18", "pid": "ar-b1680aa0bda4", "kind": "neg", "band": "rank 4-10", "gap": 0.0337, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6564205807894524509-18", "pid": "ar-a4d3ab6e68e4", "kind": "neg", "band": "rank 11-30", "gap": 0.0591, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3510414064353335340-1", "pid": "ar-6ec330ba1c9e", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-3510414064353335340-1", "pid": "ar-6042e4e867ad", "kind": "neg", "band": "rank 1-3", "gap": -0.0012, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3510414064353335340-1", "pid": "ar-7308f4973d63", "kind": "neg", "band": "rank 4-10", "gap": 0.0114, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3510414064353335340-1", "pid": "ar-4e8865e02356", "kind": "neg", "band": "rank 11-30", "gap": 0.0431, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1876232174991832801-0", "pid": "ar-3a544d321b71", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--1876232174991832801-0", "pid": "ar-dc5b29d6b4fd", "kind": "neg", "band": "rank 1-3", "gap": 0.0805, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1876232174991832801-0", "pid": "ar-82c0a9a36c9e", "kind": "neg", "band": "rank 4-10", "gap": 0.0952, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1876232174991832801-0", "pid": "ar-2bdf7c10dfc4", "kind": "neg", "band": "rank 11-30", "gap": 0.1013, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8446365969206585489-0", "pid": "ar-aa078c23194e", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--8446365969206585489-0", "pid": "ar-d6d9746da510", "kind": "neg", "band": "rank 1-3", "gap": 0.105, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8446365969206585489-0", "pid": "ar-4dc54a38b98a", "kind": "neg", "band": "rank 4-10", "gap": 0.1116, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8446365969206585489-0", "pid": "ar-c626cd4e6903", "kind": "neg", "band": "rank 11-30", "gap": 0.1255, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--9175622212147845255-0", "pid": "ar-cf48f7376a4d", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--9175622212147845255-0", "pid": "ar-b116eb7515ee", "kind": "neg", "band": "rank 1-3", "gap": 0.0172, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--9175622212147845255-0", "pid": "ar-f90db3219c07", "kind": "neg", "band": "rank 11-30", "gap": 0.045, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--9175622212147845255-0", "pid": "ar-64651e0fa571", "kind": "neg", "band": "rank 4-10", "gap": 0.0382, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7690032614887591519-0", "pid": "ar-3b2c7e5c62d6", "kind": "neg", "band": "rank 1-3", "gap": 0.0253, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7690032614887591519-0", "pid": "ar-7850c8e0ad2e", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-7690032614887591519-0", "pid": "ar-c45403fe03b3", "kind": "neg", "band": "rank 4-10", "gap": 0.0649, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7690032614887591519-0", "pid": "ar-3657254ce4a0", "kind": "neg", "band": "rank 11-30", "gap": 0.0795, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6401307797537382414-0", "pid": "ar-cf760e51b127", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-6401307797537382414-0", "pid": "ar-961b01ebf75c", "kind": "neg", "band": "rank 1-3", "gap": 0.111, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6401307797537382414-0", "pid": "ar-cf5085a16398", "kind": "neg", "band": "rank 4-10", "gap": 0.1143, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6401307797537382414-0", "pid": "ar-dc5b29d6b4fd", "kind": "neg", "band": "rank 11-30", "gap": 0.1349, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--374095467944316811-0", "pid": "ar-faadea56b05b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--374095467944316811-0", "pid": "ar-bb01aa0126ee", "kind": "neg", "band": "rank 1-3", "gap": 0.0488, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--374095467944316811-0", "pid": "ar-791e0fd34ef5", "kind": "neg", "band": "rank 11-30", "gap": 0.1145, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--374095467944316811-0", "pid": "ar-2d7f8ff24740", "kind": "neg", "band": "rank 4-10", "gap": 0.0859, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7476297288083724485-1", "pid": "ar-a8901ab87745", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--7476297288083724485-1", "pid": "ar-f638b8ca71e8", "kind": "neg", "band": "rank 1-3", "gap": 0.0505, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7476297288083724485-1", "pid": "ar-0f0603b81dbe", "kind": "neg", "band": "rank 4-10", "gap": 0.1135, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7476297288083724485-1", "pid": "ar-92a4d1d416c2", "kind": "neg", "band": "rank 11-30", "gap": 0.1387, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7588624289287099745-0", "pid": "ar-1fa8d8d31c6b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-7588624289287099745-0", "pid": "ar-88e517f1605d", "kind": "neg", "band": "rank 1-3", "gap": 0.1212, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7588624289287099745-0", "pid": "ar-9184cb94e611", "kind": "neg", "band": "rank 4-10", "gap": 0.1308, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7588624289287099745-0", "pid": "ar-f92a7261a576", "kind": "neg", "band": "rank 11-30", "gap": 0.1456, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3106935919751896642-2", "pid": "ar-c1b675c4b0b6", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--3106935919751896642-2", "pid": "ar-a13e5692a4bb", "kind": "neg", "band": "rank 1-3", "gap": 0.0242, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3106935919751896642-2", "pid": "ar-d2a32bdff657", "kind": "neg", "band": "rank 4-10", "gap": 0.0602, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3106935919751896642-2", "pid": "ar-9c4212e97611", "kind": "neg", "band": "rank 11-30", "gap": 0.0721, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7983005810426778684-0", "pid": "ar-66710f50d345", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--7983005810426778684-0", "pid": "ar-1c8d0d7b8581", "kind": "neg", "band": "rank 1-3", "gap": 0.0466, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7983005810426778684-0", "pid": "ar-1728f83e73de", "kind": "neg", "band": "rank 4-10", "gap": 0.0702, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7983005810426778684-0", "pid": "ar-24479c038295", "kind": "neg", "band": "rank 11-30", "gap": 0.0864, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7504202318189956955-1", "pid": "ar-b30b0287d1ec", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-7504202318189956955-1", "pid": "ar-e03473e7d6f6", "kind": "neg", "band": "rank 1-3", "gap": 0.0249, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7504202318189956955-1", "pid": "ar-2df83b7a94f9", "kind": "neg", "band": "rank 4-10", "gap": 0.0745, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7504202318189956955-1", "pid": "ar-74a806b99759", "kind": "neg", "band": "rank 11-30", "gap": 0.0907, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1339369437160741716-0", "pid": "ar-3135d0667bc3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--1339369437160741716-0", "pid": "ar-e7b6b08462e8", "kind": "neg", "band": "rank 1-3", "gap": 0.0874, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1339369437160741716-0", "pid": "ar-2faa85bd615d", "kind": "neg", "band": "rank 4-10", "gap": 0.1123, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1339369437160741716-0", "pid": "ar-c8be58d8156b", "kind": "neg", "band": "rank 11-30", "gap": 0.1253, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3200947556011064839-8", "pid": "ar-cf9ee5101404", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--3200947556011064839-8", "pid": "ar-11721bfb800c", "kind": "neg", "band": "rank 1-3", "gap": -0.1399, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3200947556011064839-8", "pid": "ar-90f2972a8906", "kind": "neg", "band": "rank 4-10", "gap": -0.0656, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3200947556011064839-8", "pid": "ar-60dc3c170a95", "kind": "neg", "band": "rank 11-30", "gap": -0.0322, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5365655073129092728-0", "pid": "ar-976556d1c664", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--5365655073129092728-0", "pid": "ar-cb6168a22bfe", "kind": "neg", "band": "rank 1-3", "gap": 0.0442, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5365655073129092728-0", "pid": "ar-1ebfb956c02a", "kind": "neg", "band": "rank 4-10", "gap": 0.0619, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5365655073129092728-0", "pid": "ar-1eabf558283b", "kind": "neg", "band": "rank 11-30", "gap": 0.0744, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2465371577068652006-0", "pid": "ar-10f8acf37106", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--2465371577068652006-0", "pid": "ar-29b9a816a914", "kind": "neg", "band": "rank 1-3", "gap": 0.0863, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2465371577068652006-0", "pid": "ar-27a87a98e419", "kind": "neg", "band": "rank 4-10", "gap": 0.0911, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2465371577068652006-0", "pid": "ar-7308f4973d63", "kind": "neg", "band": "rank 11-30", "gap": 0.1128, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8682649142380404399-0", "pid": "ar-77baa54aae85", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-8682649142380404399-0", "pid": "ar-205c37c37fea", "kind": "neg", "band": "rank 1-3", "gap": 0.0307, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8682649142380404399-0", "pid": "ar-82602fef1fd7", "kind": "neg", "band": "rank 4-10", "gap": 0.0698, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8682649142380404399-0", "pid": "ar-7a1be03ad558", "kind": "neg", "band": "rank 11-30", "gap": 0.0753, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--4534944051692292056-5", "pid": "ar-9360a681ca44", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--4534944051692292056-5", "pid": "ar-dae137c0ef3b", "kind": "neg", "band": "rank 1-3", "gap": 0.0266, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--4534944051692292056-5", "pid": "ar-aa6dc7006902", "kind": "neg", "band": "rank 4-10", "gap": 0.0393, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--4534944051692292056-5", "pid": "ar-ac1a8689f560", "kind": "neg", "band": "rank 11-30", "gap": 0.0475, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7475581220837499441-0", "pid": "ar-6ebb9970c3ad", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--7475581220837499441-0", "pid": "ar-77c4796d6f1c", "kind": "neg", "band": "rank 1-3", "gap": 0.0832, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7475581220837499441-0", "pid": "ar-da4d6b7ceaf4", "kind": "neg", "band": "rank 4-10", "gap": 0.0903, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7475581220837499441-0", "pid": "ar-c4253a945215", "kind": "neg", "band": "rank 11-30", "gap": 0.0938, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7044280756516929372-0", "pid": "ar-907c9f83d4fd", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--7044280756516929372-0", "pid": "ar-899a3dbffb10", "kind": "neg", "band": "rank 1-3", "gap": 0.0246, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7044280756516929372-0", "pid": "ar-6c3e078039e0", "kind": "neg", "band": "rank 4-10", "gap": 0.0408, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7044280756516929372-0", "pid": "ar-ec23b9c1a517", "kind": "neg", "band": "rank 11-30", "gap": 0.0584, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6404589110050439783-0", "pid": "ar-9ccd1b43ef7d", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--6404589110050439783-0", "pid": "ar-41fd88ebf7fb", "kind": "neg", "band": "rank 1-3", "gap": 0.0489, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6404589110050439783-0", "pid": "ar-90f1680ff00b", "kind": "neg", "band": "rank 4-10", "gap": 0.0537, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6404589110050439783-0", "pid": "ar-7f1e3e722dfd", "kind": "neg", "band": "rank 11-30", "gap": 0.0752, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3675808873994190920-0", "pid": "ar-00eef1bb3711", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-3675808873994190920-0", "pid": "ar-581941aa882c", "kind": "neg", "band": "rank 1-3", "gap": 0.0195, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3675808873994190920-0", "pid": "ar-aad0074aec44", "kind": "neg", "band": "rank 4-10", "gap": 0.0581, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3675808873994190920-0", "pid": "ar-391b9fc00255", "kind": "neg", "band": "rank 11-30", "gap": 0.0614, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8818453713219382412-0", "pid": "ar-6b74e794d646", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--8818453713219382412-0", "pid": "ar-5b956ce7847c", "kind": "neg", "band": "rank 1-3", "gap": 0.0756, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8818453713219382412-0", "pid": "ar-365ecc54b0bc", "kind": "neg", "band": "rank 4-10", "gap": 0.0944, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8818453713219382412-0", "pid": "ar-5c412507ffb6", "kind": "neg", "band": "rank 11-30", "gap": 0.1099, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-193199923271255745-1", "pid": "ar-6e80f784b25b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-193199923271255745-1", "pid": "ar-e11bfc2111e2", "kind": "neg", "band": "rank 1-3", "gap": 0.0632, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-193199923271255745-1", "pid": "ar-e7e15661e37e", "kind": "neg", "band": "rank 4-10", "gap": 0.0785, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-193199923271255745-1", "pid": "ar-b53b552c371c", "kind": "neg", "band": "rank 11-30", "gap": 0.0865, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--4589728329165335348-0", "pid": "ar-cf0ee5e7676d", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--4589728329165335348-0", "pid": "ar-08fe18fe3c92", "kind": "neg", "band": "rank 1-3", "gap": 0.1189, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--4589728329165335348-0", "pid": "ar-7191de00b36f", "kind": "neg", "band": "rank 4-10", "gap": 0.1213, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3539084113521251739-0", "pid": "ar-3c88518df39c", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--4589728329165335348-0", "pid": "ar-058e0fd5cd86", "kind": "neg", "band": "rank 11-30", "gap": 0.1485, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3539084113521251739-0", "pid": "ar-e58291ec7a23", "kind": "neg", "band": "rank 1-3", "gap": 0.0364, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3539084113521251739-0", "pid": "ar-c7b9dcba0a62", "kind": "neg", "band": "rank 4-10", "gap": 0.0436, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3539084113521251739-0", "pid": "ar-9fb3d2862e2d", "kind": "neg", "band": "rank 11-30", "gap": 0.0487, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-5253969306921615306-0", "pid": "ar-1ae6ed31afc7", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-5253969306921615306-0", "pid": "ar-d7659bfcfb7e", "kind": "neg", "band": "rank 4-10", "gap": 0.1078, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-5253969306921615306-0", "pid": "ar-e4ba6d5c3fef", "kind": "neg", "band": "rank 1-3", "gap": 0.0986, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3621477186114634418-1", "pid": "ar-72a7b7437ed5", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-5253969306921615306-0", "pid": "ar-3578a1bae409", "kind": "neg", "band": "rank 11-30", "gap": 0.1246, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3621477186114634418-1", "pid": "ar-89c9c6be36d1", "kind": "neg", "band": "rank 1-3", "gap": 0.0432, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--3621477186114634418-1", "pid": "ar-b02b81de823e", "kind": "neg", "band": "rank 4-10", "gap": 0.0654, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3621477186114634418-1", "pid": "ar-e07652bc769d", "kind": "neg", "band": "rank 11-30", "gap": 0.0996, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8206760632526119005-0", "pid": "ar-9a9d1580afc9", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8206760632526119005-0", "pid": "ar-73a34de0e3e0", "kind": "neg", "band": "rank 1-3", "gap": 0.0524, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8206760632526119005-0", "pid": "ar-ee8a546ef7e5", "kind": "neg", "band": "rank 4-10", "gap": 0.0908, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8206760632526119005-0", "pid": "ar-e06cc3364f9a", "kind": "neg", "band": "rank 11-30", "gap": 0.1309, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3288888877379119624-1", "pid": "ar-a17c765d403e", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-3288888877379119624-1", "pid": "ar-bf84a8ed63cf", "kind": "neg", "band": "rank 1-3", "gap": 0.0724, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3288888877379119624-1", "pid": "ar-0d285ef44a6d", "kind": "neg", "band": "rank 4-10", "gap": 0.0876, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3288888877379119624-1", "pid": "ar-f314e577938d", "kind": "neg", "band": "rank 11-30", "gap": 0.0992, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8583751465562436718-1", "pid": "ar-71b858a01b33", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-8583751465562436718-1", "pid": "ar-ce753511c879", "kind": "neg", "band": "rank 1-3", "gap": 0.0741, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8583751465562436718-1", "pid": "ar-6ecc937d8d01", "kind": "neg", "band": "rank 4-10", "gap": 0.093, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8583751465562436718-1", "pid": "ar-d57f46eb6f76", "kind": "neg", "band": "rank 11-30", "gap": 0.1061, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2238524857091711575-0", "pid": "ar-8c28c0f17fcc", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--2238524857091711575-0", "pid": "ar-a08f530b6d05", "kind": "neg", "band": "rank 1-3", "gap": 0.0447, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--2238524857091711575-0", "pid": "ar-62672ce1bfb1", "kind": "neg", "band": "rank 4-10", "gap": 0.0511, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2238524857091711575-0", "pid": "ar-16a17500407e", "kind": "neg", "band": "rank 11-30", "gap": 0.0632, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-5605462701112017798-0", "pid": "ar-11e5bc39ca7c", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-5605462701112017798-0", "pid": "ar-cf19ef811aba", "kind": "neg", "band": "rank 1-3", "gap": 0.1122, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-5605462701112017798-0", "pid": "ar-055aa47634d2", "kind": "neg", "band": "rank 4-10", "gap": 0.1165, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-5605462701112017798-0", "pid": "ar-cc022e2e0f27", "kind": "neg", "band": "rank 11-30", "gap": 0.1513, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3041346043272474290-0", "pid": "ar-3be10f8ccab3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--3041346043272474290-0", "pid": "ar-a170183dabe3", "kind": "neg", "band": "rank 1-3", "gap": 0.0632, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3041346043272474290-0", "pid": "ar-a3d95a73addf", "kind": "neg", "band": "rank 4-10", "gap": 0.0818, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3041346043272474290-0", "pid": "ar-7daa736cfd7a", "kind": "neg", "band": "rank 11-30", "gap": 0.0835, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2968977487933784261-0", "pid": "ar-ccb6cbb1365b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--2968977487933784261-0", "pid": "ar-ac911c7e8f79", "kind": "neg", "band": "rank 4-10", "gap": 0.0768, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2968977487933784261-0", "pid": "ar-5f4c08e88b10", "kind": "neg", "band": "rank 1-3", "gap": 0.0712, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2968977487933784261-0", "pid": "ar-d0c0ec9b22fb", "kind": "neg", "band": "rank 11-30", "gap": 0.0939, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6933852175632125741-1", "pid": "ar-aca93ab3f45a", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-6933852175632125741-1", "pid": "ar-4f9aa01c61f0", "kind": "neg", "band": "rank 1-3", "gap": -0.0104, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6933852175632125741-1", "pid": "ar-0d7a6d430677", "kind": "neg", "band": "rank 4-10", "gap": 0.0034, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-6933852175632125741-1", "pid": "ar-c4735b2be282", "kind": "neg", "band": "rank 11-30", "gap": 0.0261, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8040157839601854484-0", "pid": "ar-3bbb2c81bc5b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-8040157839601854484-0", "pid": "ar-11947c0f4d47", "kind": "neg", "band": "rank 1-3", "gap": 0.0603, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8040157839601854484-0", "pid": "ar-def91cd23693", "kind": "neg", "band": "rank 4-10", "gap": 0.0755, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-8040157839601854484-0", "pid": "ar-d16732cbd6cd", "kind": "neg", "band": "rank 11-30", "gap": 0.0938, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7917670808404377408-26", "pid": "ar-c1caffc006aa", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-7917670808404377408-26", "pid": "ar-0e7ced054fa7", "kind": "neg", "band": "rank 1-3", "gap": -0.0066, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-7917670808404377408-26", "pid": "ar-e00e2d521c98", "kind": "neg", "band": "rank 4-10", "gap": 0.0068, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7917670808404377408-26", "pid": "ar-8c71d5cf112c", "kind": "neg", "band": "rank 11-30", "gap": 0.0121, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3641595095191284564-0", "pid": "ar-c3fc40091274", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-3641595095191284564-0", "pid": "ar-a9f2605a7095", "kind": "neg", "band": "rank 1-3", "gap": 0.0969, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3641595095191284564-0", "pid": "ar-6c3e078039e0", "kind": "neg", "band": "rank 4-10", "gap": 0.1082, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-3641595095191284564-0", "pid": "ar-66e49ccbb9a8", "kind": "neg", "band": "rank 11-30", "gap": 0.1243, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-823593152467", "pid": "ar-fa6766859a04", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "arcd_ar-train-823593152467", "pid": "ar-68e04f8c72a4", "kind": "neg", "band": "rank 1-3", "gap": 0.0156, "lang": "ar", "answer": "yes"}
+{"qid": "arcd_ar-train-823593152467", "pid": "ar-900710ae9515", "kind": "neg", "band": "rank 4-10", "gap": 0.0647, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2650827247165333849-0", "pid": "ar-83c5a99316fc", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "arcd_ar-train-823593152467", "pid": "ar-9f31154a9b3f", "kind": "neg", "band": "rank 11-30", "gap": 0.0807, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2650827247165333849-0", "pid": "ar-61da2fd8fb76", "kind": "neg", "band": "rank 1-3", "gap": 0.0682, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2650827247165333849-0", "pid": "ar-c98176b3f0b0", "kind": "neg", "band": "rank 4-10", "gap": 0.0761, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2650827247165333849-0", "pid": "ar-ea947528cf2c", "kind": "neg", "band": "rank 11-30", "gap": 0.0924, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5265783331503763657-4", "pid": "ar-83ad3963b280", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--5265783331503763657-4", "pid": "ar-1c8d0d7b8581", "kind": "neg", "band": "rank 1-3", "gap": 0.039, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5265783331503763657-4", "pid": "ar-a409e59a9c5e", "kind": "neg", "band": "rank 4-10", "gap": 0.0465, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5265783331503763657-4", "pid": "ar-21840f9554a7", "kind": "neg", "band": "rank 11-30", "gap": 0.0686, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--4351873990859320462-60", "pid": "ar-504b3d5f00a4", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--4351873990859320462-60", "pid": "ar-1f9bdf949e20", "kind": "neg", "band": "rank 1-3", "gap": 0.029, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--4351873990859320462-60", "pid": "ar-1d78c52582e0", "kind": "neg", "band": "rank 4-10", "gap": 0.0555, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--4351873990859320462-60", "pid": "ar-048eff7bf252", "kind": "neg", "band": "rank 11-30", "gap": 0.0812, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-98029970571913040-0", "pid": "ar-fff8368ff7b1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-98029970571913040-0", "pid": "ar-fbd6732984e2", "kind": "neg", "band": "rank 1-3", "gap": 0.0815, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-98029970571913040-0", "pid": "ar-8572818c8d77", "kind": "neg", "band": "rank 4-10", "gap": 0.106, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-98029970571913040-0", "pid": "ar-22f0c0cb6057", "kind": "neg", "band": "rank 11-30", "gap": 0.1095, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7476399518055213323-0", "pid": "ar-7fda94456307", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-7476399518055213323-0", "pid": "ar-9d2fa0baa7da", "kind": "neg", "band": "rank 1-3", "gap": 0.1102, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7476399518055213323-0", "pid": "ar-bcfe475eb5eb", "kind": "neg", "band": "rank 4-10", "gap": 0.1187, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7476399518055213323-0", "pid": "ar-a0a689666827", "kind": "neg", "band": "rank 11-30", "gap": 0.1285, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6830094277038196590-0", "pid": "ar-22839dcc38ed", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--6830094277038196590-0", "pid": "ar-f45b3dd692db", "kind": "neg", "band": "rank 1-3", "gap": 0.0773, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6830094277038196590-0", "pid": "ar-27262f402c23", "kind": "neg", "band": "rank 4-10", "gap": 0.0851, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--6830094277038196590-0", "pid": "ar-c1c0bb6b0969", "kind": "neg", "band": "rank 11-30", "gap": 0.105, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-416811527468", "pid": "ar-7541de3e3d57", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "arcd_ar-train-416811527468", "pid": "ar-bfbd88529ebc", "kind": "neg", "band": "rank 1-3", "gap": -0.0192, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-416811527468", "pid": "ar-122e6a832531", "kind": "neg", "band": "rank 4-10", "gap": -0.0071, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-416811527468", "pid": "ar-824e481269d3", "kind": "neg", "band": "rank 11-30", "gap": 0.0045, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-364847964096", "pid": "ar-caff319af57a", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "arcd_ar-train-364847964096", "pid": "ar-bed020a71d0c", "kind": "neg", "band": "rank 1-3", "gap": -0.0204, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-364847964096", "pid": "ar-736bc90904ae", "kind": "neg", "band": "rank 4-10", "gap": 0.0039, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-364847964096", "pid": "ar-1d24e357fa49", "kind": "neg", "band": "rank 11-30", "gap": 0.0182, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7787773379588008689-0", "pid": "ar-f2fbc738d2f3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--7787773379588008689-0", "pid": "ar-f1f95d714908", "kind": "neg", "band": "rank 1-3", "gap": 0.0476, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--7787773379588008689-0", "pid": "ar-2fab028c0f56", "kind": "neg", "band": "rank 4-10", "gap": 0.0634, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7787773379588008689-0", "pid": "ar-a801922b8646", "kind": "neg", "band": "rank 11-30", "gap": 0.0822, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--9112033608165596218-0", "pid": "ar-adcd9393d421", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--9112033608165596218-0", "pid": "ar-591af7ec4b70", "kind": "neg", "band": "rank 1-3", "gap": 0.1521, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--9112033608165596218-0", "pid": "ar-0bae96601982", "kind": "neg", "band": "rank 4-10", "gap": 0.1544, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--9112033608165596218-0", "pid": "ar-a7a5b9975209", "kind": "neg", "band": "rank 11-30", "gap": 0.169, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5892722976884808023-0", "pid": "ar-495c410aec52", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--5892722976884808023-0", "pid": "ar-57ceeddfb97c", "kind": "neg", "band": "rank 1-3", "gap": 0.0292, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5892722976884808023-0", "pid": "ar-d16732cbd6cd", "kind": "neg", "band": "rank 4-10", "gap": 0.081, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5892722976884808023-0", "pid": "ar-153c9f1cc03d", "kind": "neg", "band": "rank 11-30", "gap": 0.0926, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-4371353542393714397-0", "pid": "ar-2612ceae39b3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-4371353542393714397-0", "pid": "ar-0185c3fc2d0b", "kind": "neg", "band": "rank 1-3", "gap": 0.089, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-4371353542393714397-0", "pid": "ar-543526066f11", "kind": "neg", "band": "rank 4-10", "gap": 0.0969, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-4371353542393714397-0", "pid": "ar-9f31154a9b3f", "kind": "neg", "band": "rank 11-30", "gap": 0.111, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-496734630899", "pid": "ar-2103ee3c7b00", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "arcd_ar-train-496734630899", "pid": "ar-b5299ff26a0a", "kind": "neg", "band": "rank 1-3", "gap": -0.0022, "lang": "ar", "answer": "yes"}
+{"qid": "arcd_ar-train-496734630899", "pid": "ar-33c95932c612", "kind": "neg", "band": "rank 4-10", "gap": 0.0241, "lang": "ar", "answer": "no"}
+{"qid": "arcd_ar-train-496734630899", "pid": "ar-8a5721f0c9f2", "kind": "neg", "band": "rank 11-30", "gap": 0.0312, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2872500783719199641-0", "pid": "ar-f5e7ebe980a0", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2872500783719199641-0", "pid": "ar-88269b7b0c1b", "kind": "neg", "band": "rank 1-3", "gap": 0.0437, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2872500783719199641-0", "pid": "ar-930ebbf8e6bd", "kind": "neg", "band": "rank 4-10", "gap": 0.0832, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2872500783719199641-0", "pid": "ar-a05f0b50f140", "kind": "neg", "band": "rank 11-30", "gap": 0.0841, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-131773838927402192-3", "pid": "ar-7054972377ee", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-131773838927402192-3", "pid": "ar-fc5e2fd57295", "kind": "neg", "band": "rank 1-3", "gap": -0.0092, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-131773838927402192-3", "pid": "ar-04dd3ae00468", "kind": "neg", "band": "rank 4-10", "gap": -0.0061, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-131773838927402192-3", "pid": "ar-d64da23f2b4c", "kind": "neg", "band": "rank 11-30", "gap": 0.0146, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2263185964303415465-0", "pid": "ar-c9d88a15cbf3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--2263185964303415465-0", "pid": "ar-280c3eea92f9", "kind": "neg", "band": "rank 1-3", "gap": 0.0117, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--2263185964303415465-0", "pid": "ar-bd3ca4021906", "kind": "neg", "band": "rank 4-10", "gap": 0.0462, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--2263185964303415465-0", "pid": "ar-ff08e5efd8b7", "kind": "neg", "band": "rank 11-30", "gap": 0.0689, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1385804617345970654-0", "pid": "ar-106b28d3c928", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-1385804617345970654-0", "pid": "ar-1d8c79c29bf6", "kind": "neg", "band": "rank 1-3", "gap": 0.0979, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1385804617345970654-0", "pid": "ar-3dd7dc3deb34", "kind": "neg", "band": "rank 4-10", "gap": 0.104, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1385804617345970654-0", "pid": "ar-8a0643fc9373", "kind": "neg", "band": "rank 11-30", "gap": 0.1237, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7856016503873465122-3", "pid": "ar-2c9ce24fd3b9", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-7856016503873465122-3", "pid": "ar-391b9fc00255", "kind": "neg", "band": "rank 1-3", "gap": -0.0669, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7856016503873465122-3", "pid": "ar-a72e5d741b69", "kind": "neg", "band": "rank 4-10", "gap": 0.0005, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7856016503873465122-3", "pid": "ar-0b22eaf7bdd8", "kind": "neg", "band": "rank 11-30", "gap": 0.0253, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8766631688306865664-0", "pid": "ar-ab6f92ef2b34", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--8766631688306865664-0", "pid": "ar-9c60caf8dd59", "kind": "neg", "band": "rank 1-3", "gap": 0.0122, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8766631688306865664-0", "pid": "ar-275145baf132", "kind": "neg", "band": "rank 4-10", "gap": 0.0801, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--8766631688306865664-0", "pid": "ar-2cdc048a39a5", "kind": "neg", "band": "rank 11-30", "gap": 0.094, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1487375217681668784-1", "pid": "ar-ffcdb4ea0d95", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-1487375217681668784-1", "pid": "ar-d04b613952bf", "kind": "neg", "band": "rank 1-3", "gap": 0.0675, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1487375217681668784-1", "pid": "ar-60a4c13e8b50", "kind": "neg", "band": "rank 4-10", "gap": 0.0688, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-1487375217681668784-1", "pid": "ar-3fc935bd08a2", "kind": "neg", "band": "rank 11-30", "gap": 0.0912, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7111164732370420186-0", "pid": "ar-69528505ac28", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--7111164732370420186-0", "pid": "ar-a6b5f29bb045", "kind": "neg", "band": "rank 1-3", "gap": 0.0147, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7111164732370420186-0", "pid": "ar-c6350a3856d1", "kind": "neg", "band": "rank 4-10", "gap": 0.0177, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--7111164732370420186-0", "pid": "ar-21497dd26c98", "kind": "neg", "band": "rank 11-30", "gap": 0.0398, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1387689257610457608-1", "pid": "ar-bcb0069acafe", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--1387689257610457608-1", "pid": "ar-1ac521a56c0e", "kind": "neg", "band": "rank 1-3", "gap": 0.0468, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1387689257610457608-1", "pid": "ar-cf5085a16398", "kind": "neg", "band": "rank 4-10", "gap": 0.0591, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--1387689257610457608-1", "pid": "ar-19cdc35d34dc", "kind": "neg", "band": "rank 11-30", "gap": 0.0708, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3246153155297032452-0", "pid": "ar-66d8f059659f", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--3246153155297032452-0", "pid": "ar-ec9ba4d734f6", "kind": "neg", "band": "rank 1-3", "gap": 0.0493, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3246153155297032452-0", "pid": "ar-dfd80d28b6f2", "kind": "neg", "band": "rank 4-10", "gap": 0.0854, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--3246153155297032452-0", "pid": "ar-a7eca88a686a", "kind": "neg", "band": "rank 11-30", "gap": 0.1058, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7463377203176669064-1", "pid": "ar-74f270e20ec8", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic-7463377203176669064-1", "pid": "ar-a170183dabe3", "kind": "neg", "band": "rank 1-3", "gap": 0.0776, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7463377203176669064-1", "pid": "ar-8a2edc76c5df", "kind": "neg", "band": "rank 4-10", "gap": 0.0809, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic-7463377203176669064-1", "pid": "ar-08fe18fe3c92", "kind": "neg", "band": "rank 11-30", "gap": 0.0976, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5286701062652086790-0", "pid": "ar-8e38e91c10a0", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "ar", "answer": "yes"}
+{"qid": "tydi_ar-train-arabic--5286701062652086790-0", "pid": "ar-732fb7f62886", "kind": "neg", "band": "rank 1-3", "gap": 0.0491, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5286701062652086790-0", "pid": "ar-4545bc277b3b", "kind": "neg", "band": "rank 4-10", "gap": 0.0645, "lang": "ar", "answer": "no"}
+{"qid": "tydi_ar-train-arabic--5286701062652086790-0", "pid": "ar-9e377bd6e167", "kind": "neg", "band": "rank 11-30", "gap": 0.0837, "lang": "ar", "answer": "no"}
+{"qid": "squad_en-train-56e766a800c9c71400d770af", "pid": "en-f28043ab69e8", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56e766a800c9c71400d770af", "pid": "en-86754a9a21af", "kind": "neg", "band": "rank 1-3", "gap": 0.0193, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56e766a800c9c71400d770af", "pid": "en-55db2439e44a", "kind": "neg", "band": "rank 4-10", "gap": 0.0267, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56e766a800c9c71400d770af", "pid": "en-6905b356f793", "kind": "neg", "band": "rank 11-30", "gap": 0.03, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-3929109166845163486-4", "pid": "en-3ad98b73b092", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english-3929109166845163486-4", "pid": "en-475c9c1c9108", "kind": "neg", "band": "rank 1-3", "gap": 0.0561, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-3929109166845163486-4", "pid": "en-42f75a1f2c53", "kind": "neg", "band": "rank 4-10", "gap": 0.0584, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-3929109166845163486-4", "pid": "en-e08f470c05ff", "kind": "neg", "band": "rank 11-30", "gap": 0.0645, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-573199d9e99e3014001e6182", "pid": "en-22f7edae508c", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-573199d9e99e3014001e6182", "pid": "en-3fc869e705f7", "kind": "neg", "band": "rank 1-3", "gap": 0.0257, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-573199d9e99e3014001e6182", "pid": "en-88d92b9b2817", "kind": "neg", "band": "rank 4-10", "gap": 0.0477, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-573199d9e99e3014001e6182", "pid": "en-bd53734a289b", "kind": "neg", "band": "rank 11-30", "gap": 0.0489, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56e76b5600c9c71400d770ff", "pid": "en-b9eb4287eba5", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56e76b5600c9c71400d770ff", "pid": "en-ea96de791ada", "kind": "neg", "band": "rank 1-3", "gap": 0.0286, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56e76b5600c9c71400d770ff", "pid": "en-af96a67522cd", "kind": "neg", "band": "rank 11-30", "gap": 0.0576, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56e76b5600c9c71400d770ff", "pid": "en-73cf942ff5c1", "kind": "neg", "band": "rank 4-10", "gap": 0.0355, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56d5db271c85041400946e40", "pid": "en-7a3da14a5576", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56d5db271c85041400946e40", "pid": "en-358b9b258b15", "kind": "neg", "band": "rank 1-3", "gap": 0.0203, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56d5db271c85041400946e40", "pid": "en-fcb9b21eadea", "kind": "neg", "band": "rank 4-10", "gap": 0.0346, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56d5db271c85041400946e40", "pid": "en-07e04c22b16b", "kind": "neg", "band": "rank 11-30", "gap": 0.0562, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570b2c16ec8fbc190045b8af", "pid": "en-5a312ddcdb83", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570b2c16ec8fbc190045b8af", "pid": "en-8e1cde02eaa0", "kind": "neg", "band": "rank 1-3", "gap": 0.0169, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570b2c16ec8fbc190045b8af", "pid": "en-47e53ce1a524", "kind": "neg", "band": "rank 4-10", "gap": 0.0364, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570b2c16ec8fbc190045b8af", "pid": "en-b75c5b1dd98e", "kind": "neg", "band": "rank 11-30", "gap": 0.0378, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727a85fff5b5019007d9211", "pid": "en-630679d36385", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5727a85fff5b5019007d9211", "pid": "en-456aced77561", "kind": "neg", "band": "rank 1-3", "gap": -0.024, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727a85fff5b5019007d9211", "pid": "en-548af537a3bc", "kind": "neg", "band": "rank 4-10", "gap": 0.0256, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727a85fff5b5019007d9211", "pid": "en-aa1188af610a", "kind": "neg", "band": "rank 11-30", "gap": 0.0488, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--870149674722738759-0", "pid": "en-c000d64bc801", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english--870149674722738759-0", "pid": "en-485075a728df", "kind": "neg", "band": "rank 1-3", "gap": 0.0317, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--870149674722738759-0", "pid": "en-103f3507d359", "kind": "neg", "band": "rank 4-10", "gap": 0.043, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--870149674722738759-0", "pid": "en-e7b6c5a4d83c", "kind": "neg", "band": "rank 11-30", "gap": 0.0523, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727a5aa4b864d1900163952", "pid": "en-253a1fcdef9f", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5727a5aa4b864d1900163952", "pid": "en-1d2b1c021602", "kind": "neg", "band": "rank 1-3", "gap": 0.0018, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727a5aa4b864d1900163952", "pid": "en-0046cbf54582", "kind": "neg", "band": "rank 4-10", "gap": 0.0311, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727a5aa4b864d1900163952", "pid": "en-7d3e6eb1fdf3", "kind": "neg", "band": "rank 11-30", "gap": 0.0642, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57273c11dd62a815002e99de", "pid": "en-0fc04fd894a4", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-57273c11dd62a815002e99de", "pid": "en-07e04c22b16b", "kind": "neg", "band": "rank 1-3", "gap": 0.0432, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57273c11dd62a815002e99de", "pid": "en-c377c23701d2", "kind": "neg", "band": "rank 4-10", "gap": 0.0531, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57273c11dd62a815002e99de", "pid": "en-6e29c112a779", "kind": "neg", "band": "rank 11-30", "gap": 0.0605, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a4e444103511400d595f1", "pid": "en-9ffa8874dc76", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570a4e444103511400d595f1", "pid": "en-ea0c42fad82f", "kind": "neg", "band": "rank 1-3", "gap": 0.0628, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a4e444103511400d595f1", "pid": "en-12a90117be11", "kind": "neg", "band": "rank 4-10", "gap": 0.0703, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a4e444103511400d595f1", "pid": "en-b531f1f0ac6d", "kind": "neg", "band": "rank 11-30", "gap": 0.081, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57278c17708984140094e072", "pid": "en-cb9ccc68c6d1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57278c17708984140094e072", "pid": "en-57e95a9d184f", "kind": "neg", "band": "rank 1-3", "gap": 0.0011, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57278c17708984140094e072", "pid": "en-782965425dd7", "kind": "neg", "band": "rank 4-10", "gap": 0.0419, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57278c17708984140094e072", "pid": "en-a77513439bbf", "kind": "neg", "band": "rank 11-30", "gap": 0.056, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572ffb3ea23a5019007fcc02", "pid": "en-acfe29b523e6", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572ffb3ea23a5019007fcc02", "pid": "en-ac36865e19f5", "kind": "neg", "band": "rank 1-3", "gap": 0.0324, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572ffb3ea23a5019007fcc02", "pid": "en-051b4ef849bb", "kind": "neg", "band": "rank 4-10", "gap": 0.038, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572ffb3ea23a5019007fcc02", "pid": "en-760993a4a270", "kind": "neg", "band": "rank 11-30", "gap": 0.0562, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7381446994328410361-0", "pid": "en-14504b0ad69c", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english-7381446994328410361-0", "pid": "en-4d2eadb427a1", "kind": "neg", "band": "rank 1-3", "gap": 0.0734, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7381446994328410361-0", "pid": "en-c921d41bc36a", "kind": "neg", "band": "rank 4-10", "gap": 0.1058, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7381446994328410361-0", "pid": "en-46726e2586a2", "kind": "neg", "band": "rank 11-30", "gap": 0.1287, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a15ffaf94a219006aa7cf", "pid": "en-cf794b3f756f", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572a15ffaf94a219006aa7cf", "pid": "en-0d0efaa44a05", "kind": "neg", "band": "rank 1-3", "gap": 0.0386, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a15ffaf94a219006aa7cf", "pid": "en-9c3b3d45ca90", "kind": "neg", "band": "rank 4-10", "gap": 0.0588, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a15ffaf94a219006aa7cf", "pid": "en-fbbe32f916ad", "kind": "neg", "band": "rank 11-30", "gap": 0.071, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727284add62a815002e996b", "pid": "en-500cb67620a1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5727284add62a815002e996b", "pid": "en-5990ceb79453", "kind": "neg", "band": "rank 1-3", "gap": 0.0279, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727284add62a815002e996b", "pid": "en-994e6ab90c89", "kind": "neg", "band": "rank 4-10", "gap": 0.0448, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727284add62a815002e996b", "pid": "en-73526431adfd", "kind": "neg", "band": "rank 11-30", "gap": 0.0577, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726f8ad5951b619008f83ad", "pid": "en-26d1e8facd16", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726f8ad5951b619008f83ad", "pid": "en-212c849e3388", "kind": "neg", "band": "rank 1-3", "gap": -0.0034, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726f8ad5951b619008f83ad", "pid": "en-cab06b8d82c6", "kind": "neg", "band": "rank 4-10", "gap": 0.0365, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726f8ad5951b619008f83ad", "pid": "en-eef6bb161765", "kind": "neg", "band": "rank 11-30", "gap": 0.047, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d8b22ca10214002d97f0", "pid": "en-dc8c7f69ffbd", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d8b22ca10214002d97f0", "pid": "en-1073587b9fea", "kind": "neg", "band": "rank 1-3", "gap": 0.0339, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d8b22ca10214002d97f0", "pid": "en-ebba353b7020", "kind": "neg", "band": "rank 4-10", "gap": 0.0375, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d8b22ca10214002d97f0", "pid": "en-1da7459c85b3", "kind": "neg", "band": "rank 11-30", "gap": 0.0748, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5706b77e0eeca41400aa0d8e", "pid": "en-0faf00a8ed81", "kind": "neg", "band": "rank 1-3", "gap": 0.0075, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5706b77e0eeca41400aa0d8e", "pid": "en-534147c52628", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5706b77e0eeca41400aa0d8e", "pid": "en-265e00d42031", "kind": "neg", "band": "rank 4-10", "gap": 0.0213, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5706b77e0eeca41400aa0d8e", "pid": "en-1609ad3eee46", "kind": "neg", "band": "rank 11-30", "gap": 0.0325, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728c9553acd2414000dfe7a", "pid": "en-f4133fde9254", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728c9553acd2414000dfe7a", "pid": "en-f70e01c4f93a", "kind": "neg", "band": "rank 1-3", "gap": 0.0431, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728c9553acd2414000dfe7a", "pid": "en-9b5a88599347", "kind": "neg", "band": "rank 4-10", "gap": 0.0435, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728c9553acd2414000dfe7a", "pid": "en-6b61c84e4fed", "kind": "neg", "band": "rank 11-30", "gap": 0.0572, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57278c025951b619008f8d0f", "pid": "en-299cc668707a", "kind": "neg", "band": "rank 1-3", "gap": 0.0339, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57278c025951b619008f8d0f", "pid": "en-ae79ec0151cc", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-57278c025951b619008f8d0f", "pid": "en-333b73220b0c", "kind": "neg", "band": "rank 11-30", "gap": 0.0893, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57278c025951b619008f8d0f", "pid": "en-8a7ccc55d458", "kind": "neg", "band": "rank 4-10", "gap": 0.058, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-2919649603378320786-0", "pid": "en-4ad022c9bb8b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-2919649603378320786-0", "pid": "en-5aab83145b63", "kind": "neg", "band": "rank 1-3", "gap": 0.0657, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-2919649603378320786-0", "pid": "en-d6f2b6acc215", "kind": "neg", "band": "rank 4-10", "gap": 0.1027, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-2919649603378320786-0", "pid": "en-b6b82ec8e935", "kind": "neg", "band": "rank 11-30", "gap": 0.1234, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570d7e8bb3d812140066d9ff", "pid": "en-f17b2efae0a3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570d7e8bb3d812140066d9ff", "pid": "en-a082ccad0b33", "kind": "neg", "band": "rank 1-3", "gap": 0.036, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570d7e8bb3d812140066d9ff", "pid": "en-eebc098f1357", "kind": "neg", "band": "rank 4-10", "gap": 0.055, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570d7e8bb3d812140066d9ff", "pid": "en-e16ad32a246a", "kind": "neg", "band": "rank 11-30", "gap": 0.0601, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-2063351919978134222-0", "pid": "en-fdf1dcb6bf91", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english-2063351919978134222-0", "pid": "en-c4a7c1582645", "kind": "neg", "band": "rank 1-3", "gap": 0.0798, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-2063351919978134222-0", "pid": "en-d215bcd74b2b", "kind": "neg", "band": "rank 4-10", "gap": 0.0986, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-2063351919978134222-0", "pid": "en-81b7a9345100", "kind": "neg", "band": "rank 11-30", "gap": 0.1156, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d6363acd2414000dedc3", "pid": "en-0f3af6ffef99", "kind": "neg", "band": "rank 1-3", "gap": 0.0143, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d6363acd2414000dedc3", "pid": "en-725705b82935", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5727d6363acd2414000dedc3", "pid": "en-7cb7342a7bd4", "kind": "neg", "band": "rank 11-30", "gap": 0.0583, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d6363acd2414000dedc3", "pid": "en-44786ecafaf8", "kind": "neg", "band": "rank 4-10", "gap": 0.034, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-6904615546152964450-0", "pid": "en-09c612ea0c65", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english-6904615546152964450-0", "pid": "en-0b61c181fd3b", "kind": "neg", "band": "rank 1-3", "gap": 0.1004, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-6904615546152964450-0", "pid": "en-6da463113dc4", "kind": "neg", "band": "rank 4-10", "gap": 0.1128, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-6904615546152964450-0", "pid": "en-a48a91889639", "kind": "neg", "band": "rank 11-30", "gap": 0.1232, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726b6285951b619008f7b80", "pid": "en-0bfeec1d0dd2", "kind": "neg", "band": "rank 1-3", "gap": 0.0238, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726b6285951b619008f7b80", "pid": "en-a6bd7d3c7390", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726b6285951b619008f7b80", "pid": "en-f5ab40294324", "kind": "neg", "band": "rank 4-10", "gap": 0.0467, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726b6285951b619008f7b80", "pid": "en-790e0e08dba6", "kind": "neg", "band": "rank 11-30", "gap": 0.0529, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570b2a686b8089140040f7b9", "pid": "en-82d0baa7faa6", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570b2a686b8089140040f7b9", "pid": "en-90abcefe62d1", "kind": "neg", "band": "rank 1-3", "gap": 0.0094, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570b2a686b8089140040f7b9", "pid": "en-357a107f1e37", "kind": "neg", "band": "rank 4-10", "gap": 0.0208, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570b2a686b8089140040f7b9", "pid": "en-dd30dbcc5184", "kind": "neg", "band": "rank 11-30", "gap": 0.0355, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570ffb75b654c5140001f713", "pid": "en-56a26c076c65", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570ffb75b654c5140001f713", "pid": "en-60c5b6e28539", "kind": "neg", "band": "rank 1-3", "gap": 0.0044, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570ffb75b654c5140001f713", "pid": "en-e46cfdbc13c3", "kind": "neg", "band": "rank 4-10", "gap": 0.0098, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570ffb75b654c5140001f713", "pid": "en-c5cb32ad9ca7", "kind": "neg", "band": "rank 11-30", "gap": 0.0353, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728c1a84b864d1900164d6b", "pid": "en-ac25921acedc", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5728c1a84b864d1900164d6b", "pid": "en-d719c308bb73", "kind": "neg", "band": "rank 1-3", "gap": 0.0182, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728c1a84b864d1900164d6b", "pid": "en-f8717a06d730", "kind": "neg", "band": "rank 4-10", "gap": 0.0238, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728c1a84b864d1900164d6b", "pid": "en-b4320d9a1905", "kind": "neg", "band": "rank 11-30", "gap": 0.0345, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57069d2c75f01819005e7c4b", "pid": "en-fb26dfc6c1f1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-57069d2c75f01819005e7c4b", "pid": "en-2c18f74916b7", "kind": "neg", "band": "rank 1-3", "gap": -0.0134, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57069d2c75f01819005e7c4b", "pid": "en-670196466f4f", "kind": "neg", "band": "rank 4-10", "gap": 0.0025, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57069d2c75f01819005e7c4b", "pid": "en-a0e14173c620", "kind": "neg", "band": "rank 11-30", "gap": 0.02, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--7667527140208200356-1", "pid": "en-8525ce42349b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english--7667527140208200356-1", "pid": "en-f415d9bffa82", "kind": "neg", "band": "rank 1-3", "gap": 0.0293, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--7667527140208200356-1", "pid": "en-e1bcedfb5b49", "kind": "neg", "band": "rank 4-10", "gap": 0.0411, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--7667527140208200356-1", "pid": "en-92efe18eddac", "kind": "neg", "band": "rank 11-30", "gap": 0.0612, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727f1163acd2414000df053", "pid": "en-409958fdc0b9", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5727f1163acd2414000df053", "pid": "en-cb65180b3814", "kind": "neg", "band": "rank 1-3", "gap": 0.0525, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727f1163acd2414000df053", "pid": "en-a1e5bfa736ac", "kind": "neg", "band": "rank 4-10", "gap": 0.065, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727f1163acd2414000df053", "pid": "en-6141284e7538", "kind": "neg", "band": "rank 11-30", "gap": 0.0822, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570d75b4b3d812140066d996", "pid": "en-b2e26c32bce1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570d75b4b3d812140066d996", "pid": "en-bc0e8d540e84", "kind": "neg", "band": "rank 1-3", "gap": 0.0366, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570d75b4b3d812140066d996", "pid": "en-28ed2d86fc2f", "kind": "neg", "band": "rank 4-10", "gap": 0.051, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570d75b4b3d812140066d996", "pid": "en-cb09e532a1a4", "kind": "neg", "band": "rank 11-30", "gap": 0.0617, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--6939326116313735992-0", "pid": "en-d2f3aece1fe3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english--6939326116313735992-0", "pid": "en-ec060cfa7bca", "kind": "neg", "band": "rank 1-3", "gap": 0.1278, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--6939326116313735992-0", "pid": "en-a53ae77a9e1c", "kind": "neg", "band": "rank 4-10", "gap": 0.135, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--6939326116313735992-0", "pid": "en-9248741fa019", "kind": "neg", "band": "rank 11-30", "gap": 0.1451, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56cec9e1aab44d1400b88a63", "pid": "en-a33878cb609a", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56cec9e1aab44d1400b88a63", "pid": "en-03e4d2a21562", "kind": "neg", "band": "rank 1-3", "gap": 0.0423, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56cec9e1aab44d1400b88a63", "pid": "en-691bfc850845", "kind": "neg", "band": "rank 4-10", "gap": 0.0451, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56cec9e1aab44d1400b88a63", "pid": "en-d463d07aa4a2", "kind": "neg", "band": "rank 11-30", "gap": 0.0529, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f8ce109b226e1400dd1038", "pid": "en-6141284e7538", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56f8ce109b226e1400dd1038", "pid": "en-8f10b5d434ce", "kind": "neg", "band": "rank 1-3", "gap": 0.0277, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f8ce109b226e1400dd1038", "pid": "en-410e58c9e375", "kind": "neg", "band": "rank 4-10", "gap": 0.0596, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f8ce109b226e1400dd1038", "pid": "en-32f5b37427f4", "kind": "neg", "band": "rank 11-30", "gap": 0.0718, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a807e6d058f1900182ed2", "pid": "en-368ef0f74dab", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570a807e6d058f1900182ed2", "pid": "en-1b0658c220df", "kind": "neg", "band": "rank 1-3", "gap": 0.0283, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a807e6d058f1900182ed2", "pid": "en-b4947bede311", "kind": "neg", "band": "rank 11-30", "gap": 0.0675, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a807e6d058f1900182ed2", "pid": "en-7c282bbaa9eb", "kind": "neg", "band": "rank 4-10", "gap": 0.0535, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-5038077117676045536-0", "pid": "en-7a338c156e2d", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english-5038077117676045536-0", "pid": "en-e1649d0c17b1", "kind": "neg", "band": "rank 1-3", "gap": 0.0979, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-5038077117676045536-0", "pid": "en-9203bd599d48", "kind": "neg", "band": "rank 4-10", "gap": 0.1269, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-5038077117676045536-0", "pid": "en-98e197822f87", "kind": "neg", "band": "rank 11-30", "gap": 0.138, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572797ce5951b619008f8e48", "pid": "en-aca3cb63eeb1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572797ce5951b619008f8e48", "pid": "en-0fd5b58e8152", "kind": "neg", "band": "rank 1-3", "gap": 0.0226, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572797ce5951b619008f8e48", "pid": "en-295b2f62e515", "kind": "neg", "band": "rank 4-10", "gap": 0.0507, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572797ce5951b619008f8e48", "pid": "en-c961142329d3", "kind": "neg", "band": "rank 11-30", "gap": 0.0577, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726ecdd5951b619008f827e", "pid": "en-ee5e0eecb30c", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726ecdd5951b619008f827e", "pid": "en-8e512391b0e8", "kind": "neg", "band": "rank 1-3", "gap": 0.0291, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726ecdd5951b619008f827e", "pid": "en-1ef47742a689", "kind": "neg", "band": "rank 4-10", "gap": 0.0327, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726ecdd5951b619008f827e", "pid": "en-51283b323478", "kind": "neg", "band": "rank 11-30", "gap": 0.0601, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7015099179535816728-0", "pid": "en-1c1abe4a9488", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english-7015099179535816728-0", "pid": "en-4de84c1d2f2c", "kind": "neg", "band": "rank 1-3", "gap": 0.09, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7015099179535816728-0", "pid": "en-2b0f061ecc75", "kind": "neg", "band": "rank 4-10", "gap": 0.1049, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7015099179535816728-0", "pid": "en-97cdb5c79513", "kind": "neg", "band": "rank 11-30", "gap": 0.1103, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--8741613890936066205-0", "pid": "en-74cc68f7aac1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english--8741613890936066205-0", "pid": "en-a74859f5597c", "kind": "neg", "band": "rank 1-3", "gap": 0.0763, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--8741613890936066205-0", "pid": "en-48b42257833c", "kind": "neg", "band": "rank 4-10", "gap": 0.1108, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--8741613890936066205-0", "pid": "en-ca263ad22c2b", "kind": "neg", "band": "rank 11-30", "gap": 0.1195, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-4474887944768559000-1", "pid": "en-0212e4095301", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english-4474887944768559000-1", "pid": "en-ad1717270e2d", "kind": "neg", "band": "rank 1-3", "gap": 0.0185, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-4474887944768559000-1", "pid": "en-1091b2f43e80", "kind": "neg", "band": "rank 4-10", "gap": 0.0593, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-4474887944768559000-1", "pid": "en-da1095e72f36", "kind": "neg", "band": "rank 11-30", "gap": 0.0696, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a13e2af94a219006aa7a7", "pid": "en-92779945c8d5", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572a13e2af94a219006aa7a7", "pid": "en-cf794b3f756f", "kind": "neg", "band": "rank 1-3", "gap": -0.0055, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572a13e2af94a219006aa7a7", "pid": "en-cb4e745b19fd", "kind": "neg", "band": "rank 4-10", "gap": 0.0032, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a13e2af94a219006aa7a7", "pid": "en-ac36865e19f5", "kind": "neg", "band": "rank 11-30", "gap": 0.0223, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-571a88324faf5e1900b8aa28", "pid": "en-b7e46ef1fc86", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-571a88324faf5e1900b8aa28", "pid": "en-d07ff8cc1503", "kind": "neg", "band": "rank 1-3", "gap": 0.0053, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-571a88324faf5e1900b8aa28", "pid": "en-7c582f67944b", "kind": "neg", "band": "rank 4-10", "gap": 0.0066, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-571a88324faf5e1900b8aa28", "pid": "en-e1649d0c17b1", "kind": "neg", "band": "rank 11-30", "gap": 0.0138, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726812e708984140094c84e", "pid": "en-cfcec435badc", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726812e708984140094c84e", "pid": "en-85571c7e6353", "kind": "neg", "band": "rank 1-3", "gap": 0.061, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726812e708984140094c84e", "pid": "en-bb9ed545b9c1", "kind": "neg", "band": "rank 4-10", "gap": 0.0697, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726812e708984140094c84e", "pid": "en-9287a0e1c1df", "kind": "neg", "band": "rank 11-30", "gap": 0.0812, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56d6477c1c85041400947065", "pid": "en-4dbb90f0b933", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56d6477c1c85041400947065", "pid": "en-d4c128d6b333", "kind": "neg", "band": "rank 4-10", "gap": 0.0269, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56d6477c1c85041400947065", "pid": "en-740c628a11ad", "kind": "neg", "band": "rank 1-3", "gap": 0.0202, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56d6477c1c85041400947065", "pid": "en-c2687eebb3e4", "kind": "neg", "band": "rank 11-30", "gap": 0.0477, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726a825f1498d1400e8e65c", "pid": "en-f86b177e973f", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726a825f1498d1400e8e65c", "pid": "en-fcd5e5e21d7b", "kind": "neg", "band": "rank 1-3", "gap": -0.0027, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726a825f1498d1400e8e65c", "pid": "en-47b991c0dcbd", "kind": "neg", "band": "rank 4-10", "gap": 0.0252, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726a825f1498d1400e8e65c", "pid": "en-6ac7f8f47145", "kind": "neg", "band": "rank 11-30", "gap": 0.035, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726a1cadd62a815002e8b82", "pid": "en-efdeaa65b609", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726a1cadd62a815002e8b82", "pid": "en-47b991c0dcbd", "kind": "neg", "band": "rank 1-3", "gap": 0.0364, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726a1cadd62a815002e8b82", "pid": "en-100465795163", "kind": "neg", "band": "rank 4-10", "gap": 0.0515, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726a1cadd62a815002e8b82", "pid": "en-e0ae29600f6a", "kind": "neg", "band": "rank 11-30", "gap": 0.0985, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572b57ee34ae481900deada4", "pid": "en-b50bf87478f3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572b57ee34ae481900deada4", "pid": "en-83f5ba20b8da", "kind": "neg", "band": "rank 1-3", "gap": 0.0475, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572b57ee34ae481900deada4", "pid": "en-d0e3fde5c7f2", "kind": "neg", "band": "rank 4-10", "gap": 0.0506, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572b57ee34ae481900deada4", "pid": "en-8d9b1788e7b6", "kind": "neg", "band": "rank 11-30", "gap": 0.0788, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a582ab8ce0319002e2abd", "pid": "en-bd53734a289b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572a582ab8ce0319002e2abd", "pid": "en-133c60a5df12", "kind": "neg", "band": "rank 1-3", "gap": 0.0602, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a582ab8ce0319002e2abd", "pid": "en-79cd47cf82a5", "kind": "neg", "band": "rank 4-10", "gap": 0.1071, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a582ab8ce0319002e2abd", "pid": "en-1f36e4473243", "kind": "neg", "band": "rank 11-30", "gap": 0.1297, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--7754507981501420416-3", "pid": "en-80906ebbb2a4", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english--7754507981501420416-3", "pid": "en-954a58a39ca4", "kind": "neg", "band": "rank 1-3", "gap": 0.0896, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--7754507981501420416-3", "pid": "en-45876da08f3e", "kind": "neg", "band": "rank 4-10", "gap": 0.1017, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--7754507981501420416-3", "pid": "en-5d8b5283bfb8", "kind": "neg", "band": "rank 11-30", "gap": 0.117, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--3901238857686424430-2", "pid": "en-1c1c2064b41e", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english--3901238857686424430-2", "pid": "en-e4e662a8bc34", "kind": "neg", "band": "rank 1-3", "gap": 0.0284, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--3901238857686424430-2", "pid": "en-d56bf62ae8fa", "kind": "neg", "band": "rank 4-10", "gap": 0.0787, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--3901238857686424430-2", "pid": "en-c0929aff1c2d", "kind": "neg", "band": "rank 11-30", "gap": 0.091, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f83ffaaef2371900625f4a", "pid": "en-f23ce9368c10", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56f83ffaaef2371900625f4a", "pid": "en-3eb21f6624a3", "kind": "neg", "band": "rank 1-3", "gap": 0.0122, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f83ffaaef2371900625f4a", "pid": "en-229eb5daf08b", "kind": "neg", "band": "rank 4-10", "gap": 0.0339, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f83ffaaef2371900625f4a", "pid": "en-0db068aeeb7f", "kind": "neg", "band": "rank 11-30", "gap": 0.0355, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d3a5ff5b5019007d963e", "pid": "en-ebba353b7020", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5727d3a5ff5b5019007d963e", "pid": "en-0852a28e43ff", "kind": "neg", "band": "rank 1-3", "gap": 0.0306, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d3a5ff5b5019007d963e", "pid": "en-2747bf57f4c0", "kind": "neg", "band": "rank 4-10", "gap": 0.0595, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727d3a5ff5b5019007d963e", "pid": "en-c7917e3b9c8c", "kind": "neg", "band": "rank 11-30", "gap": 0.0702, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56dfa8ab231d4119001abc51", "pid": "en-fd4b2cf9643c", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56dfa8ab231d4119001abc51", "pid": "en-fc5594cbc118", "kind": "neg", "band": "rank 1-3", "gap": 0.0044, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56dfa8ab231d4119001abc51", "pid": "en-d283d50d79da", "kind": "neg", "band": "rank 4-10", "gap": 0.0386, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56dfa8ab231d4119001abc51", "pid": "en-b24170c328a2", "kind": "neg", "band": "rank 11-30", "gap": 0.0434, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56de818dcffd8e1900b4b99c", "pid": "en-dd9e3a0114b1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56de818dcffd8e1900b4b99c", "pid": "en-8214f4d45b91", "kind": "neg", "band": "rank 1-3", "gap": 0.021, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56de818dcffd8e1900b4b99c", "pid": "en-2e0ef5f0fe19", "kind": "neg", "band": "rank 4-10", "gap": 0.04, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56de818dcffd8e1900b4b99c", "pid": "en-526c91bb18c8", "kind": "neg", "band": "rank 11-30", "gap": 0.0507, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--6554909376401579326-1", "pid": "en-59469c346794", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english--6554909376401579326-1", "pid": "en-993e91386c10", "kind": "neg", "band": "rank 1-3", "gap": 0.0609, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--6554909376401579326-1", "pid": "en-e193e5492182", "kind": "neg", "band": "rank 4-10", "gap": 0.0749, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--6554909376401579326-1", "pid": "en-9e2b48fbac7f", "kind": "neg", "band": "rank 11-30", "gap": 0.0941, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726e978dd62a815002e94d2", "pid": "en-355b49f713ef", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726e978dd62a815002e94d2", "pid": "en-227d2e3508b0", "kind": "neg", "band": "rank 1-3", "gap": 0.0973, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726e978dd62a815002e94d2", "pid": "en-2ed3bcc20c4b", "kind": "neg", "band": "rank 4-10", "gap": 0.1006, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726e978dd62a815002e94d2", "pid": "en-05b4e6eae43d", "kind": "neg", "band": "rank 11-30", "gap": 0.1248, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--4571898511470039894-1", "pid": "en-65a5072bc293", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--4571898511470039894-1", "pid": "en-8b2d1674a1c8", "kind": "neg", "band": "rank 1-3", "gap": -0.0145, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--4571898511470039894-1", "pid": "en-ee9b13f0180c", "kind": "neg", "band": "rank 4-10", "gap": -0.0113, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--4571898511470039894-1", "pid": "en-fbb9b7644756", "kind": "neg", "band": "rank 11-30", "gap": 0.0013, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f896ef9e9bad19000a019d", "pid": "en-6fa15ce36ac3", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56f896ef9e9bad19000a019d", "pid": "en-5b3b1f6d43b4", "kind": "neg", "band": "rank 1-3", "gap": 0.022, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f896ef9e9bad19000a019d", "pid": "en-d339bf2d6aeb", "kind": "neg", "band": "rank 4-10", "gap": 0.0227, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f896ef9e9bad19000a019d", "pid": "en-633cab5af14c", "kind": "neg", "band": "rank 11-30", "gap": 0.0436, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5732977f0342181400a20285", "pid": "en-6efabad6164d", "kind": "neg", "band": "rank 1-3", "gap": 0.0024, "lang": "en", "answer": "error"}
+{"qid": "squad_en-train-5732977f0342181400a20285", "pid": "en-02d2407c8c66", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "error"}
+{"qid": "squad_en-train-5732977f0342181400a20285", "pid": "en-19a1e0a22b56", "kind": "neg", "band": "rank 11-30", "gap": 0.0612, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5732977f0342181400a20285", "pid": "en-144bab41de85", "kind": "neg", "band": "rank 4-10", "gap": 0.0321, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-573282b9b9988014000c764b", "pid": "en-6fb64ad09f3a", "kind": "neg", "band": "rank 1-3", "gap": -0.024, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-573282b9b9988014000c764b", "pid": "en-9730aa48be89", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-573282b9b9988014000c764b", "pid": "en-9287a0e1c1df", "kind": "neg", "band": "rank 4-10", "gap": -0.0198, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-573282b9b9988014000c764b", "pid": "en-b42b3d6ee757", "kind": "neg", "band": "rank 11-30", "gap": -0.0004, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f880ddaef237190062612a", "pid": "en-c3c0da55befc", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-56f880ddaef237190062612a", "pid": "en-45455bef4977", "kind": "neg", "band": "rank 1-3", "gap": 0.0495, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f880ddaef237190062612a", "pid": "en-8a6ebf82e07c", "kind": "neg", "band": "rank 4-10", "gap": 0.0588, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-56f880ddaef237190062612a", "pid": "en-0b421e1f6d08", "kind": "neg", "band": "rank 11-30", "gap": 0.0629, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a77f96d058f1900182e85", "pid": "en-4f455cfec904", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570a77f96d058f1900182e85", "pid": "en-24e65c3a24d7", "kind": "neg", "band": "rank 1-3", "gap": 0.0481, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a77f96d058f1900182e85", "pid": "en-a016bbf76990", "kind": "neg", "band": "rank 4-10", "gap": 0.0583, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570a77f96d058f1900182e85", "pid": "en-8a09cd794800", "kind": "neg", "band": "rank 11-30", "gap": 0.082, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57100a7fb654c5140001f790", "pid": "en-f163481e60e1", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-57100a7fb654c5140001f790", "pid": "en-500eb27787d3", "kind": "neg", "band": "rank 1-3", "gap": 0.0718, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57100a7fb654c5140001f790", "pid": "en-c3b8347cadb4", "kind": "neg", "band": "rank 4-10", "gap": 0.0871, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-57100a7fb654c5140001f790", "pid": "en-7b7dfcf7aae9", "kind": "neg", "band": "rank 11-30", "gap": 0.1027, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7662201721867874322-1", "pid": "en-77730195e93d", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "tydi_en-train-english-7662201721867874322-1", "pid": "en-0a5099e5b270", "kind": "neg", "band": "rank 1-3", "gap": 0.0143, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7662201721867874322-1", "pid": "en-f1008b472636", "kind": "neg", "band": "rank 4-10", "gap": 0.0635, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-7662201721867874322-1", "pid": "en-958f5c6b369d", "kind": "neg", "band": "rank 11-30", "gap": 0.0843, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--2495022700094703705-0", "pid": "en-f534a90eff46", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--2495022700094703705-0", "pid": "en-22d787fcd263", "kind": "neg", "band": "rank 1-3", "gap": 0.0743, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--2495022700094703705-0", "pid": "en-5f440f89c060", "kind": "neg", "band": "rank 4-10", "gap": 0.0819, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english--2495022700094703705-0", "pid": "en-2923aa02919c", "kind": "neg", "band": "rank 11-30", "gap": 0.0909, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727311af1498d1400e8f463", "pid": "en-38ce05312de0", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5727311af1498d1400e8f463", "pid": "en-84982eca319d", "kind": "neg", "band": "rank 1-3", "gap": 0.0184, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727311af1498d1400e8f463", "pid": "en-a185ac984802", "kind": "neg", "band": "rank 4-10", "gap": 0.036, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5727311af1498d1400e8f463", "pid": "en-ab1fbd8e1a5a", "kind": "neg", "band": "rank 11-30", "gap": 0.0466, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726f08ef1498d1400e8f07f", "pid": "en-431d03942fbb", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726f08ef1498d1400e8f07f", "pid": "en-891676cad0ce", "kind": "neg", "band": "rank 1-3", "gap": -0.0458, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5726f08ef1498d1400e8f07f", "pid": "en-2ed3bcc20c4b", "kind": "neg", "band": "rank 4-10", "gap": -0.0193, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5726f08ef1498d1400e8f07f", "pid": "en-68b5dfe26258", "kind": "neg", "band": "rank 11-30", "gap": -0.0106, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572734fff1498d1400e8f4a4", "pid": "en-849d02fa850f", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572734fff1498d1400e8f4a4", "pid": "en-b3fe66faef8b", "kind": "neg", "band": "rank 1-3", "gap": -0.0292, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572734fff1498d1400e8f4a4", "pid": "en-d283d50d79da", "kind": "neg", "band": "rank 4-10", "gap": -0.0131, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572734fff1498d1400e8f4a4", "pid": "en-87a6cf4cf97b", "kind": "neg", "band": "rank 11-30", "gap": -0.0029, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570c4d68b3d812140066d0a3", "pid": "en-05c4a3877b8f", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570c4d68b3d812140066d0a3", "pid": "en-7b3e7665cada", "kind": "neg", "band": "rank 1-3", "gap": 0.0423, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570c4d68b3d812140066d0a3", "pid": "en-1c03b5fb8bee", "kind": "neg", "band": "rank 4-10", "gap": 0.0596, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570c4d68b3d812140066d0a3", "pid": "en-e629f13e04e4", "kind": "neg", "band": "rank 11-30", "gap": 0.0665, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a52b4b8ce0319002e2aad", "pid": "en-300e4a9c05a5", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572a52b4b8ce0319002e2aad", "pid": "en-1761d83c8cb5", "kind": "neg", "band": "rank 1-3", "gap": 0.0365, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a52b4b8ce0319002e2aad", "pid": "en-bd53734a289b", "kind": "neg", "band": "rank 4-10", "gap": 0.0501, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572a52b4b8ce0319002e2aad", "pid": "en-bd349c64393e", "kind": "neg", "band": "rank 11-30", "gap": 0.0995, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728d5a4ff5b5019007da7cb", "pid": "en-58ecb6798ce8", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-5728d5a4ff5b5019007da7cb", "pid": "en-4aa62f5f5028", "kind": "neg", "band": "rank 1-3", "gap": 0.0509, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728d5a4ff5b5019007da7cb", "pid": "en-a4108dfe65d0", "kind": "neg", "band": "rank 4-10", "gap": 0.06, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-5728d5a4ff5b5019007da7cb", "pid": "en-07c73b0d03f8", "kind": "neg", "band": "rank 11-30", "gap": 0.0697, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572f7a2704bcaa1900d769d4", "pid": "en-92eb6207a4e2", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572f7a2704bcaa1900d769d4", "pid": "en-ce4a8f7cd865", "kind": "neg", "band": "rank 1-3", "gap": 0.0172, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572f7a2704bcaa1900d769d4", "pid": "en-1e126981f527", "kind": "neg", "band": "rank 4-10", "gap": 0.0247, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572f7a2704bcaa1900d769d4", "pid": "en-b1d095478ca9", "kind": "neg", "band": "rank 11-30", "gap": 0.039, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572970db6aef051400154ec5", "pid": "en-708871cc64b0", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-572970db6aef051400154ec5", "pid": "en-ecba728753e8", "kind": "neg", "band": "rank 1-3", "gap": 0.047, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572970db6aef051400154ec5", "pid": "en-62136328afca", "kind": "neg", "band": "rank 4-10", "gap": 0.0564, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-572970db6aef051400154ec5", "pid": "en-3c5baf169840", "kind": "neg", "band": "rank 11-30", "gap": 0.0627, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-3102349373003445799-2", "pid": "en-08dc0a28ed1b", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-3102349373003445799-2", "pid": "en-5014a878848d", "kind": "neg", "band": "rank 1-3", "gap": 0.0022, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-3102349373003445799-2", "pid": "en-ac024a30e8bb", "kind": "neg", "band": "rank 4-10", "gap": 0.0316, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-3102349373003445799-2", "pid": "en-8d8a167f539a", "kind": "neg", "band": "rank 11-30", "gap": 0.0451, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570c7e1eb3d812140066d216", "pid": "en-9d922192a1af", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "yes"}
+{"qid": "squad_en-train-570c7e1eb3d812140066d216", "pid": "en-ed09d4917134", "kind": "neg", "band": "rank 1-3", "gap": -0.0107, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570c7e1eb3d812140066d216", "pid": "en-0bd5f9fdc41c", "kind": "neg", "band": "rank 4-10", "gap": 0.0447, "lang": "en", "answer": "no"}
+{"qid": "squad_en-train-570c7e1eb3d812140066d216", "pid": "en-d5e99d3bea16", "kind": "neg", "band": "rank 11-30", "gap": 0.0722, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-8730605441043988718-1", "pid": "en-6fb64ad09f3a", "kind": "gold", "band": "gold", "gap": 0.0, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-8730605441043988718-1", "pid": "en-d09e80633830", "kind": "neg", "band": "rank 1-3", "gap": 0.0097, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-8730605441043988718-1", "pid": "en-f870ed5ae4cb", "kind": "neg", "band": "rank 4-10", "gap": 0.0403, "lang": "en", "answer": "no"}
+{"qid": "tydi_en-train-english-8730605441043988718-1", "pid": "en-bab4e4341882", "kind": "neg", "band": "rank 11-30", "gap": 0.0666, "lang": "en", "answer": "no"}

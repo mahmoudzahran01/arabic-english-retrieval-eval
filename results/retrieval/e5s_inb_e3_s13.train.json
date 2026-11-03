@@ -1,0 +1,76 @@
+{
+ "name": "e5s_inb_e3_s13",
+ "args": {
+  "name": "e5s_inb_e3_s13",
+  "base": "e5-small",
+  "neg_model": "none",
+  "n_neg": 0,
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.0,
+  "no_margin": false,
+  "same_title": false,
+  "pick": "hardest",
+  "frac": 1.0,
+  "xling": false,
+  "epochs": 3,
+  "bs": 64,
+  "lr": 3e-05,
+  "scale": 20.0,
+  "loss": "mnrl",
+  "mini_batch": 32,
+  "max_len": 256,
+  "seed": 13,
+  "dev_curve": true,
+  "keep_model": false,
+  "skip_eval": false,
+  "data_seed": 13,
+  "q_prefix": "query: ",
+  "p_prefix": "passage: "
+ },
+ "train_seconds": 635.2,
+ "peak_gpu_gb": 5.56,
+ "steps": 768,
+ "first_loss": 1.2628855895996094,
+ "last_loss": 0.028538608551025392,
+ "data": {
+  "n_examples": 16419,
+  "padded_negatives": 0,
+  "by_slice": {
+   "train_arcd_ar": 414,
+   "train_squad_en": 6653,
+   "train_tydi_ar": 7328,
+   "train_tydi_en": 2024
+  }
+ },
+ "mining": null,
+ "dev_curve": [
+  {
+   "epoch": 1.0,
+   "dev_macro_mrr@10": 0.8203762844453207,
+   "dev_by_direction": {
+    "ar->ar": 0.7738256975118114,
+    "en->en": 0.8669268713788301,
+    "macro": 0.8203762844453207
+   }
+  },
+  {
+   "epoch": 2.0,
+   "dev_macro_mrr@10": 0.8103523302940489,
+   "dev_by_direction": {
+    "ar->ar": 0.7535905808687873,
+    "en->en": 0.8671140797193104,
+    "macro": 0.8103523302940489
+   }
+  },
+  {
+   "epoch": 3.0,
+   "dev_macro_mrr@10": 0.8120607489009536,
+   "dev_by_direction": {
+    "ar->ar": 0.7575397101192665,
+    "en->en": 0.8665817876826407,
+    "macro": 0.8120607489009536
+   }
+  }
+ ]
+}
