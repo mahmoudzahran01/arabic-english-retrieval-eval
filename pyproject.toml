@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arabic-english-retrieval-eval"
+version = "0.1.0"
+description = "Bilingual Arabic/English retrieval benchmark, hard-negative fine-tuning of an embedder and a reranker, and calibrated LLM-judge evaluation of a RAG system."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Mahmoud Zahran" }]
+keywords = ["retrieval", "arabic", "cross-lingual", "embeddings", "reranking", "rag", "evaluation"]
+
+# Core: everything the CPU tests, the data stage, the report/chart tools and the metrics need.
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "pyarrow>=14",
+    "httpx>=0.27",
+    "huggingface-hub>=0.24",
+    "rank-bm25>=0.2.2",
+]
+
+[project.optional-dependencies]
+# Model training / evaluation (the published runs used torch 2.15 on a single NVIDIA GB10, sentence-transformers 6.2).
+train = [
+    "torch>=2.5",
+    "sentence-transformers>=5.0",
+    "datasets>=3.0",
+    "accelerate>=1.0",
+    "scikit-learn>=1.4",
+]
+# RAG-evaluation part (Ragas needs the langchain 0.3 line; see requirements/rageval.lock.txt for the exact environment).
+rageval = [
+    "arabic-english-retrieval-eval[train]",
+    "ragas==0.4.3",
+    "langchain>=0.3,<0.4",
+    "langchain-community>=0.3,<0.4",
+    "langchain-openai>=0.3,<0.4",
+]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+    "matplotlib>=3.8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 140
+target-version = "py310"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = [
+    "E501",  # long string literals and tables that the formatter cannot wrap
+    "E731",  # lambda assignment: used for tiny local helpers in the report builder
+    "E741",  # ambiguous variable name `l`: loop variables in one-line comprehensions
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["arretrieval"]
