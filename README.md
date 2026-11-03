@@ -56,7 +56,7 @@ RAG evaluation (180 questions over a 220-passage bilingual XQuAD corpus; 180 pla
 flowchart LR
   subgraph data [Benchmark from public data]
     A["TyDi-QA, ARCD, SQuAD, XQuAD"] --> B["Article-level train / dev / test pools<br/>+ leakage audit"]
-    B --> C["LLM-translated ar<->en queries<br/>(train and dev only)"]
+    B --> C["LLM-translated cross-lingual queries<br/>(ar to en and en to ar; train and dev only)"]
   end
   subgraph retrieval [Retrieval stack]
     D["Mine hard negatives with a baseline embedder<br/>+ score-margin false-negative filter"] --> E["Fine-tune multilingual-e5-small<br/>hard negatives + cross-lingual pairs"]
