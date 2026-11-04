@@ -1,0 +1,21 @@
+{
+ "extra_passages": 11819,
+ "extra_mono_queries": 23418,
+ "candidates": 23418,
+ "translated": 23418,
+ "invalid": 0,
+ "dropped_exact_duplicate": 0,
+ "dropped_near_duplicate_of_test_question": 2,
+ "queries_by_slice": {
+  "train/train_arcd_ar": 414,
+  "train/train_squad_en": 6653,
+  "train/train_squad_en_x": 23416,
+  "train/train_tydi_ar": 7328,
+  "train/train_tydi_en": 2024,
+  "train/train_xl2_ar2en": 14940,
+  "train/train_xl2_en2ar": 6059,
+  "train/train_xl3_ar2en": 23418,
+  "train/train_xl_ar2en": 3000,
+  "train/train_xl_en2ar": 1499
+ }
+}

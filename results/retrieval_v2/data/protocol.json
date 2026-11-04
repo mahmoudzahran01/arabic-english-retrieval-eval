@@ -1,0 +1,9 @@
+{
+  "_note": "Protocol constants of the v2 runs that exist only in the lab notebook (runs/retrieval/v2/PROGRESS.md on the Spark) or in code docstrings, not in a result file. Quoted here with their source so that the report text does not need hand-typed numbers.",
+  "contamination_jaccard_threshold": {"value": 0.8, "source": "lab/retrieval/v2/contam_v2.py docstring: near-duplicate = token Jaccard >= 0.8 and >= 2 shared tokens"},
+  "wise_selection_dev_macro_tolerance": {"value": 0.5, "source": "PROGRESS.md 2026-11-04 ~11:05: dev macro within 0.5 of raw AND proxy within 1.0 of bge-m3, fixed before any guard evaluation"},
+  "wise_selection_proxy_tolerance": {"value": 1.0, "source": "same entry"},
+  "guard_bar_miracl_points": {"value": 1.0, "source": "PROGRESS.md ~14:00 coordinator: bar = MIRACL-HN within 1 pt of bge-m3 while TEST ar->en >= 72"},
+  "guard_bar_ar2en_test": {"value": 72, "source": "same entry"},
+  "bootstrap_resamples": {"value": 2000, "source": "deploy/summarize.py BOOT, arretrieval.retrieval.metrics.paired_bootstrap"}
+}

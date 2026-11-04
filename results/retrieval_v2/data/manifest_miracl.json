@@ -1,0 +1,16 @@
+{
+ "miracl_train_topics": 3495,
+ "dropped": {
+  "no_positive": 0,
+  "query_near_dup": 280,
+  "positive_overlap": 1200
+ },
+ "kept_queries": 2015,
+ "train_queries": 1515,
+ "holdout_queries": 438,
+ "train_passages": 10514,
+ "holdout_pool_passages": 13265,
+ "holdout_distractors": 10000,
+ "licence": "miracl/miracl and miracl/miracl-corpus: Apache-2.0",
+ "mr_tydi": "not added: its train questions are the TyDi-QA-ar train questions v1/v2 already use (castorini/mr-tydi is Apache-2.0 but script-based, corpus = same Arabic Wikipedia)"
+}

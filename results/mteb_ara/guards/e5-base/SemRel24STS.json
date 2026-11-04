@@ -1,0 +1,20 @@
+{
+ "task": "SemRel24STS",
+ "model": "e5-base",
+ "main_score": "cosine_spearman",
+ "scores": {
+  "test": {
+   "arb": {
+    "pearson": 0.5973648249117014,
+    "spearman": 0.5924932532375226,
+    "cosine_pearson": 0.5973647898594572,
+    "cosine_spearman": 0.5924898397865662,
+    "manhattan_pearson": 0.5886103113113625,
+    "manhattan_spearman": 0.5876105278854059,
+    "euclidean_pearson": 0.5916477019172828,
+    "euclidean_spearman": 0.5925420119888485,
+    "main_score": 0.5924898397865662
+   }
+  }
+ }
+}

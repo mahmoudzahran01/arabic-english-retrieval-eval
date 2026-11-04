@@ -1,0 +1,31 @@
+{
+ "task": "STS17",
+ "model": "v1",
+ "main_score": "cosine_spearman",
+ "scores": {
+  "test": {
+   "ar-ar": {
+    "pearson": 0.7292257067786232,
+    "spearman": 0.7377877096307752,
+    "cosine_pearson": 0.7292256968945579,
+    "cosine_spearman": 0.7377198637818124,
+    "manhattan_pearson": 0.7182895170176697,
+    "manhattan_spearman": 0.7371008027329533,
+    "euclidean_pearson": 0.7192019862780716,
+    "euclidean_spearman": 0.7377394737901926,
+    "main_score": 0.7377198637818124
+   },
+   "en-ar": {
+    "pearson": 0.6738113809641122,
+    "spearman": 0.6837495748067318,
+    "cosine_pearson": 0.6738113824363817,
+    "cosine_spearman": 0.6837495748067318,
+    "manhattan_pearson": 0.6885058980003127,
+    "manhattan_spearman": 0.6827559036045532,
+    "euclidean_pearson": 0.6906796197754983,
+    "euclidean_spearman": 0.6835938932450754,
+    "main_score": 0.6837495748067318
+   }
+  }
+ }
+}
