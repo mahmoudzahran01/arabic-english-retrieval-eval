@@ -1,0 +1,10 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+gradio==6.31.0
+numpy>=1.26
+pandas>=2.1
+pyarrow>=14
+onnxruntime==1.31.1
+tokenizers>=0.22
+transformers==5.22.1
+torch==2.15.0
+huggingface_hub>=0.30
