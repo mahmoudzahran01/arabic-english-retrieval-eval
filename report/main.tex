@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage[preprint]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+
+% anything still pending is printed in red and cannot be mistaken for a result
+\newcommand{\TODO}[1]{{\color{red}[TODO: #1]}}
+\input{tables/numbers}   % every number in the text comes from here (report/make_tables.py)
+
+\newcommand{\tabfont}{\footnotesize\setlength{\tabcolsep}{3.2pt}}
+\newcommand{\ardir}{ar$\to$en}
+\newcommand{\eadir}{en$\to$ar}
+
+\title{Closing the Arabic$\to$English Gap in Multilingual Retrieval:\\
+Cross-lingual Fine-tuning, Distillation, and an MTEB Arabic Benchmark}
+
+\author{Mahmoud Zahran \\
+  \TODO{affiliation} \\
+  \texttt{github.com/mahmoudzahran01}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multilingual embedding models are strong when query and passage share a language and much weaker when an Arabic query must find an English passage.
+On a held-out benchmark built from public question-answering data, the 568M-parameter bge-m3 reaches MRR@10 \NumBgeArEn{} for \ardir{} and \NumBgeEnAr{} for \eadir{}.
+We fine-tune it with LLM-translated cross-lingual queries, mined hard negatives and a cached contrastive loss, then interpolate the weights back towards the original model (WiSE-FT).
+The result, v2-m3, scores \NumVTwoMArEn{} (\ardir) and \NumVTwoMEnAr{} (\eadir), and its macro average over four directions rises from \NumBgeMacro{} to \NumVTwoMMacro{}.
+Distilling it into 278M and 118M students lifts their \ardir{} score to \NumVTwoBArEn{} and \NumVTwoSArEn{} (off-the-shelf multilingual-E5-small: \NumESmallArEn), though they stay well below the teacher.
+We also report what this costs: relative to bge-m3, v2-m3 changes by \NumGuardMiraclGap{} points on MIRACL (Arabic) and
+\NumGuardNamaaGap{} on Mr.TyDi re-ranking, and we show that \NumMiraclNearDup{} of the \NumMiraclQueries{} MIRACL Arabic dev queries are
+near-verbatim questions from the TyDi QA training set.
+A \NumMtebTasks-task Arabic slice of MTEB used for these checks, and int8 CPU deployment numbers, are included.
+\end{abstract}
+
+\section{Introduction}
+Retrieval-augmented systems for Arabic users routinely search documents written in both Arabic and English.
+A multilingual bi-encoder is supposed to make this a non-issue, yet the published multilingual models are markedly asymmetric:
+in our benchmark the same model that scores \NumBgeEnEn{} for English-to-English retrieval scores \NumBgeArEn{} when the query is Arabic and the passage English, and \NumBgeEnAr{} in the opposite direction.
+A first version of this work (v1) fine-tuned a 118M multilingual-E5-small and lifted \eadir{} from \NumESmallEnAr{} to \NumVOneEnAr{} (above bge-m3's \NumBgeEnAr), but left \ardir{} at \NumVOneArEn{}, \NumGapVOneArEn{} points behind bge-m3.
+
+This report describes v2 and is deliberately specific about what did and did not work.
+Our contributions are:
+(i) a larger, contamination-filtered cross-lingual training set (\NumXlNew{} new translated queries) with a documented licence trail;
+(ii) three models: \textbf{v2-m3} (fine-tuned bge-m3, weight-interpolated), and two distilled students, \textbf{v2-base} (278M) and \textbf{v2-small} (118M);
+(iii) a guard-task evaluation that reports the forgetting we observe on MIRACL and Mr.TyDi instead of hiding it, with a contamination analysis of those tasks;
+(iv) MTEB(ara, v1), a \NumMtebTasks-task Arabic benchmark we assembled for these checks; and
+(v) measured CPU deployment costs for ONNX and dynamic int8 variants.
+
+\section{Related Work}
+\textbf{Benchmarks.} MTEB \citep{muennighoff2023mteb} and its massively multilingual successor MMTEB \citep{enevoldsen2025mmteb} define the task suites in which our Arabic benchmark is expressed.
+Arabic retrieval is covered by MIRACL \citep{zhang2023miracl}, Mr.TyDi \citep{zhang2021mrtydi}, built on TyDi QA \citep{clark2020tydiqa}, and by the parallel QA sets XQuAD \citep{artetxe2020xquad} and MLQA \citep{lewis2020mlqa}.
+\textbf{Models.} Multilingual E5 \citep{wang2024me5,wang2022e5} and M3-Embedding (bge-m3) \citep{chen2024m3} are the strong open multilingual encoders we start from; the latter is trained with self-knowledge distillation.
+\textbf{Training.} We use in-batch contrastive training \citep{henderson2017efficient,reimers2019sbert} with gradient caching to reach large batches on one GPU \citep{gao2021cachedmnrl}, mined hard negatives and the false-negative problem they bring \citep{xiong2021ance,qu2021rocketqa}, and embedding-level distillation \citep{hinton2015distilling,hofstatter2021crossarch}.
+\textbf{Preserving the base model.} Interpolating fine-tuned and original weights, WiSE-FT \citep{wortsman2022wiseft}, trades in-domain gain for robustness; we apply it to a retrieval embedder and measure the trade on held-out tasks.
+
+\section{Data}
+\textbf{Benchmark.} The benchmark of v1 uses only public data: TyDi QA GoldP (\LicTydi), ARCD (\LicArcd), SQuAD v1.1 \citep{rajpurkar2016squad,mozannar2019arcd} (\LicSquad) and XQuAD (\LicXquad), split into article-disjoint train, dev and test pools.
+The test split has \NumTestQueries{} queries over \NumTestPassages{} passages; XQuAD's parallel questions give four directions (ar$\to$ar, en$\to$en, \ardir, \eadir) with identical information needs.
+Each slice is searched in the passages of its own pool in the passage language, and we report MRR@10 per direction and the macro average of the four directions.
+
+\textbf{Translated queries.} For cross-lingual training pairs, \emph{questions only} are translated by a locally served LLM (Gemma-4-26B-A4B) into the other language; the passage keeps its language and stays the positive.
+v1 used \NumXlOld{} such pairs; v2 adds \NumXlNew{}, taken from questions whose passages v1 never paired across languages.
+Test queries are never machine-translated.
+As a style check, translated XQuAD \ardir{} queries score \NumStyleOffsetMin{}--\NumStyleOffsetMax{} points higher than the human questions on the same \NumStyleN{} items for every model we tried, a near-constant offset
+rather than evidence of an over-fit translation style.
+
+\textbf{Contamination filter.}
+While auditing the evaluation sets we found that \NumMiraclNearDup{} of the \NumMiraclQueries{} Arabic dev queries of MIRACL-HardNegatives (\NumMiraclNearDupPct\%) are near-verbatim questions (token Jaccard $\ge \NumJaccard$) of the TyDi QA Arabic \emph{training} set, which v1 trained on.
+Measured against the full TyDi-ar and MIRACL-ar training questions the number is \NumMiraclContamFull{}, leaving \NumMiraclCleanN{} clean queries.
+v2 therefore drops every training question that is a near-duplicate of a query of any audited task (\NumEvalTasksAudited{} MTEB tasks), and every training question whose positive passage overlaps an evaluation positive.
+After filtering, the number of near-duplicate MIRACL queries is \NumMiraclNearDupAfter. Table~\ref{tab:data} gives the counts.
+
+\begin{table}[t]
+\centering\tabfont
+\adjustbox{max width=\columnwidth}{\input{tables/tab_data}}
+\caption{Training queries of the v2 recipe before and after the contamination filter.}\label{tab:data}
+\end{table}
+
+\section{Method}
+\textbf{Objective and negatives.}
+All models minimise an InfoNCE loss over in-batch passages plus one mined hard negative per query, taken from ranks \NumRankLo--\NumRankHi{} of a baseline retriever in the same language pool, keeping only candidates at least \NumMargin{} cosine below the positive to limit false negatives.
+v2-m3 uses a cached multiple-negatives loss \citep{gao2021cachedmnrl} with batch size \NumBsM, mini-batch \NumMiniBatch, similarity scale \NumScaleM, learning rate \NumLrM, one epoch, and maximum length \NumMaxLenM{} tokens.
+
+\textbf{Distillation.}
+The e5-base and e5-small students use the standard loss (scale \NumScaleB, lr \NumLrB) plus a KL term between the student's and the frozen teacher's softmax over the in-batch scores (temperature \NumTempB, weight \NumKdWeight); the teacher is the raw fine-tuned bge-m3 (before WiSE blending).
+
+\textbf{WiSE interpolation.}
+The fine-tuned bge-m3 weights are blended with the original ones, $\theta=\alpha\,\theta_{\text{FT}}+(1-\alpha)\,\theta_{\text{bge-m3}}$.
+We fixed the selection rule before any guard-task evaluation: the blend must stay within \NumWiseTolDev{} dev macro points of the raw model and within \NumWiseTolProxy{} point of bge-m3 on a mono-Arabic mMARCO proxy \citep{bonifacio2021mmarco}; this selected $\alpha=\NumWiseAlpha$.
+
+\section{Results}
+\textbf{Setup.} Model selection used the DEV split only; TEST was scored for final candidates.
+Confidence intervals are percentile bootstraps over queries (\NumBootstrap{} resamples, within slices), paired when comparing systems.
+All fine-tuned numbers are single seeds unless stated; Table~\ref{tab:seeds} lists what is still running.
+
+\begin{table*}[t]
+\centering\tabfont
+\input{tables/tab_main}
+\caption{Test MRR@10 $\times100$ per direction. Models are grouped by size (118M, 278M, 568M). Bold: best of the column.
+v1 is seed 13 (the three-seed mean of v1 is lower in \ardir{}); ``no KD'' rows use the same data as the distilled model.}\label{tab:main}
+\end{table*}
+
+\subsection{Main results}
+Table~\ref{tab:main} shows the test results and Table~\ref{tab:deltas} the paired differences.
+Fine-tuning bge-m3 on the cross-lingual data and blending the weights back (v2-m3) lifts \ardir{} by \NumGainArEn{} points and \eadir{} by \NumGainEnAr{}; the macro average moves from \NumBgeMacro{} to \NumVTwoMMacro{}.
+Distillation transfers part of that gain: with the same data, a student trained without the teacher scores \NumBNoKdArEn{} (base) and \NumSNoKdArEn{} (small) on \ardir{}, and with it \NumVTwoBArEn{} and \NumVTwoSArEn{}.
+Both students remain far below the teacher's \NumVTwoMRawArEn{}.
+The 278M v2-base is statistically indistinguishable from the off-the-shelf 568M bge-m3 on \ardir{} (the paired interval includes zero) and ahead of it on the macro average, at about half the parameters.
+
+\begin{table}[t]
+\centering\tabfont
+\adjustbox{max width=\columnwidth}{\input{tables/tab_deltas}}
+\caption{Paired differences on the test split (percentage points).}\label{tab:deltas}
+\end{table}
+
+\subsection{Ablations}
+Table~\ref{tab:ablation} collects DEV results.
+For the students, a larger distillation weight and KL-only training were at least as good on dev as weight \NumKdWeight, so the weight used here is conservative; the final student recipe may change (pending).
+Re-weighting towards MIRACL (replaying MIRACL-ar training questions in the mix) and a feature-preservation loss to the frozen bge-m3 on Arabic positives did not improve a held-out MIRACL-ar training slice beyond what plain WiSE gave (bge-m3 itself: \NumDevMBge{}), so v2-m3 keeps the simpler recipe.
+Table~\ref{tab:volume} shows that more translated data helped bge-m3 but did not help the two small students on test.
+Across three seeds the raw v2-m3 spans \NumSeedRangeArEn{} points on \ardir{} (s.d. \NumSeedSdArEn) and \NumSeedRangeMacro{} on macro (Table~\ref{tab:seeds}).
+
+\begin{table}[t]
+\centering\tabfont
+\adjustbox{max width=\columnwidth}{\input{tables/tab_ablation}}
+\caption{DEV MRR@10 $\times100$ for the ablations; the last column is a held-out slice of MIRACL-ar training questions used only for selection.}\label{tab:ablation}
+\end{table}
+
+\begin{table}[t]
+\centering\tabfont
+\adjustbox{max width=\columnwidth}{\input{tables/tab_volume}}
+\caption{Test MRR@10 $\times100$ with the translated queries available at the first runs (partial) versus the full v2 set.}\label{tab:volume}
+\end{table}
+
+\begin{table}[t]
+\centering\tabfont
+\adjustbox{max width=\columnwidth}{\input{tables/tab_seeds}}
+\caption{Seed variation on test; pending runs are marked.}\label{tab:seeds}
+\end{table}
+
+\subsection{MTEB(ara, v1)}
+To check that gains on our benchmark do not come at the expense of general Arabic ability, we assembled MTEB(ara, v1): \NumMtebTasks{} MTEB tasks (retrieval, re-ranking, STS, pair classification, classification, clustering, bitext mining) with Arabic data, scored for \NumMtebModels{} models (Table~\ref{tab:mteb}).
+bge-m3 leads at \NumMtebBgeTask{} mean over tasks.
+The v1 fine-tune (\NumMtebVOneTask) ends \emph{below} its own starting point multilingual-E5-small: the cross-lingual gain was paid for on tasks that do not look like our training data, in particular Mr.TyDi re-ranking (\NumGuardESmallNamaa{} to \NumGuardVOneNamaa) and MIRACL (\NumGuardESmallMiracl{} to \NumGuardVOneMiracl).
+\TODO{final MTEB(ara) scores of v2-small, v2-base and v2-m3 are still being computed}
+
+\begin{table*}[t]
+\centering\tabfont
+\input{tables/tab_mteb}
+\caption{MTEB(ara, v1), scores $\times100$. Task = mean over tasks, Type = mean over task types; ar / ar-en = mean over Arabic-only / Arabic--English subsets.}\label{tab:mteb}
+\end{table*}
+
+\subsection{Guard tasks and the contamination analysis}
+Table~\ref{tab:guards} reports three tasks we treat as guards, in the MTEB protocol.
+Relative to bge-m3, v2-m3 is \NumGuardSemRelGap{} points on SemRel24, but \NumGuardMiraclGap{} on MIRACL-HardNegatives (\NumGuardVTwoMMiracl{} vs \NumGuardBgeMiracl) and \NumGuardNamaaGap{} on Mr.TyDi re-ranking.
+Our pre-registered bar was to stay within \NumGuardBar{} point of bge-m3 on MIRACL while keeping test \ardir{} at \NumGuardBarArEn{} or above; it is \emph{not met}, and neither replay nor preservation closed the gap.
+
+Contamination does not explain the gap away.
+Splitting the MIRACL and Mr.TyDi queries into those that are near-duplicates of TyDi-ar or MIRACL-ar training questions and those that are not (Table~\ref{tab:clean}), the difference between v2-m3 and bge-m3 on the clean MIRACL queries is \NumCleanGapMiracl{} points (all queries: \NumAllGapSplitMiracl).
+Only \NumMiraclCleanN{} MIRACL queries are clean, so the interval is wide, and the split was computed with a slightly different scoring input than the MTEB protocol. \TodoCleanProtocol{}
+The reverse caveat also holds: bge-m3 lists MIRACL and Mr.TyDi among its training sets, so its absolute MIRACL number is not a clean reference either.
+
+\begin{table}[t]
+\centering\tabfont
+\adjustbox{max width=\columnwidth}{\input{tables/tab_guards}}
+\caption{Guard tasks (MTEB protocol, $\times100$): MIRACL-HardNegatives (nDCG@10), Mr.TyDi re-ranking (MAP), SemRel24 (Spearman). These runs use slightly different numerics than Table~\ref{tab:mteb} (differences up to \NumGuardVsLeaderboardMax{} points for the same model and task).}\label{tab:guards}
+\end{table}
+
+\begin{table*}[t]
+\centering\tabfont
+\input{tables/tab_clean}
+\caption{Guard tasks split by contamination: ``clean'' queries are not near-duplicates of any TyDi-ar or MIRACL-ar training question, ``contam.'' queries are. Per-query scores in the contamination-split protocol.}\label{tab:clean}
+\end{table*}
+
+\section{Deployment}
+We export v2-small and v2-base to ONNX (fp32, opset \NumOpset, pooling and normalisation inside the graph) and compare three ways of shrinking them for CPU serving:
+ONNX Runtime dynamic int8 with per-tensor or per-channel weight scales \citep[activations quantised on the fly, cf.][]{zafrir2019q8bert}, and weight-only 8-bit block quantisation of the MatMul weights that leaves the activations in fp32.
+Quality is measured as MRR@10 on the same test split against the PyTorch fp32 model, on CPU, with paired bootstrap intervals.
+Latency was measured on the \NumSparkCpus-core ARM CPU of a shared server (not an x86 laptop or cloud VM), one process, \NumThreadsLow{} and \NumThreadsHigh{} threads; numbers are therefore indicative.
+
+Table~\ref{tab:deploy} shows that the ONNX fp32 graphs reproduce the PyTorch results (\NumDeltaOnnxSmall{} and \NumDeltaOnnxBase{} macro points) and cut single-query latency (\NumThreadsLow{} threads) from \NumQLatSmallTorch{} to \NumQLatSmallOnnx{} ms for v2-small and from \NumQLatBaseTorch{} to \NumQLatBaseOnnx{} ms for v2-base.
+Dynamic int8 with per-tensor scales is faster still (\NumQLatSmallDyn{} and \NumQLatBaseDyn{} ms) but \emph{not acceptable} here: \NumDeltaDynSmall{} macro points for v2-small and \NumDeltaDynBase{} for v2-base (\NumDeltaDynBaseArEn{} on \ardir{} for the base model).
+Per-channel scales reduce the loss to \NumDeltaPcSmall{} and \NumDeltaPcBase{}, still more than we would ship for the base model.
+Weight-only 8-bit quantisation is lossless within noise (\NumDeltaWoSmall{} and \NumDeltaWoBase{}) and shrinks the models from \NumSizeSmallOnnx{} to \NumSizeSmallWo{} MiB and from \NumSizeBaseOnnx{} to \NumSizeBaseWo{} MiB, but its CPU kernels are slower per query than fp32 (\NumQLatSmallWo{} and \NumQLatBaseWo{} ms).
+We therefore recommend ONNX fp32 when latency matters, weight-only 8-bit when download size matters, and no dynamic int8 for these models without calibration or quantisation-aware training.
+
+\begin{table*}[t]
+\centering\tabfont
+\input{tables/tab_deploy}
+\caption{CPU deployment variants. MiB: size on disk; RSS: peak resident memory of the benchmark process (\NumThreadsHigh{} threads; includes the python and data-loading baseline of that process); q@1: p50 latency of a single query (\NumThreadsLow{} threads, ms); p/s: passages per second (batch 32, \NumThreadsHigh{} threads); MRR: test macro MRR@10 $\times100$; $\Delta$: difference to PyTorch fp32 in points (macro, and \ardir{}).}\label{tab:deploy}
+\end{table*}
+
+\section{Limitations}
+Most fine-tuned numbers are single seeds; seeds are complete only for the raw v2-m3, and the WiSE blends and the students of other seeds, as well as the final student recipe, are pending (Table~\ref{tab:seeds}).
+The test set is Wikipedia-style extractive QA with \NumStyleN{} parallel questions per XQuAD direction, so the intervals are wide for the cross-lingual slices; domain shift to dialects, informal text or long documents is untested.
+Training queries are machine-translated and not human-verified; the style check shows a constant offset on evaluation questions but cannot rule out subtler translationese.
+The guard analysis shows a real regression on MIRACL and Mr.TyDi, and the clean subset is small.
+The MTEB(ara, v1) scores for the v2 models are pending, and only \NumMtebModels{} models have been scored on the benchmark.
+Deployment latency comes from one machine type, with other jobs running, and does not include serving overhead.
+No RAG-level evaluation is done here.
+
+\section{Reproducibility}
+Every number in this report is generated by \texttt{report/make\_tables.py} from the committed result files in \texttt{results/retrieval\_v2}, \texttt{results/mteb\_ara} and \texttt{deploy/results};
+run \texttt{python report/make\_tables.py \&\& cd report \&\& pdflatex main \&\& bibtex main \&\& pdflatex main \&\& pdflatex main}.
+Training used a single GB10 GPU; the code of the v1 pipeline and the evaluation harness are in the accompanying repository, and the deployment scripts are in \texttt{deploy/}.
+The data are public (licences above); the v2 model weights are \TODO{published after review: Hugging Face repository names}.
+
+{\small\setlength{\bibsep}{1pt}
+\bibliography{refs}}
+\end{document}

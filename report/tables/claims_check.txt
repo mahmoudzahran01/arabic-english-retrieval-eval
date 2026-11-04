@@ -1,0 +1,32 @@
+OK      v2-m3 beats bge-m3 on ar->en (paired CI above 0)
+OK      v2-m3 beats bge-m3 on en->ar (paired CI above 0)
+OK      v2-base vs bge-m3 on ar->en: paired CI includes 0
+OK      v2-base beats bge-m3 on macro (paired CI above 0)
+OK      KD helps ar->en for the base student (paired CI above 0)
+OK      KD helps ar->en for the small student (paired CI above 0)
+OK      the students stay below the v2-m3 teacher on ar->en
+OK      WiSE 0.75 costs macro points relative to the raw fine-tune (CI below 0)
+OK      v2-m3 is more than the bar below bge-m3 on MIRACL-HN
+OK      v2-m3 is below bge-m3 on Mr.TyDi rerank
+OK      v2-m3 is above bge-m3 on SemRel24
+OK      bge-m3 has the highest MTEB(ara) Mean (Task)
+OK      v1 scores below multilingual-e5-small on MTEB(ara) Mean (Task)
+OK      dev: KD weight 3 and KD-only are at least as good as weight 1
+OK      replay/preservation do not beat plain WiSE 0.75 on held-out MIRACL-ar by more than 0.1
+OK      v2-m3 is below bge-m3 on the clean MIRACL queries
+OK      v2-small: ONNX fp32 answers a single query faster than PyTorch fp32
+OK      v2-small: dynamic int8 is faster per query than ONNX fp32
+OK      v2-small: weight-only 8-bit is slower per query than ONNX fp32
+OK      v2-small: dynamic int8 costs more than one macro point
+OK      v2-small: per-channel int8 loses less than per-tensor int8
+OK      v2-small: weight-only 8-bit stays within 0.3 macro points of fp32
+OK      v2-small: ONNX fp32 is numerically equivalent to PyTorch fp32
+OK      v2-base: ONNX fp32 answers a single query faster than PyTorch fp32
+OK      v2-base: dynamic int8 is faster per query than ONNX fp32
+OK      v2-base: weight-only 8-bit is slower per query than ONNX fp32
+OK      v2-base: dynamic int8 costs more than one macro point
+OK      v2-base: per-channel int8 loses less than per-tensor int8
+OK      v2-base: weight-only 8-bit stays within 0.3 macro points of fp32
+OK      v2-base: ONNX fp32 is numerically equivalent to PyTorch fp32
+OK      more translated data does not raise macro for the small students
+OK      more translated data raises macro for bge-m3

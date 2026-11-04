@@ -1,0 +1,19 @@
+\begin{tabular}{@{}lrrrrrc@{}}
+\toprule
+Model & ar$\to$ar & en$\to$en & ar$\to$en & en$\to$ar & macro & 95\% CI (macro) \\
+\midrule
+mE5-small & 76.8 & 87.8 & 41.4 & 61.7 & 66.9 & [66.0, 67.9] \\
+v1 (e5-small FT) & 80.2 & 87.3 & 55.1 & 80.4 & 75.7 & [74.9, 76.6] \\
+e5-small FT, no KD & 79.4 & 86.4 & 58.0 & 80.2 & 76.0 & [75.2, 76.9] \\
+v2-small (KD) & 80.8 & 87.6 & 60.2 & 81.1 & 77.4 & [76.6, 78.3] \\
+\midrule
+e5-base FT, no KD & 78.9 & 86.3 & 60.7 & 81.4 & 76.8 & [76.0, 77.7] \\
+v2-base (KD) & 81.8 & 88.6 & 64.5 & 84.1 & 79.8 & [78.9, 80.6] \\
+\midrule
+bge-m3 & 80.2 & 87.8 & 63.3 & 67.8 & 74.8 & [73.9, 75.7] \\
+v2-m3 raw FT & \textbf{87.1} & 90.0 & \textbf{73.9} & \textbf{88.4} & \textbf{84.8} & [84.1, 85.6] \\
+v2-m3 (WiSE 0.75) & 86.7 & \textbf{90.0} & 73.5 & 87.3 & 84.4 & [83.6, 85.1] \\
+\midrule
+mE5-base (not fine-tuned) & \multicolumn{6}{c}{\TODO{baseline not yet scored on the TEST split}} \\
+\bottomrule
+\end{tabular}

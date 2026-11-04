@@ -1,0 +1,22 @@
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+DEV selection set & ar$\to$en & macro & held-out MIRACL-ar \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{e5-base student (teacher: raw FT bge-m3)}} \\
+no KD & 71.0 & 78.8 & -- \\
+KD $w{=}1$ & 74.5 & 81.2 & -- \\
+KD $w{=}3$ & 75.6 & 81.8 & 73.1 \\
+KD only & 76.1 & 82.0 & 73.2 \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{bge-m3 fine-tuned itself}} \\
+bge-m3 (no FT) & 73.5 & 78.2 & 80.5 \\
+raw FT & 81.0 & 85.3 & 79.1 \\
+WiSE $\alpha{=}0.75$ & 80.5 & 84.9 & 79.8 \\
+WiSE $\alpha{=}0.50$ & 79.8 & 84.2 & 79.8 \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{bge-m3 + MIRACL-ar replay / preservation}} \\
+replay & 80.8 & 84.9 & 78.7 \\
+preservation & 80.9 & 84.9 & 79.0 \\
+preservation, WiSE 0.75 & 80.6 & 84.7 & 79.8 \\
+\bottomrule
+\end{tabular}
