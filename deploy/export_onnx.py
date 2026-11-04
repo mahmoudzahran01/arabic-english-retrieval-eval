@@ -140,9 +140,15 @@ def quantize_weight_only(src: Path, dst: Path, bits: int = 8, block_size: int = 
 
     dst.parent.mkdir(parents=True, exist_ok=True)
     tmp = dst.parent / "_mm.onnx"
+    before = {f.name for f in Path.cwd().glob("*.data")}
     q = MatMulNBitsQuantizer(onnx.load(str(src)), bits=bits, block_size=block_size, is_symmetric=True)
     q.process()
     q.model.save_model_to_file(str(tmp), use_external_data_format=False)
+    for f in Path.cwd().glob(
+        "*.data"
+    ):  # the quantizer leaves one model-sized temporary "<uuid>.data" file per run in the working directory
+        if f.name not in before:
+            f.unlink()
     quantize_dynamic(str(tmp), str(dst), weight_type=QuantType.QInt8, op_types_to_quantize=["Gather"])
     tmp.unlink()
 
