@@ -1,0 +1,51 @@
+{
+ "model": "v2-small",
+ "variant": "onnx-w8",
+ "threads": 8,
+ "platform": "aarch64 Linux (20 logical CPUs)",
+ "loadavg_start": 10.99,
+ "loadavg_end": 12.03,
+ "size_mb": 113.8,
+ "model_dir_mb": 448.8,
+ "load_seconds": 1.05,
+ "rss_after_load_mb": 745.0,
+ "peak_rss_mb": 2266.0,
+ "mean_tokens": {
+  "query": 42.0,
+  "passage": 512.0
+ },
+ "workloads": {
+  "query_b1": {
+   "calls": 200,
+   "batch": 1,
+   "p50_ms": 10.41,
+   "p95_ms": 12.8,
+   "mean_ms": 10.51,
+   "throughput_sent_per_s": 95.17
+  },
+  "query_b32": {
+   "calls": 20,
+   "batch": 32,
+   "p50_ms": 168.43,
+   "p95_ms": 222.74,
+   "mean_ms": 174.63,
+   "throughput_sent_per_s": 183.24
+  },
+  "passage_b1": {
+   "calls": 60,
+   "batch": 1,
+   "p50_ms": 30.77,
+   "p95_ms": 54.03,
+   "mean_ms": 30.79,
+   "throughput_sent_per_s": 32.48
+  },
+  "passage_b32": {
+   "calls": 8,
+   "batch": 32,
+   "p50_ms": 1453.86,
+   "p95_ms": 2241.28,
+   "mean_ms": 1613.46,
+   "throughput_sent_per_s": 19.83
+  }
+ }
+}

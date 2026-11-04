@@ -1,0 +1,51 @@
+{
+ "model": "v2-small",
+ "variant": "onnx-w8",
+ "threads": 8,
+ "platform": "arm64 Darwin (11 logical CPUs)",
+ "loadavg_start": 4.14,
+ "loadavg_end": 6.24,
+ "size_mb": 113.8,
+ "model_dir_mb": null,
+ "load_seconds": 0.3,
+ "rss_after_load_mb": 874.0,
+ "peak_rss_mb": 1901.0,
+ "mean_tokens": {
+  "query": 42.0,
+  "passage": 512.0
+ },
+ "workloads": {
+  "query_b1": {
+   "calls": 200,
+   "batch": 1,
+   "p50_ms": 10.91,
+   "p95_ms": 14.19,
+   "mean_ms": 11.16,
+   "throughput_sent_per_s": 89.58
+  },
+  "query_b32": {
+   "calls": 20,
+   "batch": 32,
+   "p50_ms": 130.44,
+   "p95_ms": 160.64,
+   "mean_ms": 131.01,
+   "throughput_sent_per_s": 244.26
+  },
+  "passage_b1": {
+   "calls": 60,
+   "batch": 1,
+   "p50_ms": 26.05,
+   "p95_ms": 41.73,
+   "mean_ms": 26.61,
+   "throughput_sent_per_s": 37.58
+  },
+  "passage_b32": {
+   "calls": 8,
+   "batch": 32,
+   "p50_ms": 2150.22,
+   "p95_ms": 2428.72,
+   "mean_ms": 1905.98,
+   "throughput_sent_per_s": 16.79
+  }
+ }
+}

@@ -20,3 +20,15 @@ htmlcov/
 .DS_Store
 .idea/
 .vscode/
+
+# deployment artefacts (live on the Spark / are uploaded with the Space; never committed)
+demo/index/
+demo/models/
+deploy/artifacts/
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.log
+report/*.out
+report/*.fdb_latexmk
+report/*.fls
