@@ -1,0 +1,125 @@
+\paragraph{WiSE alpha selection rule, as recorded in the results entry (2026-11-04 11:05)}
+{\footnotesize\raggedright
+Selection rule fixed BEFORE any guard eval: dev macro within 0.5 of raw AND proxy within 1.0 of bge-m3 $\to$ alpha 0.75.\par}
+
+\paragraph{Original pre-registered rule (2026-11-04 14:00)}
+{\footnotesize\raggedright
+2026-11-04 \textasciitilde{}14:00 coordinator: fix the MIRACL forgetting properly (replay + preservation), PRE-REGISTERED selection rule
+
+- Why: v2-m3 + WiSE a.75 scores MIRACL-HN.v2 75.7 vs bge-m3 79.0 (-3.3); bar = within 1 pt while TEST ar$\to$en >= 72.
+
+- Replay data: MIRACL-ar TRAIN (miracl/miracl topics+qrels, miracl/miracl-corpus; Apache-2.0; judged-relevant = positives, judged-NOT-relevant = hard negatives), 500 queries HELD OUT as the selection-only slice devM (own mini-corpus of judged passages + 10k random distractors, evaluated separately, never in the dev macro). Filters: near-duplicate of any MIRACL-ar dev query / v1 test+dev query, positive overlapping a MIRACL dev positive or a v1 test passage; contam\_v2 then applies the whole MTEB(ara) list. Mr.TyDi-ar train: not added (its questions ARE the TyDi-ar train questions v1/v2 already use; script-based loader).
+
+- Preservation loss: 1 - cos(student, frozen bge-m3) on Arabic positives, weight 0.5 (sweep not affordable: one m3 run = 55 min).
+
+- Runs (seed 13, m3 recipe of m3\_b\_s13): m3\_r (replay), m3\_p (preservation), m3\_rp (both); each also WiSE a.75 / a.50 against bge-m3; evaluation = dev (4 directions), devM, mMARCO proxy. NO guard is used for selection.
+
+- RULE (fixed now, before the runs): a candidate qualifies if (i) devM MRR@10 >= bge-m3's devM - 1.0, (ii) dev ar$\to$en >= 79.0 (\textasciitilde{} TEST 72), (iii) dev macro >= m3\_b dev macro (85.3) - 1.5; among qualifying take the highest dev macro (ties: fewer moving parts). If none qualifies: highest devM among those with dev ar$\to$en >= 79.0, reported as a miss.
+
+- Seed 14 of the OLD recipe is allowed to finish (running); seed 15 is NOT run with the old recipe. KD ablations/baseline guards are queued after these runs.\par}
+
+\paragraph{Amendment 1: validation-suite selection (2026-11-04 19:05)}
+{\footnotesize\raggedright
+2026-11-04 \textasciitilde{}19:05 - PRE-REGISTRATION: validation suite for the final v2-m3 pick (written BEFORE any candidate is scored on the new components)
+
+Trigger: coordinator, "0.06 is a tie; the losses (Namaa, MIRACL, XNLI, AJGT) are drift away from bge-m3's general skills; select on a validation suite that mirrors the MTEB(ara)
+
+task types, never on MTEB". Supersedes select\_m3.py (kept as the record of the earlier rule). No MTEB(ara) number and no TEST number is read by this procedure.
+
+Order of work: s15 $\to$ soup/blends $\to$ suite (interim table) $\to$ LoRA / freeze $\to$ suite (all) $\to$ selection $\to$ ONE MTEB(ara) scoring of the pick $\to$ teacher = pick $\to$ students.
+
+DEVIATION FROM THE BRIEF (flagged to the coordinator): the brief asks for the XNLI-ar VALIDATION split "since MTEB uses test". mteb's XNLI task sets
+
+eval\_splits=["test","validation"] (pylibs/mteb/tasks/pair\_classification/multilingual/xnli.py) and the leaderboard number is the mean over both, so the validation split is
+
+part of the MTEB evaluation. Instead: a seeded 3,000-pair subsample of the XNLI-ar TRAIN split (facebook/xnli, ar/train; machine-translated MNLI; entailment=1,
+
+contradiction=0, neutral dropped, as mteb does). Never trained on, never part of any MTEB split.
+
+COMPONENTS (6, all x100, higher = better):
+
+1 dev      : v2 extended DEV macro MRR@10 over the 4 directions (ar$\to$en, en$\to$ar, ar$\to$ar, en$\to$en)            [results/NAME.dev.json]
+
+2 devM     : MIRACL-ar TRAIN hold-out (500 queries, selection-only slice, excluded from training), MRR@10                [NAME.devM.json]
+
+3 proxy    : mMARCO-ar dev proxy (1,000 q / 25k docs, seed 13), MRR@10                                                    [results/ood\_dev\_ar.json]
+
+4 xnli     : average precision of the cosine similarity on 3,000 XNLI-ar TRAIN pairs (seed 13)                            [results/suite/NAME.json]
+
+5 cls      : mean of two 8-shot-per-label logistic-regression probes (mteb protocol: 10 experiments, samples\_per\_label=8, max\_iter=100) on ArSarcasm
+
+(iabufarha/ar\_sarcasm, licence MIT): (a) sarcasm 2-class, (b) sentiment 3-class. The probe is fitted on rows of the TRAIN split and scored on
+
+2,000 other TRAIN rows (seeded hold-out). MTEB scores TweetSarcasmClassification on the ar\_sarcasm TEST split; the TRAIN split is disjoint
+
+from it (same source, so it is a close proxy by design). AJGT / TweetEmotion / HotelReview are not touched.
+
+6 sts      : Spearman of cosine similarity on the Arabic DEV split of stsb\_multi\_mt (PhilipMay/stsb\_multi\_mt, ar/dev, 1,500 pairs; machine-translated STSb; licence
+
+"other" - used for validation only, not redistributed). Disjoint from STS17 / STS22 / SemRel24 (the MTEB STS tasks).
+
+NORMALISATION: per component c, x\_c is min-max scaled over the POOL = \{all candidates + the reference rows (bge-m3, m3\_b\_s13 raw, soup raw)\}:
+
+n\_c = (x\_c - min\_pool) / max(max\_pool - min\_pool, 1.0 point)     (the 1-point floor keeps a component whose pool range is below the noise level from being inflated)
+
+SCORE = unweighted mean of the 6 n\_c. Reported with the 6 raw components.
+
+POOL / CANDIDATES (selectable): WiSE alpha in \{0.4,0.5,0.6,0.75\} of m3\_b\_s13 (wm\_a50, wm\_a75 exist; w\_m3b\_a40, w\_m3b\_a60 new);
+
+SOUP = uniform average of the seed 13/14/15 fine-tunes (m3\_b\_s13/s14/s15; seed 15 is trained first), then WiSE alpha in \{0.4,0.5,0.6,0.75\} (soup\_a40..a75);
+
+LoRA r=32 attention+MLP lr 1e-4 (m3\_lo\_s13) and freeze-bottom-12 (m3\_fr\_s13) raw, plus their WiSE blends alpha \{0.75,0.5\}.  14 selectable models.
+
+Reference rows (in the pool for normalisation, shown, NOT selectable): bge-m3, m3\_b\_s13 raw (alpha=1), soup raw.
+
+ELIGIBILITY (protects the S\_TIER ar$\to$en bar): dev ar$\to$en >= bge-m3 dev ar$\to$en + 5.0 points.
+
+PICK = the eligible candidate with the highest SCORE.  Ties (|diff| < 0.02) $\to$ fewer ingredients: single-seed WiSE < soup WiSE < LoRA/freeze (then larger alpha).
+
+The pick is announced here before its MTEB(ara) scoring; that scoring is run once and reported even if it is lower than final\_m3\_wa75\_s13 (72.044). Earlier MTEB(ara)
+
+scoring of final\_m3\_wa75\_s13 happened BEFORE this suite existed and is not used in the selection.
+
+3-SEED REPORTING: pick is a soup $\to$ the soup is the reported model (one model; paired bootstrap over queries); otherwise the per-seed blends (13/14/15) of the picked recipe.
+
+Students: distilled from the FINAL teacher (the pick), KD-only; teacher embeddings are recomputed from the pick (tag m3f).
+
+Code: lab/retrieval/v2/suite\_v2.py (components 4-6), suite\_select.py (assembly + rule), runs/retrieval/v2/scripts/drive14.sh (queue).
+
+- 2026-11-04 \textasciitilde{}19:20 CORRECTION to the pre-registration above (still before any candidate has a suite number): PhilipMay/stsb\_multi\_mt has NO Arabic split (checked on the Hub),
+
+so component 6 uses the Arabic STS-B VALIDATION split of Omartificial-Intelligence-Space/Arabic-stsb (apache-2.0; machine-translated STS-B, 1,500 pairs; validation.csv, "score" column).
+
+Everything else is unchanged. Data fetched to runs/retrieval/v2/data/suite/ (xnli\_ar\_train.parquet, ar\_sarcasm\_train.parquet, stsb\_ar\_validation.csv).\par}
+
+\paragraph{Amendment 2: alpha extension and LoRA rerun (2026-11-04 21:35)}
+{\footnotesize\raggedright
+2026-11-04 \textasciitilde{}21:35 - AMENDMENT 2 to the pre-registered suite selection (coordinator follow-up after DRIVE14\_DONE); written BEFORE any of the runs below
+
+What happened in drive14 (facts, from the logs; the "rc=0" lines of the driver are NOT reliable because run\_docker.sh masks the exit code - from now on every step is verified by the existence of its output file):
+
+* LoRA: m3\_lo\_s13 trained all 615/615 steps (56 min) and then CRASHED in train\_v2.py at merge\_and\_unload (AttributeError: 'XLMRobertaModel' has no attribute 'merge\_and\_unload'): my code
+
+kept the in-place-injected XLM-R module instead of the PeftModel handle. Nothing was saved (the adapters died with the process), so the LoRA dev / merges / blends / proxy2 / suite2 all failed on the missing path
+
+within seconds. This is a bug in MY code, not a result about LoRA.  proxy2 and suite2 aborted at their FIRST model (LoRA), so the freeze run and its two blends (which trained fine: dev 85.0 / 84.8 / ..., devM 78.8 / 79.7 / ...) have no proxy and suite numbers.
+
+* select2's "PICK (interim)" was computed on the 11 complete models only.
+
+* Tie rule: the pre-registration says "|diff| < 0.02" (strict). select code used >= best - 0.02 (inclusive). Corrected to strict; exact differences are printed to 4 decimals; the pick report states which clause decided.
+
+DECISIONS (no re-litigation after this entry):
+
+A. LoRA is RERUN with the identical recipe / seed (m3\_lo\_s13, r=32, lr 1e-4, attention+MLP, 1 epoch, seed 13) after a gated 3-minute merge self-test of the fixed code (adapter saved to disk before the merge). \textasciitilde{}57 min. Reason: it is the only
+
+pre-registered candidate that constrains the update DURING training (freeze did not help on devM); the GPU would otherwise idle until the pick. It enters the pool exactly as registered (raw + WiSE .75 / .5).
+
+B. Order: (1) freeze proxy + suite  $\to$  (2) select on the pool WITHOUT LoRA $\to$ winning family F by the rule as written (strict tie)  $\to$  (3) ONE extra pair of alphas for F ONLY: alpha 0.30; alpha 0.35 is added ONLY if the
+
+0.30 model fails eligibility (dev ar$\to$en < 78.5 = bge-m3 dev ar$\to$en 73.5 + 5.0); if 0.30 is eligible, 0.35 is NOT run; nothing below 0.30 is tried  $\to$  (4) LoRA rerun + blends  $\to$  (5) FINAL select on the FULL pool
+
+(all earlier candidates + the 0.30/0.35 point(s) + LoRA models), same normalisation (pool-wide min-max, 1-point floor), same eligibility, same strict tie rule  $\to$  (6) ONE MTEB(ara) scoring of that pick (= final\_m3), reported even if lower.
+
+If LoRA wins the final select there is no further alpha extension. The alphas 0.30 / 0.35 are selectable. Family names for the extension: wise $\to$ w\_m3b\_a30 / a35; soup $\to$ soup\_a30 / a35; freeze $\to$ w\_m3\_fr\_s13\_a30 / a35.
+
+C. Everything else in the first pre-registration (components, normalisation, eligibility, tie-break by ingredients, 3-seed reporting) is unchanged. No MTEB(ara) and no TEST number is read by any of the selection steps.\par}

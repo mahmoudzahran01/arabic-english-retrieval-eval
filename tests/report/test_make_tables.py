@@ -89,7 +89,7 @@ def test_no_hand_typed_results_in_the_prose():
     body = re.sub(r"\$[^$]*\$", "", body)  # math such as alpha, >=
     body = re.sub(r"\\newcommand.*", "", body)
     # identifiers, not results: metric names (MRR@10), workload names (batch 32), run names (seed 13), a model name
-    body = re.sub(r"@\d+|\d-bit|batch \d+|seeds? \d+(?: and \d+)?|Gemma-4-26B-A4B", "", body)
+    body = re.sub(r"[0-9.]+\\columnwidth|amendments? \d|@\d+|\d-bit|batch \d+|seeds? \d+(?: and \d+)?|Gemma-4-26B-A4B", "", body)
     hits = re.findall(r"(?<![\\\w.])\d+(?:[.,]\d+)?(?!\w)", body)
     allowed = {"11", "118M", "278M", "568M"}  # model sizes quoted by name are parameters of the architectures, not results
     bad = [h for h in hits if h not in allowed]

@@ -1,0 +1,17 @@
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+DEV; training queries & new transl. & ar$\to$en & en$\to$ar & macro \\
+\midrule
+\multicolumn{5}{@{}l}{\emph{e5-small student (no KD)}} \\
+none (v1 translations only) & 0 & 65.2 & 77.9 & 77.0 \\
++25\% of the new translations & 2{,}642 & 66.7 & 77.9 & 77.6 \\
++first batch of new translations & 3{,}904 & 66.9 & 79.1 & 77.8 \\
++50\% of the new translations & 5{,}284 & 66.7 & 79.5 & 77.6 \\
++all translations available at the time & 10{,}568 & 67.8 & 79.7 & 77.8 \\
+full set, contamination-filtered & 19{,}886 & 68.0 & 80.0 & 78.4 \\
+\multicolumn{5}{@{}l}{\emph{e5-base student (no KD)}} \\
+none (v1 translations only) & 0 & 68.7 & 81.4 & 78.9 \\
++all translations available at the time & 10{,}568 & 70.6 & 82.1 & 79.3 \\
+full set, contamination-filtered & 19{,}886 & 71.0 & 81.9 & 78.8 \\
+\bottomrule
+\end{tabular}

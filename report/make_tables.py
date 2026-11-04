@@ -11,7 +11,6 @@ that is still pending is printed as a red \\TODO{...} so that it cannot be mista
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from pathlib import Path
@@ -22,15 +21,27 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
+from report.study_tables import CONF_DEFAULTS, CURVE_DEFAULTS, PAIRED_DEFAULTS, STUDY_DEFAULTS, StudyTables  # noqa: E402
+from report.tabcommon import (  # noqa: E402,F401
+    DEPLOY,
+    DIR_TEX,
+    DIRS,
+    MTEB,
+    V2,
+    dir_value,
+    esc,
+    load_json,
+    load_system,
+    pct,
+    spct,
+    thousands,
+    todo,
+)
+
 from deploy import summarize as DS  # noqa: E402
 
-V2 = ROOT / "results" / "retrieval_v2"
-MTEB = ROOT / "results" / "mteb_ara"
-DEPLOY = ROOT / "deploy" / "results"
 OUT = ROOT / "report" / "tables"
 DS_THREADS_LOW, DS_THREADS_HIGH = 2, 8
-DIRS = ("ar->ar", "en->en", "ar->en", "en->ar")
-DIR_TEX = {"ar->ar": r"ar$\to$ar", "en->en": r"en$\to$en", "ar->en": r"ar$\to$en", "en->ar": r"en$\to$ar", "macro": "macro"}
 
 # key -> (name in the table, result file stem)
 SYSTEMS = {
@@ -68,50 +79,7 @@ GUARD_MODELS = [("mE5-small", "e5-small"), ("v1", "v1"), ("mE5-base", "e5-base")
 GUARD_TASKS = [("MIRACLRetrievalHardNegatives.v2", "MIRACL-HN"), ("NamaaMrTydiReranking", "Mr.TyDi rerank"), ("SemRel24STS", "SemRel24")]
 
 
-# ------------------------------------------------------------------------------------------------ helpers
-def esc(s: str) -> str:
-    for a, b in (("&", r"\&"), ("%", r"\%"), ("#", r"\#"), ("_", r"\_")):
-        s = s.replace(a, b)
-    return s.replace("->", r"$\to$")
-
-
-def pct(x: float, nd: int = 1) -> str:
-    return f"{100 * x:.{nd}f}"
-
-
-def spct(x: float, nd: int = 1) -> str:
-    return f"{100 * x:+.{nd}f}".replace("-", "$-$")
-
-
-def todo(msg: str) -> str:
-    return rf"\TODO{{{msg}}}"
-
-
-def thousands(n: int) -> str:
-    return f"{n:,}".replace(",", "{,}")
-
-
-def load_json(p: Path) -> dict | None:
-    return json.loads(p.read_text()) if p.exists() else None
-
-
-def load_system(stem: str, split: str = "test") -> dict | None:
-    j = load_json(V2 / f"{stem}.{split}.json")
-    if j is None:
-        return None
-    z = V2 / f"{stem}.{split}.perq.npz"
-    perq = {}
-    if z.exists():
-        zz = np.load(z)
-        perq = {k.split("|")[0]: zz[k].astype(np.float64) for k in zz.files if k.endswith("|mrr@10")}
-    return {"json": j, "perq": perq}
-
-
-def dir_value(sysd: dict, d: str) -> float:
-    return sysd["json"]["directions"][d]["mrr@10"]
-
-
-class Tables:
+class Tables(StudyTables):
     def __init__(self) -> None:
         self.dir_of = DS.default_direction_map()
         self.sys = {k: load_system(stem) for k, (_, stem) in SYSTEMS.items()}
@@ -298,7 +266,10 @@ class Tables:
             name = r["model_name"].split("/")[-1]
             rows.append(esc(name) + " & " + " & ".join(f"{r[c]:.1f}" for c, _ in cols) + r" \\")
         pend = " & ".join([todo("pending")] + [""] * (len(cols) - 1))
-        extra = [f"v2-small & {pend} \\\\", f"v2-base & {pend} \\\\", f"v2-m3 & {pend} \\\\"]
+        extra = self.mteb_extra_rows()  # v2 models with per-task scores in mteb_paired.json
+        for name in ("v2-m3", "v2-base", "v2-small"):
+            if not any(r.startswith(name) for r in extra):
+                extra.append(f"{name} & {pend} \\\\")
         top = lb["summary"][0]
         self.num("NumMtebTasks", str(top["n_tasks"]))
         self.num("NumMtebModels", str(len(lb["summary"])))
@@ -551,6 +522,7 @@ class Tables:
             "guard_bar_miracl_points": "NumGuardBar",
             "guard_bar_ar2en_test": "NumGuardBarArEn",
             "bootstrap_resamples": "NumBootstrap",
+            "ci_level_percent": "NumCiLevel",
         }
         for key, macro in names.items():
             if key in pr:
@@ -735,6 +707,7 @@ class Tables:
                 out.append((f"{model}: weight-only 8-bit stays within 0.3 macro points of fp32", abs(dmac("onnx-w8")) < 0.003))
             if dmac("onnx-fp32") is not None:
                 out.append((f"{model}: ONNX fp32 is numerically equivalent to PyTorch fp32", abs(dmac("onnx-fp32")) < 0.0005))
+        out.extend(self.study_claims())
         pairs = [("p3_s_e1_s13", "f4_s_e1_s13"), ("p3_b_e1_s13", "f4_b_e1_s13")]
         vol = [(load_system(a), load_system(b)) for a, b in pairs]
         m3a, m3b = load_system("m3_a_s13"), load_system("m3_b_s13")
@@ -763,13 +736,24 @@ class Tables:
             "tab_clean": clean_tab,
             "tab_data": self.tab_data(),
             "tab_deploy": self.tab_deploy(),
+            "tab_scaling": self.tab_scaling(),
+            "tab_negative": self.tab_negative(),
+            "tab_mteb_paired": self.tab_mteb_paired(),
+            "tab_confirmatory": self.tab_confirmatory(),
+            "tab_licences": self.tab_licences(),
+            "prereg": self.prereg_tex(),
         }
+        has_curve = self.curve_numbers()
+        self.numbers_licence_card()
         self.numbers_headline()
         self.numbers_licences()
         self.numbers_contamination(stats)
         self._stats = stats
         self.numbers_style()
         self.numbers_protocol()
+        self.num("TodoCurveFigure", "" if has_curve else todo("WiSE curve: alpha_curve.json pending"))
+        for name in (*PAIRED_DEFAULTS, *CURVE_DEFAULTS, *CONF_DEFAULTS, *STUDY_DEFAULTS):
+            self.nums.setdefault(name, todo("pending"))
         for name in PENDING_DEFAULTS:  # anything the text uses but no result file provides yet is shown as a red TODO
             self.nums.setdefault(name, todo("pending"))
         for name, body in tabs.items():

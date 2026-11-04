@@ -28,5 +28,17 @@ OK      v2-base: dynamic int8 costs more than one macro point
 OK      v2-base: per-channel int8 loses less than per-tensor int8
 OK      v2-base: weight-only 8-bit stays within 0.3 macro points of fp32
 OK      v2-base: ONNX fp32 is numerically equivalent to PyTorch fp32
+OK      scaling: the full translation set beats no new translations on dev ar->en by more than one point
+OK      scaling: the smallest added batch already gives more than half of the full dev ar->en gain
+OK      negative results: no listed change raises dev macro by more than 0.5 points
+OK      negative results: no listed bge-m3 recipe change beats the plain fine-tune on dev macro
+OK      MTEB(ara): the new v2-m3 vs bge-m3 Mean (Task) difference has a CI that includes 0
+OK      MTEB(ara): v2-m3 vs bge-m3 wins and losses are balanced (sign test p > 0.05)
+OK      MTEB(ara): recomputed mean difference agrees with the file's precomputed value
+OK      MTEB(ara): recomputed wins/losses agree with the file
+OK      MTEB(ara): v2-m3 loses on no Arabic<->English subset task relative to bge-m3
+OK      MTEB(ara): v2-m3 gains on the Arabic<->English subsets (CI above 0)
+OK      MTEB(ara): the Arabic-only subset difference between v2-m3 and bge-m3 has a CI that includes 0
+OK      MTEB(ara): the leaderboard's clearest gap (bge-m3 vs mE5-base) has a CI above 0
 OK      more translated data does not raise macro for the small students
 OK      more translated data raises macro for bge-m3

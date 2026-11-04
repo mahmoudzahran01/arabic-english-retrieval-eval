@@ -1,0 +1,20 @@
+\begin{tabular}{@{}lrrrc@{}}
+\toprule
+Change (DEV, versus its own baseline) & $\Delta$ macro & $\Delta$ ar$\to$en & $\Delta$ MIRACL-ar & kept \\
+\midrule
+Other-language hard negative & +0.1 & +0.5 & -- & no \\
+Two same-language hard negatives & +0.1 & +0.5 & -- & no \\
+Language-homogeneous batches & $-$0.1 & $-$0.1 & -- & no \\
+Symmetric InfoNCE & $-$0.4 & $-$0.7 & -- & no \\
+KD from off-the-shelf bge-m3, $w{=}1$ & 0.0 & +1.0 & -- & no \\
+KD from off-the-shelf bge-m3, $w{=}3$ & $-$1.0 & $-$0.2 & -- & no \\
+KD from off-the-shelf bge-m3, KD only & $-$2.4 & $-$1.5 & -- & no \\
+Two epochs & +0.3 & +0.6 & -- & no \\
+MIRACL-ar replay & $-$0.4 & $-$0.2 & $-$0.4 & no \\
+Embedding preservation to frozen bge-m3 & $-$0.4 & $-$0.1 & $-$0.1 & no \\
+Frozen embeddings + bottom 12 layers & $-$0.3 & +0.1 & $-$0.3 & no \\
+LoRA ($r{=}32$) & \multicolumn{3}{c}{\TODO{run pending}} & no \\
+\midrule
+Dynamic int8 export, v2-small / v2-base (TEST) & $-$2.4 / $-$5.4 & $-$5.1 / $-$8.3 & -- & no \\
+\bottomrule
+\end{tabular}
