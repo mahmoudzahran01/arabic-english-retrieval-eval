@@ -1,0 +1,136 @@
+{
+ "checked": "2026-11-04",
+ "source": "https://huggingface.co/api/{datasets,models}/<id>",
+ "sources": [
+  {
+   "name": "TyDi QA GoldP (Arabic, English)",
+   "kind": "datasets",
+   "id": "google-research-datasets/tydiqa",
+   "role": "train",
+   "note": "also the source of the TyDi test slices",
+   "hub_licence": "apache-2.0",
+   "hub_revision": "da78f23f",
+   "hub_last_modified": "2024-08-08"
+  },
+  {
+   "name": "SQuAD v1.1 train",
+   "kind": "datasets",
+   "id": "rajpurkar/squad",
+   "role": "train",
+   "note": "share-alike: see the weights-licence question",
+   "hub_licence": "cc-by-sa-4.0",
+   "hub_revision": "7b6d24c4",
+   "hub_last_modified": "2024-03-04"
+  },
+  {
+   "name": "ARCD",
+   "kind": "datasets",
+   "id": "hsseinmz/arcd",
+   "role": "train",
+   "note": "train and validation articles of the Arabic reading-comprehension set",
+   "hub_licence": "mit",
+   "hub_revision": "cc6906b6",
+   "hub_last_modified": "2024-01-09"
+  },
+  {
+   "name": "XQuAD",
+   "kind": "datasets",
+   "id": "google/xquad",
+   "role": "eval",
+   "note": "test pool only; never trained on",
+   "hub_licence": "cc-by-sa-4.0",
+   "hub_revision": "51adfef1",
+   "hub_last_modified": "2024-01-04"
+  },
+  {
+   "name": "MIRACL Arabic (queries, qrels, corpus)",
+   "kind": "datasets",
+   "id": "miracl/miracl",
+   "role": "train-exp",
+   "note": "replay ablation only; corpus: miracl/miracl-corpus",
+   "hub_licence": "apache-2.0",
+   "hub_revision": "5be20db9",
+   "hub_last_modified": "2024-12-29"
+  },
+  {
+   "name": "Gemma-4-26B-A4B (query translator)",
+   "kind": "models",
+   "id": "google/gemma-4-26B-A4B-it",
+   "role": "translator",
+   "note": "machine-translated questions only; the base repo google/gemma-4-26B-A4B carries the same licence tag",
+   "hub_licence": "apache-2.0",
+   "hub_revision": "4d7ae498",
+   "hub_last_modified": "2026-07-20"
+  },
+  {
+   "name": "bge-m3 (base weights of v2-m3, teacher baseline)",
+   "kind": "models",
+   "id": "BAAI/bge-m3",
+   "role": "base",
+   "note": "",
+   "hub_licence": "mit",
+   "hub_revision": "5617a9f6",
+   "hub_last_modified": "2024-07-03"
+  },
+  {
+   "name": "multilingual-E5-base (base of v2-base)",
+   "kind": "models",
+   "id": "intfloat/multilingual-e5-base",
+   "role": "base",
+   "note": "",
+   "hub_licence": "mit",
+   "hub_revision": "d1287505",
+   "hub_last_modified": "2026-04-02"
+  },
+  {
+   "name": "multilingual-E5-small (base of v2-small)",
+   "kind": "models",
+   "id": "intfloat/multilingual-e5-small",
+   "role": "base",
+   "note": "",
+   "hub_licence": "mit",
+   "hub_revision": "614241f6",
+   "hub_last_modified": "2026-04-02"
+  },
+  {
+   "name": "ArSarcasm (selection suite)",
+   "kind": "datasets",
+   "id": "iabufarha/ar_sarcasm",
+   "role": "eval",
+   "note": "train split used only for a validation probe",
+   "hub_licence": "mit",
+   "hub_revision": "557bf94a",
+   "hub_last_modified": "2024-01-09"
+  },
+  {
+   "name": "XNLI (selection suite)",
+   "kind": "datasets",
+   "id": "facebook/xnli",
+   "role": "eval",
+   "note": "Arabic train subsample used only for validation",
+   "hub_licence": null,
+   "hub_revision": "b8dd5d7a",
+   "hub_last_modified": "2024-01-05"
+  },
+  {
+   "name": "Arabic STS-B (selection suite)",
+   "kind": "datasets",
+   "id": "Omartificial-Intelligence-Space/Arabic-stsb",
+   "role": "eval",
+   "note": "validation split used only for selection",
+   "hub_licence": "apache-2.0",
+   "hub_revision": "f5a6f89d",
+   "hub_last_modified": "2024-08-02"
+  },
+  {
+   "name": "mMARCO Arabic (selection proxy)",
+   "kind": "datasets",
+   "id": "unicamp-dl/mmarco",
+   "role": "eval",
+   "note": "1,000-query dev proxy, selection only",
+   "hub_licence": null,
+   "hub_revision": "6d039c46",
+   "hub_last_modified": "2024-03-06"
+  }
+ ]
+}
