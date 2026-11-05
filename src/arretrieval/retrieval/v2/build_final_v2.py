@@ -215,7 +215,7 @@ def board() -> str:
 
 
 SHARE = {
-    "MIRACLRetrievalHardNegatives.v2": "TyDi/MIRACL questions (filtered, 0 near-duplicates left in v2 training data)",
+    "MIRACLRetrievalHardNegatives.v2": "TyDi/MIRACL questions (near-duplicates filtered; 9 exact copies remain in the training rows, section 8.1)",
     "XQuADRetrieval": "SQuAD-dev translations = v1 TEST source (excluded)",
     "NamaaMrTydiReranking": "Mr.TyDi test (TyDi source; v2 trains on TyDi-ar train)",
     "MLQARetrieval": "SQuAD-style Wikipedia (no training use)",
@@ -402,9 +402,14 @@ def trail() -> str:
             "PROGRESS.md 01:13, 02:56, 03:04",
         ),
         (
-            "2026-11-05 06:3x",
-            "CORRECTION of the drive16 guard-split step (stale untitled cache rows recomputed with titles; sanity check against mteb 78.9)",
-            "PROGRESS.md 06:3x",
+            "2026-11-05 06:38 / 07:04",
+            "CORRECTION of the drive16 guard-split step (coordinator-approved): 5 stale untitled cache rows recomputed with titles; sanity check bge-m3 MIRACL-HN 79.0 vs mteb 78.9 passed",
+            "PROGRESS.md 06:38, 07:04",
+        ),
+        (
+            "2026-11-05 07:2x",
+            "CORRECTION (coordinator's exact-match checks): the contamination labels missed exact copies (893/1000 exact TyDi-train copies vs 814 flagged); 9 kept training rows equal MIRACL-HN dev queries; labels recomputed, leak disclosed, not retrained",
+            "PROGRESS.md 07:2x",
         ),
     ]
     return "\n".join(
@@ -492,8 +497,8 @@ def scorecard() -> str:
         ),
         (
             "4. contamination audit + licences documented",
-            "section 2 (audit table, licence table)",
-            "**met**; the model licence is TBD (user decision: MIT or CC BY-SA 4.0)",
+            "section 2 (audit table, licence table), section 8 (exact-match leak check)",
+            "**met with one disclosed exception**: 9 kept training rows equal MIRACL-HN dev queries exactly (section 8); the model licence is TBD (user decision: MIT or CC BY-SA 4.0)",
         ),
         (
             "5. full-pipeline numbers with the fine-tuned reranker",
@@ -528,11 +533,74 @@ def seed_table() -> str:
     return "\n".join(lines)
 
 
+def leak_block() -> str:
+    d = jl(V2RES / "leak_exact.json")
+    if not d:
+        return "(leak check not run)"
+    names = {"miracl_hn_v2_ar_dev": "MIRACL-HN.v2 ar dev", "namaa_mrtydi_test": "NamaaMrTydi test"}
+    lines = [
+        "| evaluation set | queries (distinct after normalisation) | KEPT training rows that equal one of its queries | distinct questions | training slice | translated copies of those rows (via `src_qid`) in the kept training data |",
+        "|---|---:|---:|---:|---|---:|",
+    ]
+    for k, t in d["tasks"].items():
+        lines.append(
+            f"| {names.get(k, k)} | {t['eval_queries']} ({t['eval_queries_normalised_distinct']}) | {t['exact_matches_in_kept_training_rows']} | {t['distinct_questions']} | "
+            f"{', '.join(f'{a} {b}' for a, b in t['by_slice'].items()) or '-'} | {t['translated_copies_of_those_rows_in_kept_training_rows']} |"
+        )
+    leaked = set(d["tasks"]["miracl_hn_v2_ar_dev"]["leaked_eval_qids"])
+    res = {}
+    gdir = V2RES / "guard_split"
+    for p in sorted(gdir.glob("*.json")):
+        if p.stem.startswith("_"):
+            continue
+        sc = json.loads(p.read_text())["miracl"]
+        allv = np.mean(list(sc.values())) * 100
+        rest = [v for q, v in sc.items() if q not in leaked]
+        res[p.stem] = (allv, float(np.mean(rest)) * 100, len(sc) - len(rest))
+    lines += [
+        "",
+        f"MIRACL-HN.v2 ar (our nDCG@10 over the full corpus, with titles) with and without the {len(leaked)} evaluation queries that have an exact copy in the kept training data:",
+        "",
+        "| model | all queries | without the leaked queries | difference |",
+        "|---|---:|---:|---:|",
+    ]
+    lines += [f"| {m} | {a:.1f} | {r:.1f} | {r - a:+.1f} |" for m, (a, r, n) in res.items()]
+    return "\n".join(lines)
+
+
+def guard_ci() -> str:
+    """Per-query paired differences on the CLEAN / CONTAMINATED subsets of the guard tasks (from the cached per-query scores and the corrected labels)."""
+    gdir = V2RES / "guard_split"
+    lab = jl(gdir / "_labels.json")
+    if not lab:
+        return "(not run)"
+    rng = np.random.RandomState(13)
+    rows = [
+        "| task | subset | n | v2-m3 minus bge-m3 [95% CI] | v2-base minus e5-base | v2-small minus e5-small |",
+        "|---|---|---:|---|---|---|",
+    ]
+    cache: dict[str, dict] = {}
+    get = lambda m: cache.setdefault(m, json.loads((gdir / f"{m}.json").read_text()))  # noqa: E731
+    for key, tname in (("miracl", "MIRACL-HN.v2 ar"), ("namaa", "NamaaMrTydi")):
+        for subset in ("clean", "contaminated"):
+            qs = [q for q, v in lab[key].items() if (not v) == (subset == "clean")]
+            cells = []
+            for a, b_ in (("final_m3", "bge-m3"), ("final_base", "e5-base"), ("final_small", "e5-small")):
+                A, B_ = get(a)[key], get(b_)[key]
+                d = np.array([A[q] - B_[q] for q in qs if q in A and q in B_]) * 100
+                boots = [d[rng.randint(0, len(d), len(d))].mean() for _ in range(2000)]
+                cells.append(f"{d.mean():+.1f} [{np.quantile(boots, 0.025):+.1f}, {np.quantile(boots, 0.975):+.1f}]")
+            rows.append(f"| {tname} | {subset} | {len(qs)} | " + " | ".join(cells) + " |")
+    return "\n".join(rows)
+
+
 def main() -> None:
     out = Path(sys.argv[1] if len(sys.argv) > 1 else V2 / "RESULTS_v2.md")
     tpl = (V2 / "RESULTS_v2.final.template.md").read_text()
     gs = V2RES / "guard_split" / "_report.md"
     reg = dict(
+        GUARD_CI=guard_ci,
+        LEAK=leak_block,
         SEEDS=seed_table,
         TLDR=tldr,
         SCORECARD=scorecard,

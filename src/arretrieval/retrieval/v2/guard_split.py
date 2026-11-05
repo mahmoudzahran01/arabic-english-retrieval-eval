@@ -1,6 +1,6 @@
 """Diagnostic (no training): how much of bge-m3's lead on the MTEB(ara) Arabic guards is query CONTAMINATION rather than forgetting on our side?
 
-bge-m3 was trained on TyDi-QA / Mr.TyDi train and MIRACL train; 42% of the MIRACL-ar dev queries are verbatim TyDi-ar TRAIN questions.  The v2 training data deliberately
+bge-m3 was trained on TyDi-QA / Mr.TyDi train and MIRACL train; a large share of the MIRACL-ar dev queries are copies of TyDi-ar TRAIN questions (audit_ood.py found 408/1000 near-duplicates, token Jaccard >= 0.8, of v1's training pool; against the FULL TyDi-QA-ar train set 893/1000 are exact normalised copies - a check added after the first version of this file, which only used the Jaccard detector and flagged 814).  The v2 training data deliberately
 removed everything that overlaps MIRACL dev, so a part of bge-m3's guard lead can be memorisation.  Test: split the queries of
   * MIRACLRetrievalHardNegatives.v2 (ar, dev)  and  * NamaaMrTydiReranking (test)
 into CONTAMINATED (near-duplicate, token Jaccard >= 0.8 with >= 2 shared tokens, of a question of the FULL TyDi-QA-ar train set or of the MIRACL-ar train set) and CLEAN,
@@ -50,10 +50,15 @@ def contaminated_queries(qtexts: dict[str, str]) -> dict[str, str]:
                 c.update(lst)
         return any(n >= 2 and len(s & sets[k][i]) / len(s | sets[k][i]) >= JAC for i, n in c.items())
 
-    out = {}
+    exact = {
+        "tydi": {" ".join(toks(t)) for t in tydi},
+        "miracl": {" ".join(toks(t)) for t in miracl},
+    }  # exact copies after normalisation (the inverted index below skips very common words,
+    out = {}  # so short queries made of common words never got Jaccard candidates)
     for qid, t in qtexts.items():
         s = frozenset(toks(t))
-        a, b = bool(s) and hit("tydi", s), bool(s) and hit("miracl", s)
+        ns = " ".join(toks(t))
+        a, b = bool(s) and (ns in exact["tydi"] or hit("tydi", s)), bool(s) and (ns in exact["miracl"] or hit("miracl", s))
         out[qid] = "both" if a and b else "tydi" if a else "miracl" if b else ""
     return out
 

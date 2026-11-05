@@ -142,23 +142,26 @@ def card(key: str, c: dict) -> str:
             "**Forgetting is reduced, not removed.** Against bge-m3 it loses 1.0 on MIRACL-HN and 3.4 on the Mr.TyDi Arabic reranking task (MTEB(ara) guards) and gains 1.8 on SemRel24 STS; the pre-interpolation fine-tune gains more on ar->en (+2.4 to 2.7 TEST MRR@10) and forgets much more (see the blend curve in the report).",
             "With the companion cross-encoder on top (top-50) the first-stage advantage over bge-m3 disappears (ar->en 75.3 vs 75.3).",
             "The cross-lingual training queries are machine-translated; text beyond 256 tokens was not seen in training.",
+            "**Disclosed training-data leak:** a post-hoc exact-match check found 9 kept training rows (8 distinct TyDi-ar questions) that equal queries of the MTEB MIRACL-HN.v2 ar dev set (0.8% of its queries; 0 for Mr.TyDi reranking). Not retrained; the effect on the reported MIRACL-HN score is small and the score is below the base model's anyway.",
         ],
         "v2-base": [
             "Evaluated on Wikipedia-style factoid QA; enterprise documents are not measured.",
             "**It forgets Arabic-only reranking:** the Mr.TyDi Arabic reranking task drops from 77.1 (e5-base) to 68.2, MIRACL-HN from 73.0 to 70.7. Use the base model or bge-m3 for pure-Arabic reranking-style workloads.",
             "MTEB(ara) Mean (Task) +1.02 over e5-base is not statistically distinguishable at 19 tasks (CI includes 0), although it wins 15 of 19 tasks.",
             "e5 prefixes are required; text beyond 256 tokens was not seen in training.",
+            "**Disclosed training-data leak:** a post-hoc exact-match check found 9 kept training rows (8 distinct TyDi-ar questions) that equal queries of the MTEB MIRACL-HN.v2 ar dev set (0.8% of its queries; 0 for Mr.TyDi reranking). Not retrained; the effect on the reported MIRACL-HN score is small and the score is below the base model's anyway.",
         ],
         "v2-small": [
             "Evaluated on Wikipedia-style factoid QA; enterprise documents are not measured.",
             "**It forgets Arabic-only skills relative to e5-small:** Mr.TyDi Arabic reranking 79.2 -> 68.9, MIRACL-HN 72.4 -> 68.3, SemRel24 STS 51.0 -> 46.1. Against v1 these are all better (65.9 / 66.3 / 41.2).",
             "MTEB(ara) Mean (Task) +0.57 over e5-small is within noise; its Mean (TaskType) (65.42) is below e5-small's (65.70).",
             "e5 prefixes are required; text beyond 256 tokens was not seen in training.",
+            "**Disclosed training-data leak:** a post-hoc exact-match check found 9 kept training rows (8 distinct TyDi-ar questions) that equal queries of the MTEB MIRACL-HN.v2 ar dev set (0.8% of its queries; 0 for Mr.TyDi reranking). Not retrained; the effect on the reported MIRACL-HN score is small and the score is below the base model's anyway.",
         ],
     }[key]
     train = {
         "v2-m3": [
-            "**Data**: 39,377 training examples after a contamination filter: TyDi-QA Arabic and English, ARCD, SQuAD v1.1 train, plus Gemma-4-26B-A4B-translated cross-lingual queries (ar->en and en->ar, 24,131 in total). XQuAD, MLQA, MIRACL, XPQA, Belebele and the other MTEB(ara) evaluation sets are not trained on; near-duplicates of their queries and overlapping positives were removed.",
+            "**Data**: 39,377 training examples after a contamination filter: TyDi-QA Arabic and English, ARCD, SQuAD v1.1 train, plus Gemma-4-26B-A4B-translated cross-lingual queries (ar->en and en->ar, 24,131 in total). XQuAD, MLQA, MIRACL, XPQA, Belebele and the other MTEB(ara) evaluation sets are not trained on; near-duplicates of their queries and overlapping positives were removed (with one disclosed exception, see Limitations).",
             "**Negatives**: 1 hard negative per query mined with the base model (ranks 1-30, 0.02 cosine margin).",
             "**Recipe**: MultipleNegativesRankingLoss through GradCache (mini-batch 16, effective batch 64), lr 1e-5, scale 50, 1 epoch, max 256 tokens, bf16, one NVIDIA GB10; then `W = 0.6 W_bge-m3 + 0.4 W_finetuned` (WiSE-FT). Alpha 0.4 was chosen on a pre-registered validation suite (dev, held-out MIRACL train queries, mMARCO-ar proxy, XNLI-train, ArSarcasm probes, Arabic STS-B), never on MTEB.",
         ],

@@ -1,7 +1,10 @@
 """Build the exclusion list that keeps the v2 training data clear of every evaluation set we (or the MTEB-Arabic project) report on.
 
-Found by audit_ood.py: 42% of the MIRACL-ar dev queries are verbatim questions of the TyDi-QA-ar TRAIN set (v1's training data), so v1's
-training data is not clean with respect to MIRACL (listed in SELECTED_TASKS.md).  v2 therefore drops, from its training set,
+Found by audit_ood.py: 408 of the 1,000 MIRACL-ar dev queries are near-duplicates (token Jaccard >= 0.8) of questions in v1's TyDi-QA-ar TRAIN pool, so v1's
+training data is not clean with respect to MIRACL (listed in SELECTED_TASKS.md).
+KNOWN LIMITATION (found 2026-11-05 by an exact-match re-check; training was NOT repeated): the near-duplicate index skips words with more than 300 postings, so short queries made
+of common words get no candidates and EXACT copies of such questions are not caught: 9 kept training rows (8 distinct questions, all slice train_tydi_ar) equal a MIRACL-HN.v2 ar dev query
+after normalisation (0.8% of 998 normalised eval queries); NamaaMrTydi: 0.  Disclosed in RESULTS_v2.md and the model cards.  v2 therefore drops, from its training set,
   (A) every training question whose text is a near-duplicate (token Jaccard >= 0.8, >= 2 shared tokens) of a query of any listed eval task
       (MIRACL-HN.v2 ar dev, MLQA val+test, XPQA, Belebele, Mintaka, MKQA, XQuAD) - for translated questions the source question counts too,
   (B) every training example whose POSITIVE passage has >= 50% of its word 8-grams inside a RELEVANT (positive) passage of those tasks.
