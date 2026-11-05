@@ -64,10 +64,12 @@ from sentence_transformers import SentenceTransformer
 
 model = SentenceTransformer("mzahran1/arabic-english-e5-base-retrieval")
 query = model.encode(["query: متى تأسست جامعة الملك عبدالله للعلوم والتقنية؟"])
-docs = model.encode([
-    "passage: The King Abdullah University of Science and Technology was founded in 2009 in Thuwal.",
-    "passage: Riyadh is the capital of Saudi Arabia and its largest city.",
-])
+docs = model.encode(
+    [
+        "passage: The King Abdullah University of Science and Technology was founded in 2009 in Thuwal.",
+        "passage: Riyadh is the capital of Saudi Arabia and its largest city.",
+    ]
+)
 print(model.similarity(query, docs))  # the KAUST passage scores highest
 ```
 

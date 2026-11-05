@@ -8,6 +8,7 @@ Same conditions as the other models: fp16, batch <= 32, max_seq_length 512, resu
 training_datasets (honest, conservative): the base model's own list + {MrTidyRetrieval, NamaaMrTydiReranking, XQuADRetrieval, MIRACLRetrieval}
 (TyDi-QA train = Mr.TyDi train questions, SQuAD train, MIRACL replay / teacher); KD students additionally inherit their teacher's (bge-m3) list.
 """
+
 import json
 import os
 import sys
@@ -35,9 +36,19 @@ if isinstance(inherited, dict):
     td = {**inherited, **{k: [] for k in extra if k not in inherited}}
 else:
     td = set(inherited) | extra
-meta = base.model_copy(update=dict(name=result_name, revision=revision, release_date="2026-11-04", training_datasets=td, adapted_from=base_id, license="mit",
-                                   public_training_code="https://github.com/mahmoudzahran01/arabic-english-retrieval-eval", public_training_data=None,
-                                   reference="https://huggingface.co/mzahran1 (unreleased local checkpoint)"))
+meta = base.model_copy(
+    update=dict(
+        name=result_name,
+        revision=revision,
+        release_date="2026-11-04",
+        training_datasets=td,
+        adapted_from=base_id,
+        license="mit",
+        public_training_code="https://github.com/mahmoudzahran01/arabic-english-retrieval-eval",
+        public_training_data=None,
+        reference="https://huggingface.co/mzahran1 (unreleased local checkpoint)",
+    )
+)
 
 st = SentenceTransformer(local_dir, device="cuda", model_kwargs={"torch_dtype": torch.float16})
 st.max_seq_length = 512
@@ -60,5 +71,18 @@ for task in tasks:
     dt = time.time() - ts
     print(f"[score_local] {result_name} {task.metadata.name} {status} {dt:.0f}s", flush=True)
     with open("/work/logs/times_v2.jsonl", "a") as f:
-        f.write(json.dumps({"model": result_name, "task": task.metadata.name, "status": status, "wall_s": round(dt, 1), "bs": bs, "fp16": True, "ts": time.strftime("%Y-%m-%d %H:%M:%S")}) + "\n")
+        f.write(
+            json.dumps(
+                {
+                    "model": result_name,
+                    "task": task.metadata.name,
+                    "status": status,
+                    "wall_s": round(dt, 1),
+                    "bs": bs,
+                    "fp16": True,
+                    "ts": time.strftime("%Y-%m-%d %H:%M:%S"),
+                }
+            )
+            + "\n"
+        )
 print(f"[score_local] DONE {result_name} total {time.time() - t0:.0f}s", flush=True)

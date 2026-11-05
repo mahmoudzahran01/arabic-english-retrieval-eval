@@ -48,8 +48,8 @@ def load_split(task, sub: str, sp: str, with_title: bool = False):
 
     if getattr(task, "dataset", None):
         d = task.dataset[sub][sp]
-        ctext = (
-            lambda r: (txt(r["title"]) + " " + txt(r["text"])).strip() if with_title and "title" in r and r["title"] else txt(r["text"])
+        ctext = lambda r: (
+            (txt(r["title"]) + " " + txt(r["text"])).strip() if with_title and "title" in r and r["title"] else txt(r["text"])
         )  # mteb embeds "title text"
         return ({r["id"]: txt(r["text"]) for r in d["queries"]}, {r["id"]: ctext(r) for r in d["corpus"]}, d["relevant_docs"])
     return (

@@ -22,6 +22,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
 from report.guard_tables import GUARD_DEFAULTS, GUARD_TASKS, GuardTables  # noqa: E402
+from report.readme_tables import ReadmeTables, sync_readme  # noqa: E402
 from report.study_tables import CONF_DEFAULTS, CURVE_DEFAULTS, PAIRED_DEFAULTS, STUDY_DEFAULTS, StudyTables  # noqa: E402
 from report.tabcommon import (  # noqa: E402,F401
     DEPLOY,
@@ -83,7 +84,7 @@ PENDING_DEFAULTS = [  # macros used in main.tex whose values come from runs that
 ]
 
 
-class Tables(GuardTables, StudyTables):
+class Tables(GuardTables, StudyTables, ReadmeTables):
     def __init__(self) -> None:
         self.dir_of = DS.default_direction_map()
         self.sys = {k: load_system(stem) for k, (_, stem) in SYSTEMS.items()}
@@ -805,7 +806,9 @@ class Tables(GuardTables, StudyTables):
 
 
 def main() -> None:
-    Tables().write()
+    t = Tables()
+    t.write()
+    sync_readme(t.readme_v2())  # the v2 block of README.md
 
 
 if __name__ == "__main__":
