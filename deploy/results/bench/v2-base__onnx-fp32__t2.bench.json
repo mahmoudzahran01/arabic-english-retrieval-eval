@@ -3,13 +3,13 @@
  "variant": "onnx-fp32",
  "threads": 2,
  "platform": "aarch64 Linux (20 logical CPUs)",
- "loadavg_start": 5.87,
- "loadavg_end": 8.13,
+ "loadavg_start": 6.24,
+ "loadavg_end": 7.3,
  "size_mb": 1058.6,
  "model_dir_mb": 1060.7,
- "load_seconds": 3.73,
- "rss_after_load_mb": 2046.0,
- "peak_rss_mb": 3021.0,
+ "load_seconds": 4.88,
+ "rss_after_load_mb": 2056.0,
+ "peak_rss_mb": 3030.0,
  "mean_tokens": {
   "query": 42.0,
   "passage": 512.0
@@ -18,34 +18,34 @@
   "query_b1": {
    "calls": 200,
    "batch": 1,
-   "p50_ms": 31.82,
-   "p95_ms": 45.03,
-   "mean_ms": 32.34,
-   "throughput_sent_per_s": 30.92
+   "p50_ms": 49.35,
+   "p95_ms": 69.41,
+   "mean_ms": 50.77,
+   "throughput_sent_per_s": 19.69
   },
   "query_b32": {
    "calls": 20,
    "batch": 32,
-   "p50_ms": 877.27,
-   "p95_ms": 1272.04,
-   "mean_ms": 934.15,
-   "throughput_sent_per_s": 34.26
+   "p50_ms": 1053.19,
+   "p95_ms": 1612.61,
+   "mean_ms": 1130.86,
+   "throughput_sent_per_s": 28.3
   },
   "passage_b1": {
    "calls": 60,
    "batch": 1,
-   "p50_ms": 125.06,
-   "p95_ms": 236.7,
-   "mean_ms": 126.91,
-   "throughput_sent_per_s": 7.88
+   "p50_ms": 159.42,
+   "p95_ms": 280.48,
+   "mean_ms": 159.77,
+   "throughput_sent_per_s": 6.26
   },
   "passage_b32": {
    "calls": 8,
    "batch": 32,
-   "p50_ms": 20079.1,
-   "p95_ms": 22432.67,
-   "mean_ms": 17596.57,
-   "throughput_sent_per_s": 1.82
+   "p50_ms": 28208.55,
+   "p95_ms": 29552.27,
+   "mean_ms": 24766.5,
+   "throughput_sent_per_s": 1.29
   }
  }
 }

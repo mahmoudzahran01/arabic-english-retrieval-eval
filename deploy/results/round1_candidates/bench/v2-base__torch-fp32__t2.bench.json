@@ -1,0 +1,51 @@
+{
+ "model": "v2-base",
+ "variant": "torch-fp32",
+ "threads": 2,
+ "platform": "aarch64 Linux (20 logical CPUs)",
+ "loadavg_start": 11.39,
+ "loadavg_end": 5.95,
+ "size_mb": 1060.7,
+ "model_dir_mb": 1060.7,
+ "load_seconds": 5.79,
+ "rss_after_load_mb": 1042.0,
+ "peak_rss_mb": 2384.0,
+ "mean_tokens": {
+  "query": 42.0,
+  "passage": 512.0
+ },
+ "workloads": {
+  "query_b1": {
+   "calls": 200,
+   "batch": 1,
+   "p50_ms": 48.06,
+   "p95_ms": 59.65,
+   "mean_ms": 48.71,
+   "throughput_sent_per_s": 20.53
+  },
+  "query_b32": {
+   "calls": 20,
+   "batch": 32,
+   "p50_ms": 925.72,
+   "p95_ms": 1176.33,
+   "mean_ms": 924.06,
+   "throughput_sent_per_s": 34.63
+  },
+  "passage_b1": {
+   "calls": 60,
+   "batch": 1,
+   "p50_ms": 137.59,
+   "p95_ms": 240.68,
+   "mean_ms": 139.73,
+   "throughput_sent_per_s": 7.16
+  },
+  "passage_b32": {
+   "calls": 8,
+   "batch": 32,
+   "p50_ms": 20322.47,
+   "p95_ms": 21922.55,
+   "mean_ms": 18110.39,
+   "throughput_sent_per_s": 1.77
+  }
+ }
+}

@@ -1,18 +1,17 @@
 {
- "source_model": "/home/mzahran1/projects/qubit-ai-lab/runs/retrieval/v2/models/f5_b_kd_s13",
- "per_channel": false,
+ "source_model": "/home/mzahran1/projects/qubit-ai-lab/runs/retrieval/v2/models/final_base",
  "pooling": "mean",
  "opset": 17,
  "hidden_size": 768,
- "export_seconds": 16.9,
+ "export_seconds": 11.7,
  "parity_fp32": {
-  "min_cosine_vs_torch": 0.9999995231628418,
-  "mean_cosine_vs_torch": 1.0
+  "min_cosine_vs_torch": 0.9999998807907104,
+  "mean_cosine_vs_torch": 1.0000001192092896
  },
- "size_mb_int8": 265.2,
+ "size_mb_int8": 265.3,
  "size_mb_int8-mm": 815.7,
- "size_mb_fp32": 1058.6,
- "size_mb_int8-pc": 265.6,
+ "size_mb_int8-pc": 265.7,
  "size_mb_int8-pc-mm": 816.1,
- "size_mb_w8": 270.3
+ "size_mb_w8": 270.3,
+ "size_mb_fp32": 1058.6
 }
