@@ -148,6 +148,7 @@ Distilling from the off-the-shelf bge-m3 does not help the small student, wherea
 Replay of MIRACL-ar training questions, a preservation loss, freezing parts of the encoder and LoRA did not improve the held-out MIRACL-ar slice beyond the plain fine-tune; weight interpolation was the only lever that moved it.
 The three-seed soup at the selected $\alpha$ is marked $\dagger$: its suite score is higher by a margin inside the tie band, and it was never run on TEST or MTEB, so we make no claim about it.
 Dynamic int8 export (Section~\ref{sec:deploy}) is included for completeness.
+After the recipe freeze, a second pre-registered round targeted the remaining gaps (NamaaMrTydi, the cross-lingual subsets): it added the unused SQuAD-train translations and re-mined Arabic hard negatives with v2-m3, under a contamination filter extended to exact copies. No candidate beat v2-m3 on the validation suite by the registered margin, so no candidate was run on TEST or MTEB and v2-m3 stands; the round is documented as a negative result in the repository (\texttt{docs/retrieval/RESULTS\_v2.1.md}).
 
 \begin{table}[t]
 \centering\tabfont

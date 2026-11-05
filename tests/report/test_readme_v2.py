@@ -40,10 +40,12 @@ def test_block_carries_the_honest_caveats(tables):
     assert re.search(r"\| \*\*v2-m3\*\* \| 568M \| [\d.]+ \| [\d.]+ \| 72\.\d\d \| \+0\.\d\d \[-0\.\d\d, \+0\.\d\d\] vs bge-m3 \|", block)
 
 
-def test_placeholders_for_the_decisions_of_the_author_stay_visible():
+def test_release_decisions_are_filled_in():
     text = rt.README.read_text()
-    for what in ("repository names of v2-m3", "MIT or CC BY-SA 4.0", "link to the Space", "link to the MTEB(ara) benchmark"):
-        assert re.search(rf"\[TODO: [^\]]*{re.escape(what)}", text), what
+    assert "[TODO" not in text
+    for repo in ("arabic-english-bge-m3-retrieval", "arabic-english-e5-base-retrieval", "arabic-english-e5-small-retrieval-v2"):
+        assert f"https://huggingface.co/mzahran1/{repo}" in text, repo
+    assert "**Licence of the weights:** MIT" in text
 
 
 def test_sync_replaces_only_the_marked_block(tmp_path):

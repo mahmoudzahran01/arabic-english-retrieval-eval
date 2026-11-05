@@ -29,8 +29,8 @@
     "source": "report/study_tables.py, deploy/summarize.py: percentile bootstrap, 2.5 and 97.5 percentiles"
   },
   "gpu_wallclock_hours": {
-    "value": 22,
-    "source": "RESULTS_v2.md section 13 (about 22 h of GPU wall-clock on a shared GB10, an estimate that includes gate waits); copied with results/retrieval_v2/RESULTS_v2.md"
+    "value": 25,
+    "source": "about 22 h for v2 (RESULTS_v2.md section 13, an estimate that includes gate waits) plus 3.3 h of step wall-clock for the v2.1 round (docs/retrieval/RESULTS_v2.1.md); rounded"
   },
   "reranker_depth": {
     "value": 50,
