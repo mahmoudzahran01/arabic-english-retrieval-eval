@@ -1,0 +1,13 @@
+{
+ "xnli_ap": 0.7856117304157331,
+ "sarcasm_acc": 0.59685,
+ "sentiment_acc": 0.5325,
+ "cls": 0.564675,
+ "sts_spearman": 0.8190071446373902,
+ "n": {
+  "xnli": 3000,
+  "sts": 1500,
+  "tweets": 8437,
+  "holdout": 2000
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "task": "MIRACLRetrievalHardNegatives.v2",
+ "subset": "ar",
+ "split": "dev",
+ "n_queries": 1000,
+ "exact_raw_tydi_ar_train": 893,
+ "exact_normalised_tydi_ar_train": 893,
+ "note": "old detector (before commit 9794e61) skipped tokens with >300 postings and missed short exact copies (814/816 flagged, measured 2026-11-05 ~07:00 +03); fixed detector adds a normalised exact-match check (895).",
+ "computed": "2026-11-05T05:04:24+0000",
+ "flagged_fixed_detector_tydi": 895,
+ "flagged_fixed_detector_tydi_or_miracl_train": 895,
+ "flagged_old_detector_tydi": 814,
+ "flagged_old_detector_tydi_or_miracl_train": 816
+}

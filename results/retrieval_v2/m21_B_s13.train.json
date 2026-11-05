@@ -1,0 +1,112 @@
+{
+ "name": "m21_B_s13",
+ "args": {
+  "name": "m21_B_s13",
+  "base": "bge-m3",
+  "data": "v2",
+  "xl2_frac": 1.0,
+  "no_xl": false,
+  "negs": "same:1",
+  "neg_model": "e5-small",
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.02,
+  "kd": 0.0,
+  "kd_only": false,
+  "t_scale": 20.0,
+  "replay": false,
+  "lora": 0,
+  "lora_alpha": 0,
+  "freeze_bottom": -1,
+  "replay_x": 1,
+  "pres": 0.0,
+  "teacher": "bgem3",
+  "kd_scope": "all",
+  "batching": "mixed",
+  "drop_slices": "",
+  "ar_neg_model": "m3f",
+  "ar_neg_slices": "train_tydi_ar,train_arcd_ar",
+  "exclude": "/lab/runs/retrieval/v2/data/exclude_qids_v21.json",
+  "xl_epochs": 1,
+  "sym": false,
+  "hardness": "",
+  "epochs": 1.0,
+  "bs": 64,
+  "lr": 1e-05,
+  "scale": 50.0,
+  "max_len": 256,
+  "loss": "cached",
+  "mini_batch": 16,
+  "eval_bs": 32,
+  "grad_ckpt": false,
+  "seed": 13,
+  "test": false,
+  "keep_model": true,
+  "dev_curve": false,
+  "negs_spec": [
+   [
+    "same",
+    1
+   ]
+  ],
+  "q_prefix": "",
+  "p_prefix": ""
+ },
+ "train_seconds": 2152.3,
+ "peak_gpu_gb": 14.06,
+ "steps": 614,
+ "first_loss": 0.342786979675293,
+ "last_loss": 0.16141395568847655,
+ "data": {
+  "n_examples": 39332,
+  "excluded_by_contamination_filter": 2585,
+  "padded_negatives": {
+   "same": 10175,
+   "other": 0
+  },
+  "by_slice": {
+   "train_arcd_ar": 372,
+   "train_squad_en": 6501,
+   "train_tydi_ar": 6331,
+   "train_tydi_en": 2018,
+   "train_xl2_ar2en": 14609,
+   "train_xl2_en2ar": 5258,
+   "train_xl_ar2en": 2950,
+   "train_xl_en2ar": 1293
+  }
+ },
+ "mining": {
+  "same": {
+   "gold": 39518,
+   "rank_window": 2932014,
+   "margin": 440800,
+   "near_dup": 27,
+   "same_title": 0,
+   "kept": 30929,
+   "short_lists": 10988,
+   "policy": {
+    "n_neg": 1,
+    "rank_lo": 1,
+    "rank_hi": 30,
+    "margin": 0.02,
+    "use_margin": true,
+    "dup_jaccard": 0.8,
+    "same_title": false,
+    "pick": "hardest",
+    "seed": 13
+   }
+  },
+  "same_ar_override": {
+   "queries": 7742,
+   "replaced": 7581,
+   "gold": 7697,
+   "rank_window": 541877,
+   "margin": 13070,
+   "near_dup": 293,
+   "same_title": 0,
+   "kept": 7581,
+   "short_lists": 161
+  }
+ },
+ "dev_curve": []
+}

@@ -1,0 +1,79 @@
+{
+ "rho": 0.4901098901098901,
+ "n_models": 14,
+ "threshold": 0.7,
+ "min_models": 12,
+ "passed": false,
+ "pairs": [
+  {
+   "model": "bge-m3",
+   "ar_rerank_ap": 84.45769738198308,
+   "namaa_ap": 79.43900000000001
+  },
+  {
+   "model": "e5-base",
+   "ar_rerank_ap": 77.33692434549579,
+   "namaa_ap": 77.131
+  },
+  {
+   "model": "e5-small",
+   "ar_rerank_ap": 76.832766898005,
+   "namaa_ap": 79.232
+  },
+  {
+   "model": "v1",
+   "ar_rerank_ap": 76.43152958152959,
+   "namaa_ap": 65.91
+  },
+  {
+   "model": "w_m3b_a40",
+   "ar_rerank_ap": 84.21561121418264,
+   "namaa_ap": 76.049
+  },
+  {
+   "model": "wm_a75",
+   "ar_rerank_ap": 84.11507833436403,
+   "namaa_ap": 72.142
+  },
+  {
+   "model": "w_m3b_a30",
+   "ar_rerank_ap": 84.14732323232322,
+   "namaa_ap": 77.033
+  },
+  {
+   "model": "wm_a50",
+   "ar_rerank_ap": 84.18838899196042,
+   "namaa_ap": 74.708
+  },
+  {
+   "model": "w_m3b_a60",
+   "ar_rerank_ap": 84.14166563595134,
+   "namaa_ap": 73.696
+  },
+  {
+   "model": "m3_b_s13",
+   "ar_rerank_ap": 83.21908060193775,
+   "namaa_ap": 69.345
+  },
+  {
+   "model": "final_base",
+   "ar_rerank_ap": 77.65363258434687,
+   "namaa_ap": 68.194
+  },
+  {
+   "model": "final_small",
+   "ar_rerank_ap": 76.43220882292312,
+   "namaa_ap": 68.867
+  },
+  {
+   "model": "w_m3b_a40_s16",
+   "ar_rerank_ap": 84.23443207586064,
+   "namaa_ap": 75.708
+  },
+  {
+   "model": "w_m3b_a40_s17",
+   "ar_rerank_ap": 84.23139352710781,
+   "namaa_ap": 75.536
+  }
+ ]
+}

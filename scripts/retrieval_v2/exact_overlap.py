@@ -11,3 +11,8 @@ n_raw = sum(t.strip() in raw for t in q.values()); n_norm = sum(" ".join(toks(t)
 lab = contaminated_queries(q)
 n_near_tydi = sum(v in ("tydi", "both") for v in lab.values()); n_any = sum(bool(v) for v in lab.values())
 print(f"queries {len(q)}  exact_raw {n_raw}  exact_normalised {n_norm}  near_dup_tydi {n_near_tydi}  near_dup_tydi_or_miracl_train {n_any}")
+import json, time
+json.dump({"task": "MIRACLRetrievalHardNegatives.v2", "subset": "ar", "split": "dev", "n_queries": len(q), "exact_raw_tydi_ar_train": n_raw, "exact_normalised_tydi_ar_train": n_norm,
+           "flagged_current_detector_tydi": n_near_tydi, "flagged_current_detector_tydi_or_miracl_train": n_any,
+           "computed": time.strftime("%Y-%m-%dT%H:%M:%S%z")},
+          open("/lab/runs/retrieval/v2/results/exact_overlap.json", "w"), indent=1)
