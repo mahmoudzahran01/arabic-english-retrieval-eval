@@ -29,6 +29,8 @@ def mine(model: E.Dense, q: pd.DataFrame, passages: pd.DataFrame, mode: str) -> 
     import torch
 
     train_p = passages[passages.pool == "train"].reset_index(drop=True)
+    if mode == "same":  # only the gold passages' language is searched (v2.1: skips encoding the other language)
+        train_p = train_p[train_p.lang.isin(set(q.plang))].reset_index(drop=True)
     pe = model.encode(list(train_p.text), "p")
     idx = {p: i for i, p in enumerate(train_p.pid)}
     lang = train_p.lang.to_numpy()
@@ -65,6 +67,8 @@ def main() -> None:
     ap.add_argument("--tag", default="", help="name of the miner in the raw file name (default: --base)")
     ap.add_argument("--prefix", default="e5", choices=["e5", "none"])
     ap.add_argument("--base", default="e5-small")
+    ap.add_argument("--slices", default="", help="v2.1: comma list of train slices to mine (default: every query of the part)")
+    ap.add_argument("--modes", default="same,other", help="v2.1: which candidate lists to mine (training only uses 'same')")
     args = ap.parse_args()
     hf, qp, pp = BASES[args.base]
     queries = load_queries_v2()
@@ -74,10 +78,13 @@ def main() -> None:
     if args.miner:
         qp, pp = ("query: ", "passage: ") if args.prefix == "e5" else ("", "")
         hf = args.miner
+    if args.slices:
+        tr = tr[tr.slice.isin(set(args.slices.split(",")))]
+    print(f"mining {len(tr)} queries ({tr.slice.value_counts().to_dict()}) with {hf}", flush=True)
     tag = args.tag or args.base
     model = E.Dense(hf, tag + "-v2mine", qp, pp, cache=not args.miner, bs=32 if args.prefix == "none" else 64)
     passages = load_passages_v2()
-    for mode in ("same", "other"):
+    for mode in args.modes.split(","):
         raw = mine(model, tr, passages, mode)
         raw.to_parquet(V2MINED / f"raw_{mode}_{tag}_{args.part}.parquet", index=False)
         print(

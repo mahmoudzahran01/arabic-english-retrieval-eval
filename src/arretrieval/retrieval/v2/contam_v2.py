@@ -13,6 +13,7 @@ Writes runs/retrieval/v2/data/exclude_qids.json.     Run (CPU container): NO_GPU
 
 from __future__ import annotations
 
+import argparse
 import json
 from collections import Counter, defaultdict
 
@@ -22,16 +23,30 @@ from .audit_ood import TASKS, load_split, shingles, toks
 from .common_v2 import V2DATA, load_passages_v2, load_queries_v2
 
 JACCARD = 0.8
+# v2.1 (2026-11-05): the NamaaMrTydi test queries / positives are also treated as an evaluation set, and EXACT normalised copies are flagged in addition to the Jaccard detector
+EXTRA_TASKS = [("NamaaMrTydiReranking", ["default"], ["test"])]
 
 
 def main() -> None:
     import mteb
 
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default="exclude_qids.json", help="file name under runs/retrieval/v2/data")
+    ap.add_argument(
+        "--v21",
+        action="store_true",
+        help="v2.1: add NamaaMrTydi to the evaluation sets and flag exact normalised copies (the original v2 list was built without either)",
+    )
+    args = ap.parse_args()
     eval_q: dict[str, set[str]] = {}  # task -> query texts
     pos_sh: set[int] = set()
     n_pos = Counter()
-    for name, subs, splits in TASKS:
-        task = mteb.get_task(name, hf_subsets=subs, eval_splits=splits)
+    for name, subs, splits in TASKS + (EXTRA_TASKS if args.v21 else []):
+        task = (
+            mteb.get_task(name, eval_splits=splits)
+            if name == "NamaaMrTydiReranking"
+            else mteb.get_task(name, hf_subsets=subs, eval_splits=splits)
+        )
         task.load_data()
         for sub in subs:
             for sp in splits:
@@ -48,6 +63,8 @@ def main() -> None:
                         n_pos[name] += 1
         print(name, "queries", len(eval_q[name]), "positive passages (cumulative)", n_pos[name], flush=True)
     all_eval = sorted({t for s in eval_q.values() for t in s})
+    norm = lambda t: " ".join(toks(t))  # noqa: E731
+    exact_all = {norm(t) for t in all_eval} if args.v21 else set()
     esets = [frozenset(toks(t)) for t in all_eval]
     inv: dict[str, list[int]] = defaultdict(list)
     for i, s in enumerate(esets):
@@ -58,6 +75,8 @@ def main() -> None:
         s = frozenset(toks(text))
         if not s:
             return False
+        if norm(text) in exact_all:
+            return True
         c: Counter = Counter()
         for w in s:
             lst = inv.get(w, ())
@@ -91,8 +110,23 @@ def main() -> None:
         "train_positive_passages_overlapping_eval_positives": int(sum(pass_hit.values())),
         "by_slice": {k: {"n": int(len(g)), "dropped": int(g["drop"].sum())} for k, g in df.groupby("slice")},
         "eval_tasks": {k: len(v) for k, v in eval_q.items()},
+        "v21": bool(args.v21),
     }
-    (V2DATA / "exclude_qids.json").write_text(json.dumps({"qids": sorted(df[df["drop"]].qid), "summary": summary}, indent=1))
+    # exact-match leak check among the KEPT rows (text, or the source question of a translated row), per evaluation task
+    kept = tq[tq.qid.isin(set(df[~df["drop"]].qid))]
+    leaks = {}
+    for name in ("MIRACLRetrievalHardNegatives.v2", "NamaaMrTydiReranking"):
+        if name not in eval_q:
+            continue
+        ev = {norm(t) for t in eval_q[name]}
+        hit = [
+            r.qid
+            for r in kept.itertuples()
+            if norm(r.text) in ev or (bool(r.src_qid) and r.src_qid in src_text and norm(src_text[r.src_qid]) in ev)
+        ]
+        leaks[name] = {"kept_rows_with_exact_match": len(hit), "eval_queries_normalised": len(ev)}
+    summary["exact_leaks_in_kept_rows"] = leaks
+    (V2DATA / args.out).write_text(json.dumps({"qids": sorted(df[df["drop"]].qid), "summary": summary}, indent=1))
     print(json.dumps(summary, indent=1))
 
 
