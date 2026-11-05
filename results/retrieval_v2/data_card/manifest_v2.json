@@ -1,0 +1,30 @@
+{
+ "candidates": 22313,
+ "translated": 22313,
+ "invalid": 4,
+ "dropped_exact_duplicate_of_higher_priority_split": 11,
+ "dropped_near_duplicate_of_test_question(jaccard>=0.8)": 1,
+ "queries_by_slice": {
+  "dev/dev_arcd_ar": 111,
+  "dev/dev_squad_en": 1661,
+  "dev/dev_tydi_ar": 1037,
+  "dev/dev_tydi_en": 354,
+  "dev/dev_xl_ar2en": 1000,
+  "dev/dev_xl_en2ar": 798,
+  "test/arcd_ar": 702,
+  "test/tydi_ar": 921,
+  "test/tydi_en": 440,
+  "test/xquad_ar2ar": 1190,
+  "test/xquad_ar2en": 1190,
+  "test/xquad_en2ar": 1190,
+  "test/xquad_en2en": 1190,
+  "train/train_arcd_ar": 414,
+  "train/train_squad_en": 6653,
+  "train/train_tydi_ar": 7328,
+  "train/train_tydi_en": 2024,
+  "train/train_xl2_ar2en": 14940,
+  "train/train_xl2_en2ar": 6059,
+  "train/train_xl_ar2en": 3000,
+  "train/train_xl_en2ar": 1499
+ }
+}

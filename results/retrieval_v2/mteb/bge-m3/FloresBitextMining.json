@@ -1,0 +1,23 @@
+{
+ "task": "FloresBitextMining",
+ "model": "bge-m3",
+ "main_score": "f1",
+ "scores": {
+  "devtest": {
+   "eng_Latn-arb_Arab": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "main_score": 1.0
+   },
+   "arb_Arab-eng_Latn": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "main_score": 1.0
+   }
+  }
+ }
+}

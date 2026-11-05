@@ -1,0 +1,98 @@
+{
+ "XPQARetrieval/ara-eng/test": {
+  "corpus": 1495,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 742,
+  "queries_near_duplicate_of_a_train_query": 0
+ },
+ "XPQARetrieval/eng-ara/test": {
+  "corpus": 1533,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 750,
+  "queries_near_duplicate_of_a_train_query": 1
+ },
+ "XPQARetrieval/ara-ara/test": {
+  "corpus": 1495,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 750,
+  "queries_near_duplicate_of_a_train_query": 1
+ },
+ "MLQARetrieval/ara-eng/validation": {
+  "corpus": 439,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 8,
+  "queries": 517,
+  "queries_near_duplicate_of_a_train_query": 1
+ },
+ "MLQARetrieval/ara-eng/test": {
+  "corpus": 4646,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 56,
+  "queries": 5332,
+  "queries_near_duplicate_of_a_train_query": 6
+ },
+ "MLQARetrieval/eng-ara/validation": {
+  "corpus": 438,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 1,
+  "queries": 517,
+  "queries_near_duplicate_of_a_train_query": 1
+ },
+ "MLQARetrieval/eng-ara/test": {
+  "corpus": 4606,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 48,
+  "queries": 5333,
+  "queries_near_duplicate_of_a_train_query": 5
+ },
+ "MLQARetrieval/ara-ara/validation": {
+  "corpus": 439,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 8,
+  "queries": 517,
+  "queries_near_duplicate_of_a_train_query": 1
+ },
+ "MLQARetrieval/ara-ara/test": {
+  "corpus": 4646,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 56,
+  "queries": 5333,
+  "queries_near_duplicate_of_a_train_query": 5
+ },
+ "BelebeleRetrieval/arb_Arab-eng_Latn/test": {
+  "corpus": 488,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 900,
+  "queries_near_duplicate_of_a_train_query": 0
+ },
+ "BelebeleRetrieval/eng_Latn-arb_Arab/test": {
+  "corpus": 488,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 900,
+  "queries_near_duplicate_of_a_train_query": 1
+ },
+ "BelebeleRetrieval/arb_Arab-arb_Arab/test": {
+  "corpus": 488,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 900,
+  "queries_near_duplicate_of_a_train_query": 1
+ },
+ "MintakaRetrieval/ar/test": {
+  "corpus": 1491,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 2203,
+  "queries_near_duplicate_of_a_train_query": 5
+ },
+ "MKQARetrieval/ar/train": {
+  "corpus": 6658,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 6747,
+  "queries_near_duplicate_of_a_train_query": 4
+ },
+ "XQuADRetrieval/ar/validation": {
+  "corpus": 240,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 0,
+  "queries": 1186,
+  "queries_near_duplicate_of_a_train_query": 1
+ },
+ "MIRACLRetrievalHardNegatives.v2/ar/dev": {
+  "corpus": 192103,
+  "corpus_passages_>=50%_8gram_overlap_with_train": 2299,
+  "queries": 1000,
+  "queries_near_duplicate_of_a_train_query": 408
+ }
+}

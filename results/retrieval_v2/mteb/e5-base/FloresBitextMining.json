@@ -1,0 +1,23 @@
+{
+ "task": "FloresBitextMining",
+ "model": "e5-base",
+ "main_score": "f1",
+ "scores": {
+  "devtest": {
+   "eng_Latn-arb_Arab": {
+    "precision": 0.981060606060606,
+    "recall": 0.9871541501976284,
+    "f1": 0.9830368906455862,
+    "accuracy": 0.9871541501976284,
+    "main_score": 0.9830368906455862
+   },
+   "arb_Arab-eng_Latn": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "main_score": 1.0
+   }
+  }
+ }
+}

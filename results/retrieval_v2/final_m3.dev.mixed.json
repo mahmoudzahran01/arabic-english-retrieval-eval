@@ -1,0 +1,16 @@
+{
+ "dev_xl_ar2en": {
+  "n": 1000,
+  "strict_mrr@10": 0.761675,
+  "lenient_mrr@10": 0.761675,
+  "strict_hit@10": 0.936,
+  "wrong_lang_top1": 0.09
+ },
+ "dev_xl_en2ar": {
+  "n": 798,
+  "strict_mrr@10": 0.8205444165970482,
+  "lenient_mrr@10": 0.8205444165970482,
+  "strict_hit@10": 0.9536340852130326,
+  "wrong_lang_top1": 0.08521303258145363
+ }
+}

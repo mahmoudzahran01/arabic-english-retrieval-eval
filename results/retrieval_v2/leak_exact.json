@@ -1,0 +1,54 @@
+{
+ "train_rows": 90266,
+ "kept_rows": 87043,
+ "columns": [
+  "qid",
+  "text",
+  "qlang",
+  "pos_pid",
+  "plang",
+  "split",
+  "slice",
+  "source",
+  "title",
+  "src_qid"
+ ],
+ "source_column": "src_qid",
+ "tasks": {
+  "miracl_hn_v2_ar_dev": {
+   "eval_queries": 1000,
+   "eval_queries_normalised_distinct": 998,
+   "exact_matches_in_kept_training_rows": 9,
+   "distinct_questions": 8,
+   "by_slice": {
+    "train_tydi_ar": 9
+   },
+   "translated_copies_of_those_rows_in_kept_training_rows": 7,
+   "translated_copies_by_slice": {
+    "train_xl2_en2ar": 7
+   },
+   "leaked_eval_qids": [
+    "10003",
+    "10251",
+    "14967",
+    "1546",
+    "5571",
+    "7274",
+    "8552",
+    "9977"
+   ],
+   "share_of_normalised_eval_queries": 0.008016032064128256
+  },
+  "namaa_mrtydi_test": {
+   "eval_queries": 918,
+   "eval_queries_normalised_distinct": 916,
+   "exact_matches_in_kept_training_rows": 0,
+   "distinct_questions": 0,
+   "by_slice": {},
+   "translated_copies_of_those_rows_in_kept_training_rows": 0,
+   "translated_copies_by_slice": {},
+   "leaked_eval_qids": [],
+   "share_of_normalised_eval_queries": 0.0
+  }
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "task": "STS17",
+ "model": "bge-m3",
+ "main_score": "cosine_spearman",
+ "scores": {
+  "test": {
+   "ar-ar": {
+    "pearson": 0.7988751182941778,
+    "spearman": 0.8070907672491872,
+    "cosine_pearson": 0.7988750883684835,
+    "cosine_spearman": 0.8072069672014688,
+    "manhattan_pearson": 0.7957765721867416,
+    "manhattan_spearman": 0.8082101537085954,
+    "euclidean_pearson": 0.7952755753199199,
+    "euclidean_spearman": 0.8071685162046451,
+    "main_score": 0.8072069672014688
+   },
+   "en-ar": {
+    "pearson": 0.7028222505871983,
+    "spearman": 0.694272495177967,
+    "cosine_pearson": 0.7028222308677138,
+    "cosine_spearman": 0.694272495177967,
+    "manhattan_pearson": 0.702691138642273,
+    "manhattan_spearman": 0.6950059283128825,
+    "euclidean_pearson": 0.701253759228142,
+    "euclidean_spearman": 0.6941921558041738,
+    "main_score": 0.694272495177967
+   }
+  }
+ }
+}

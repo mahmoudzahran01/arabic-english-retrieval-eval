@@ -1,0 +1,20 @@
+{
+ "task": "SemRel24STS",
+ "model": "bge-m3",
+ "main_score": "cosine_spearman",
+ "scores": {
+  "test": {
+   "arb": {
+    "pearson": 0.5899831723262543,
+    "spearman": 0.5911747925556907,
+    "cosine_pearson": 0.5899831758860397,
+    "cosine_spearman": 0.5911747925556907,
+    "manhattan_pearson": 0.583481093143271,
+    "manhattan_spearman": 0.5889202752639469,
+    "euclidean_pearson": 0.5849963825714339,
+    "euclidean_spearman": 0.5911834546799364,
+    "main_score": 0.5911747925556907
+   }
+  }
+ }
+}

@@ -1,0 +1,96 @@
+{
+ "name": "m3_r_s13",
+ "args": {
+  "name": "m3_r_s13",
+  "base": "bge-m3",
+  "data": "v2",
+  "xl2_frac": 1.0,
+  "no_xl": false,
+  "negs": "same:1",
+  "neg_model": "e5-small",
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.02,
+  "kd": 0.0,
+  "kd_only": false,
+  "t_scale": 20.0,
+  "replay": true,
+  "replay_x": 3,
+  "pres": 0.0,
+  "teacher": "bgem3",
+  "kd_scope": "all",
+  "batching": "mixed",
+  "exclude": "/lab/runs/retrieval/v2/data/exclude_qids.json",
+  "xl_epochs": 1,
+  "sym": false,
+  "hardness": "",
+  "epochs": 1.0,
+  "bs": 64,
+  "lr": 1e-05,
+  "scale": 50.0,
+  "max_len": 256,
+  "loss": "cached",
+  "mini_batch": 16,
+  "eval_bs": 32,
+  "grad_ckpt": false,
+  "seed": 13,
+  "test": false,
+  "keep_model": true,
+  "dev_curve": false,
+  "negs_spec": [
+   [
+    "same",
+    1
+   ]
+  ],
+  "q_prefix": "",
+  "p_prefix": ""
+ },
+ "train_seconds": 2361.2,
+ "peak_gpu_gb": 14.06,
+ "steps": 685,
+ "first_loss": 0.3018659019470215,
+ "last_loss": 0.11093096733093262,
+ "data": {
+  "n_examples": 43889,
+  "excluded_by_contamination_filter": 2551,
+  "padded_negatives": {
+   "same": 11518,
+   "other": 0
+  },
+  "by_slice": {
+   "train_arcd_ar": 373,
+   "train_miracl_ar": 4512,
+   "train_squad_en": 6501,
+   "train_tydi_ar": 6354,
+   "train_tydi_en": 2018,
+   "train_xl2_ar2en": 14609,
+   "train_xl2_en2ar": 5277,
+   "train_xl_ar2en": 2950,
+   "train_xl_en2ar": 1295
+  }
+ },
+ "mining": {
+  "same": {
+   "gold": 39518,
+   "rank_window": 2932014,
+   "margin": 440800,
+   "near_dup": 27,
+   "same_title": 0,
+   "kept": 30929,
+   "short_lists": 10988,
+   "policy": {
+    "n_neg": 1,
+    "rank_lo": 1,
+    "rank_hi": 30,
+    "margin": 0.02,
+    "use_margin": true,
+    "dup_jaccard": 0.8,
+    "same_title": false,
+    "pick": "hardest",
+    "seed": 13
+   }
+  }
+ },
+ "dev_curve": []
+}

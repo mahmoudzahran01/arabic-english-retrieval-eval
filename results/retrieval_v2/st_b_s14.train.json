@@ -1,0 +1,98 @@
+{
+ "name": "st_b_s14",
+ "args": {
+  "name": "st_b_s14",
+  "base": "e5-base",
+  "data": "v2",
+  "xl2_frac": 1.0,
+  "no_xl": false,
+  "negs": "same:1",
+  "neg_model": "e5-small",
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.02,
+  "kd": 1.0,
+  "kd_only": true,
+  "t_scale": 20.0,
+  "replay": false,
+  "lora": 0,
+  "lora_alpha": 0,
+  "freeze_bottom": -1,
+  "replay_x": 1,
+  "pres": 0.0,
+  "teacher": "m3f",
+  "kd_scope": "all",
+  "batching": "mixed",
+  "exclude": "/lab/runs/retrieval/v2/data/exclude_qids.json",
+  "xl_epochs": 1,
+  "sym": false,
+  "hardness": "",
+  "epochs": 2.0,
+  "bs": 64,
+  "lr": 3e-05,
+  "scale": 20.0,
+  "max_len": 256,
+  "loss": "mnrl",
+  "mini_batch": 16,
+  "eval_bs": 128,
+  "grad_ckpt": false,
+  "seed": 14,
+  "test": true,
+  "keep_model": true,
+  "dev_curve": false,
+  "negs_spec": [
+   [
+    "same",
+    1
+   ]
+  ],
+  "q_prefix": "query: ",
+  "p_prefix": "passage: "
+ },
+ "train_seconds": 1109.5,
+ "peak_gpu_gb": 18.97,
+ "steps": 1230,
+ "first_loss": 1.6550540161132812,
+ "last_loss": 0.10161504745483399,
+ "data": {
+  "n_examples": 39377,
+  "excluded_by_contamination_filter": 2540,
+  "padded_negatives": {
+   "same": 10510,
+   "other": 0
+  },
+  "by_slice": {
+   "train_arcd_ar": 373,
+   "train_squad_en": 6501,
+   "train_tydi_ar": 6354,
+   "train_tydi_en": 2018,
+   "train_xl2_ar2en": 14609,
+   "train_xl2_en2ar": 5277,
+   "train_xl_ar2en": 2950,
+   "train_xl_en2ar": 1295
+  }
+ },
+ "mining": {
+  "same": {
+   "gold": 39518,
+   "rank_window": 2932014,
+   "margin": 440800,
+   "near_dup": 27,
+   "same_title": 0,
+   "kept": 30929,
+   "short_lists": 10988,
+   "policy": {
+    "n_neg": 1,
+    "rank_lo": 1,
+    "rank_hi": 30,
+    "margin": 0.02,
+    "use_margin": true,
+    "dup_jaccard": 0.8,
+    "same_title": false,
+    "pick": "hardest",
+    "seed": 14
+   }
+  }
+ },
+ "dev_curve": []
+}
