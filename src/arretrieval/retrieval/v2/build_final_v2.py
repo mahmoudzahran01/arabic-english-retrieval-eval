@@ -594,11 +594,25 @@ def guard_ci() -> str:
     return "\n".join(rows)
 
 
+def v21_block() -> str:
+    """The v2.1 round (RESULTS_v2.1.md built by build_v21.py), re-levelled to sections 14.x of this document."""
+    p = V2 / "RESULTS_v2.1.md"
+    if not p.exists():
+        return "(v2.1 not run)"
+    out = []
+    for ln in p.read_text().splitlines():
+        if ln.startswith("# "):
+            continue
+        out.append(("### 14." + ln[3:]) if ln.startswith("## ") else ln)
+    return "\n".join(out).strip()
+
+
 def main() -> None:
     out = Path(sys.argv[1] if len(sys.argv) > 1 else V2 / "RESULTS_v2.md")
     tpl = (V2 / "RESULTS_v2.final.template.md").read_text()
     gs = V2RES / "guard_split" / "_report.md"
     reg = dict(
+        V21=v21_block,
         GUARD_CI=guard_ci,
         LEAK=leak_block,
         SEEDS=seed_table,

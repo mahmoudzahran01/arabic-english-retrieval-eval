@@ -56,6 +56,8 @@ def build_examples(
     fam = data_family(tq.slice)
     keep_fam = {"v1": ["v1"], "v2": ["v1", "v2"], "v3": ["v1", "v2", "v3"]}[args.data] + (["replay"] if args.replay else [])
     tq = tq[fam.isin(keep_fam)]
+    if args.drop_slices:
+        tq = tq[~tq.slice.isin(set(args.drop_slices.split(",")))]
     if args.data != "v1" and args.xl2_frac < 1.0:
         keep = tq[tq.slice.str.contains("_xl2_")].groupby("slice", group_keys=False).sample(frac=args.xl2_frac, random_state=args.seed)
         tq = pd.concat([tq[~tq.slice.str.contains("_xl2_")], keep])
@@ -176,6 +178,17 @@ def main() -> None:
         choices=["mixed", "plang", "direction"],
         help="mixed = v1 (random batches); plang = every batch holds passages of ONE language; direction = every batch holds one query->passage direction",
     )
+    ap.add_argument(
+        "--drop-slices",
+        default="",
+        help="v2.1: comma list of train slices to remove (e.g. train_squad_en_x: keep the data-v3 translations, not the English originals)",
+    )
+    ap.add_argument(
+        "--ar-neg-model",
+        default="",
+        help="v2.1: miner tag (raw_same_{tag}_v1.parquet, mine_v2 --slices ...) whose negatives REPLACE the baseline-mined ones for the Arabic-monolingual slices",
+    )
+    ap.add_argument("--ar-neg-slices", default="train_tydi_ar,train_arcd_ar")
     ap.add_argument("--exclude", default="", help="json with {'qids': [...]} to drop from the training set (contam_v2.py output)")
     ap.add_argument("--xl-epochs", type=int, default=1, help="repeat the translated cross-lingual examples this many times per epoch")
     ap.add_argument("--sym", action="store_true", help="symmetric InfoNCE: add the passage->query direction (separate softmax)")
@@ -219,6 +232,18 @@ def main() -> None:
         raw = load_raw(kind, args.neg_model, parts)
         policy = NegPolicy(n_neg=n, rank_lo=args.rank_lo, rank_hi=args.rank_hi, margin=args.margin, seed=args.seed)
         negs[kind], mining_stats[kind] = select(raw, passages, policy)
+        if kind == "same" and args.ar_neg_model:  # lever (b): Arabic-monolingual rows get negatives mined by the stronger model
+            ar_q = set(queries[queries.slice.isin(set(args.ar_neg_slices.split(",")))].qid)
+            raw_ar = load_raw("same", args.ar_neg_model, ["v1"])
+            raw_ar = raw_ar[raw_ar.qid.isin(ar_q)]
+            sel_ar, st_ar = select(raw_ar, passages, policy)
+            negs["same"] = {**negs["same"], **{q: v for q, v in sel_ar.items() if len(v) >= n}}
+            mining_stats["same_ar_override"] = {
+                "queries": len(sel_ar),
+                "replaced": sum(len(v) >= n for v in sel_ar.values()),
+                **{k: int(v) for k, v in st_ar.items() if isinstance(v, (int, float))},
+            }
+            print(f"[ar-neg] {mining_stats['same_ar_override']}", flush=True)
     teacher = load_teacher(args.teacher) if (args.kd > 0 or args.pres > 0) else None
     df, groups, data_stats = build_examples(args, queries, passages, negs, teacher)
     if args.batching == "mixed":

@@ -1,0 +1,102 @@
+{
+ "name": "m21_A_s13",
+ "args": {
+  "name": "m21_A_s13",
+  "base": "bge-m3",
+  "data": "v3",
+  "xl2_frac": 1.0,
+  "no_xl": false,
+  "negs": "same:1",
+  "neg_model": "e5-small",
+  "rank_lo": 1,
+  "rank_hi": 30,
+  "margin": 0.02,
+  "kd": 0.0,
+  "kd_only": false,
+  "t_scale": 20.0,
+  "replay": false,
+  "lora": 0,
+  "lora_alpha": 0,
+  "freeze_bottom": -1,
+  "replay_x": 1,
+  "pres": 0.0,
+  "teacher": "bgem3",
+  "kd_scope": "all",
+  "batching": "mixed",
+  "drop_slices": "train_squad_en_x",
+  "ar_neg_model": "",
+  "ar_neg_slices": "train_tydi_ar,train_arcd_ar",
+  "exclude": "/lab/runs/retrieval/v2/data/exclude_qids_v21.json",
+  "xl_epochs": 1,
+  "sym": false,
+  "hardness": "",
+  "epochs": 1.0,
+  "bs": 64,
+  "lr": 1e-05,
+  "scale": 50.0,
+  "max_len": 256,
+  "loss": "cached",
+  "mini_batch": 16,
+  "eval_bs": 32,
+  "grad_ckpt": false,
+  "seed": 13,
+  "test": false,
+  "keep_model": true,
+  "dev_curve": false,
+  "negs_spec": [
+   [
+    "same",
+    1
+   ]
+  ],
+  "q_prefix": "",
+  "p_prefix": ""
+ },
+ "train_seconds": 3585.4,
+ "peak_gpu_gb": 14.06,
+ "steps": 975,
+ "first_loss": 0.35842472076416015,
+ "last_loss": 0.1514427661895752,
+ "data": {
+  "n_examples": 62408,
+  "excluded_by_contamination_filter": 2927,
+  "padded_negatives": {
+   "same": 22736,
+   "other": 0
+  },
+  "by_slice": {
+   "train_arcd_ar": 372,
+   "train_squad_en": 6501,
+   "train_tydi_ar": 6331,
+   "train_tydi_en": 2018,
+   "train_xl2_ar2en": 14609,
+   "train_xl2_en2ar": 5258,
+   "train_xl3_ar2en": 23076,
+   "train_xl_ar2en": 2950,
+   "train_xl_en2ar": 1293
+  }
+ },
+ "mining": {
+  "same": {
+   "gold": 59498,
+   "rank_window": 4568867,
+   "margin": 883935,
+   "near_dup": 36,
+   "same_title": 0,
+   "kept": 41956,
+   "short_lists": 23379,
+   "policy": {
+    "n_neg": 1,
+    "rank_lo": 1,
+    "rank_hi": 30,
+    "margin": 0.02,
+    "use_margin": true,
+    "dup_jaccard": 0.8,
+    "same_title": false,
+    "pick": "hardest",
+    "seed": 13
+   }
+  }
+ },
+ "dev_curve": []
+}
