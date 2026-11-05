@@ -40,9 +40,9 @@ Benchmark: this repository's test split (MRR@10 x 100; macro = mean of the four 
 <!-- v2-results:end -->
 
 * **Report:** [`report/main.pdf`](report/main.pdf) (ACL format; every number in it is generated from the committed result files by `report/make_tables.py`).
-* **Benchmark used for MTEB(ara):** [TODO: link to the MTEB(ara) benchmark].
-* **Models on Hugging Face:** [TODO: repository names of v2-m3, v2-base and v2-small]. **Licence of the weights:** [TODO: MIT or CC BY-SA 4.0, the author decides].
-* **Demo:** [TODO: link to the Space once it is published]; the code is in [`demo/`](demo/) (CPU only, ONNX).
+* **MTEB(ara) benchmark:** 19 Arabic tasks, being proposed upstream to [MTEB](https://github.com/embeddings-benchmark/mteb); the task selection is in the report.
+* **Models on Hugging Face:** [v2-m3](https://huggingface.co/mzahran1/arabic-english-bge-m3-retrieval), [v2-base](https://huggingface.co/mzahran1/arabic-english-e5-base-retrieval), [v2-small](https://huggingface.co/mzahran1/arabic-english-e5-small-retrieval-v2). **Licence of the weights:** MIT (training sources and their licences are listed on each model card).
+* **Demo:** a Gradio search app in [`demo/`](demo/) (CPU only, ONNX); see its README to run it locally.
 * **Deployment:** [`deploy/`](deploy/) exports the models to ONNX and measures size, latency and the quality cost of int8 and weight-only 8-bit variants on a CPU.
 
 ## Use the models
