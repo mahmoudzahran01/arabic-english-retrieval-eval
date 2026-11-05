@@ -33,6 +33,18 @@ def test_formatting_helpers():
     assert mt.esc("a_b & 5%") == r"a\_b \& 5\%"
 
 
+def test_contamination_counts_come_from_the_exact_overlap_file(built):
+    import json
+
+    out, _ = built
+    nums = (out / "numbers.tex").read_text()
+    ov = json.loads((mt.ROOT / "results" / "retrieval_v2" / "exact_overlap.json").read_text())
+    assert f"\\def\\NumMiraclExact{{{ov['exact_normalised_tydi_ar_train']}}}" in nums
+    assert f"\\def\\NumMiraclJaccardFlagged{{{ov['flagged_old_detector_tydi']}}}" in nums
+    assert f"\\def\\NumMiraclJaccardFlaggedBoth{{{ov['flagged_old_detector_tydi_or_miracl_train']}}}" in nums
+    assert f"\\def\\NumMiraclFlagged{{{ov['flagged_fixed_detector_tydi_or_miracl_train']}}}" in nums
+
+
 def test_every_macro_used_in_the_text_is_defined(built):
     out, _ = built
     defined = set(re.findall(r"\\def\\([A-Za-z]+)\{", (out / "numbers.tex").read_text()))

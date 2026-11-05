@@ -69,7 +69,7 @@ GUARD_DEFAULTS = [
         for k in ("CleanGap", "CleanGapLo", "CleanGapHi", "FlagGap", "FlagGapLo", "FlagGapHi", "CleanGapB", "CleanGapS", "FlagGapB", "FlagGapS")
         for _, _, task in SPLIT_TASKS
     ],
-    "NumMiraclQueries", "NumMiraclFlagged", "NumMiraclCleanN", "NumMiraclExact", "NumMiraclJaccardFlagged", "NumMiraclNearDup",
+    "NumMiraclQueries", "NumMiraclFlagged", "NumMiraclCleanN", "NumMiraclExact", "NumMiraclJaccardFlagged", "NumMiraclJaccardFlaggedBoth", "NumMiraclNearDup",
     "NumNamaaQueries", "NumNamaaFlagged", "NumNamaaCleanN",
     "NumLeakRows", "NumLeakDistinct", "NumLeakTranslated", "NumLeakShare", "NumLeakNamaa", "NumLeakEffectMin", "NumLeakEffectMax",
     *[f"NumRerank{m}{k}" for _, _, m in RERANK_ROWS for k in ("ArEn", "ArEnFirst", "Macro", "MacroFirst")],
@@ -197,15 +197,17 @@ class GuardTables:
     def numbers_contamination(self, stats: dict) -> None:
         labels = load_json(V2 / "guard_split" / "_labels.json")
         audit = load_json(V2 / "data" / "audit_ood.json")
-        trail = load_json(V2 / "data" / "prereg_trail.json") or {}
-        fix = next((e for e in trail.get("entries", []) if e["id"] == "contam_fix"), {})
-        nums = fix.get("numbers", {})
         if audit:
             a = audit["MIRACLRetrievalHardNegatives.v2/ar/dev"]
             self.num("NumMiraclNearDup", thousands(a["queries_near_duplicate_of_a_train_query"]))
-        if "exact_copies" in nums:
-            self.num("NumMiraclExact", thousands(nums["exact_copies"]))
-            self.num("NumMiraclJaccardFlagged", thousands(nums["jaccard_flagged"]))
+        overlap = load_json(V2 / "exact_overlap.json")
+        if overlap:
+            self.num("NumMiraclExact", thousands(overlap["exact_normalised_tydi_ar_train"]))
+            self.num("NumMiraclJaccardFlagged", thousands(overlap["flagged_old_detector_tydi"]))
+            self.num("NumMiraclJaccardFlaggedBoth", thousands(overlap["flagged_old_detector_tydi_or_miracl_train"]))
+        else:
+            for name in ("NumMiraclExact", "NumMiraclJaccardFlagged", "NumMiraclJaccardFlaggedBoth"):
+                self.num(name, todo("exact_overlap.json missing"))
         if labels:
             m, nm = labels["miracl"], labels["namaa"]
             self.num("NumMiraclQueries", thousands(len(m)))
@@ -225,6 +227,36 @@ class GuardTables:
         else:
             self.num("TodoCleanProtocol", "")
         self.numbers_leak(labels)
+
+    def contamination_claims(self) -> list[tuple[str, bool | None]]:
+        """Cross-checks between the exact-overlap file, the corrected labels and the notebook prose."""
+        overlap = load_json(V2 / "exact_overlap.json")
+        if not overlap:
+            return [("contamination: exact_overlap.json is present", None)]
+        out: list[tuple[str, bool | None]] = []
+        exact = overlap["exact_normalised_tydi_ar_train"]
+        fixed = overlap["flagged_fixed_detector_tydi_or_miracl_train"]
+        out.append(("contamination: raw and normalised exact-copy counts agree", overlap["exact_raw_tydi_ar_train"] == exact))
+        out.append(("contamination: the exact copies are all among the queries the corrected detector flags", exact <= fixed))
+        labels = load_json(V2 / "guard_split" / "_labels.json")
+        if labels:
+            m = labels["miracl"]
+            out.append(("contamination: the split covers the queries of the overlap check", len(m) == overlap["n_queries"]))
+            out.append(
+                ("contamination: the split flags as many queries as the corrected detector", sum(v != "" for v in m.values()) == fixed)
+            )
+        trail = load_json(V2 / "data" / "prereg_trail.json") or {}
+        fix = next((e for e in trail.get("entries", []) if e["id"] == "contam_fix"), {})
+        nums = fix.get("numbers", {})
+        if nums:
+            out.append(
+                (
+                    "contamination: the notebook quotes the counts of the overlap file (exact copies, old detector)",
+                    (nums.get("exact_copies"), nums.get("queries"), nums.get("jaccard_flagged"))
+                    == (exact, overlap["n_queries"], overlap["flagged_old_detector_tydi"]),
+                )
+            )
+        return out
 
     def numbers_leak(self, labels: dict | None) -> None:
         leak = load_json(V2 / "leak_exact.json")

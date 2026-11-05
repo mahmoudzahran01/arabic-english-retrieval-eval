@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 import numpy as np
@@ -21,15 +22,20 @@ def esc(s: str) -> str:
     return s.replace("->", r"$\to$")
 
 
+def round_half_up(v: float, nd: int) -> str:
+    """Decimal text of v with nd decimals, rounding half away from zero on the shortest decimal form of v (0.4275 -> 0.43, -0.425 -> -0.43)."""
+    return str(Decimal(repr(float(v))).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP))
+
+
 def pct(x: float, nd: int = 1) -> str:
-    return f"{100 * x:.{nd}f}"
+    return round_half_up(100 * x, nd)
 
 
 def _signed(v: float, nd: int) -> str:
-    txt = f"{v:+.{nd}f}"
+    txt = round_half_up(v, nd)
     if float(txt) == 0.0:  # never print "-0.0" / "+0.0" for a rounded zero
         return f"{0:.{nd}f}"
-    return txt.replace("-", "$-$")
+    return txt.replace("-", "$-$") if txt.startswith("-") else "+" + txt
 
 
 def spct(x: float, nd: int = 1) -> str:

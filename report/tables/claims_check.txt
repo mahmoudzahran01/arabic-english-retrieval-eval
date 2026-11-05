@@ -45,6 +45,13 @@ OK      scaling: the smallest added batch already gives more than half of the fu
 OK      negative results: no listed change raises dev macro by more than 0.5 points
 OK      negative results: no listed bge-m3 recipe change beats the plain fine-tune on dev macro by more than 0.15
 OK      the soup at the pick's alpha is not better on dev macro than the single seed
+OK      MTEB(ara): final_m3_wa75_s13 vs BAAI__bge-m3: the interval printed in the report is the file's (task bootstrap, same procedure)
+OK      MTEB(ara): final_m3 vs BAAI__bge-m3: the interval printed in the report is the file's (task bootstrap, same procedure)
+OK      MTEB(ara): w_m3b_a40_s16 vs BAAI__bge-m3: the interval printed in the report is the file's (task bootstrap, same procedure)
+OK      MTEB(ara): w_m3b_a40_s17 vs BAAI__bge-m3: the interval printed in the report is the file's (task bootstrap, same procedure)
+OK      MTEB(ara): final_base vs intfloat__multilingual-e5-base: the interval printed in the report is the file's (task bootstrap, same procedure)
+OK      MTEB(ara): final_small vs intfloat__multilingual-e5-small: the interval printed in the report is the file's (task bootstrap, same procedure)
+OK      MTEB(ara): final_small vs mzahran1__arabic-english-e5-small-retrieval: the interval printed in the report is the file's (task bootstrap, same procedure)
 OK      MTEB(ara): v2-m3 vs bge-m3: CI of the Mean (Task) difference includes 0
 OK      MTEB(ara): v2-m3 vs bge-m3: wins and losses are balanced (sign test p > 0.05)
 OK      MTEB(ara): v2-m3 vs bge-m3: recomputed mean difference agrees with the file
@@ -70,5 +77,10 @@ OK      with the reranker, v2-m3 and bge-m3 are level on ar->en (paired CI inclu
 OK      with the reranker, v2-m3 and bge-m3 are within one point on macro
 OK      the exact leak touches fewer than 1% of the MIRACL-HN queries
 OK      confirmatory seeds: test ar->en within 1.5 points of the development seed 13
+OK      contamination: raw and normalised exact-copy counts agree
+OK      contamination: the exact copies are all among the queries the corrected detector flags
+OK      contamination: the split covers the queries of the overlap check
+OK      contamination: the split flags as many queries as the corrected detector
+OK      contamination: the notebook quotes the counts of the overlap file (exact copies, old detector)
 OK      more translated data does not raise macro for the small students
 OK      more translated data raises macro for bge-m3

@@ -552,6 +552,17 @@ class StudyTables:
                 )
             )
         comps = {(c.new, c.ref): c for c in self.paired_comparisons()}
+        for c in comps.values():
+            pre = c.precomputed
+            if "ci95_task_bootstrap" in pre and c.scores:
+                st = PD.paired_stats(c.scores)
+                lo, hi = pre["ci95_task_bootstrap"]
+                out.append(
+                    (
+                        f"MTEB(ara): {c.new} vs {c.ref}: the interval printed in the report is the file's (task bootstrap, same procedure)",
+                        abs(st["ci_lo"] - lo) < 1e-9 and abs(st["ci_hi"] - hi) < 1e-9,
+                    )
+                )
         for key, nm in (
             (("final_m3", "BAAI__bge-m3"), "v2-m3 vs bge-m3"),
             (("w_m3b_a40_s16", "BAAI__bge-m3"), "confirmatory seed 16 vs bge-m3"),

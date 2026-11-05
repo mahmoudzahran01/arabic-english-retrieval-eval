@@ -11,7 +11,7 @@ which generates every number in `report/main.tex`. Nothing here is edited by han
 | `<system>>>rr_*.test.json` | first stage `<system>` followed by the unchanged v1 cross-encoder reranker |
 | `alpha_curve.json` | post-hoc WiSE trade-off curve (figure in the report, marked post hoc) |
 | `confirmatory.json`, `mteb_paired.json`, `mteb_subsets.json`, `mteb_board.json`, `mteb_eval_time.json`, `suite_pick.json`, `ood_dev_ar.json` | confirmatory seeds, paired MTEB statistics, per-subset MTEB means, MTEB scoring time, the validation-suite pick, the mMARCO proxy scores |
-| `leak_exact.json`, `guard_split/` | exact-copy contamination check and the corrected clean / flagged split of the guard tasks (per-query scores) |
+| `exact_overlap.json`, `leak_exact.json`, `guard_split/` | exact-copy counts of MIRACL-HN ar dev against the TyDi-ar training questions (893 of 1,000; flagged 895 by the fixed detector, 814 / 816 by the old one), the leak check of kept training rows, and the corrected clean / flagged split of the guard tasks (per-query scores) |
 | `audit_ood*.json`, `diag_xquad_style.json` | overlap audits of evaluation sets with the training data, XQuAD-style diagnostic |
 | `PROGRESS.md`, `RESULTS_v2.md` | lab notebook (source of the pre-registration trail) and the results write-up the report reproduces |
 | `data/prereg_trail.json` | pre-registration entries extracted verbatim from `PROGRESS.md` by `report/extract_prereg.py` (report-only) |

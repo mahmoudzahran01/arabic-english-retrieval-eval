@@ -11,7 +11,9 @@ keyed by a label, a list of such entries is accepted as well):
         "subsets": {"ar-en cross-lingual subsets": {"per_task": [...same shape...]}}     # optional; also read from "cross_lingual" / "xling"
     }}
 
-The statistics are recomputed here from `per_task` (seeded, so the report is reproducible); the precomputed fields of the file are used only for a consistency check.
+The statistics are recomputed here from `per_task` with the lab's own procedure (random.Random(13), 10,000 resamples of the tasks, sorted means, percentile indices
+int(0.025 N) and int(0.975 N) - 1), so the recomputed interval of every comparison in the file equals the file's `ci95_task_bootstrap` exactly (checked in the claims) and the
+same procedure also serves the subset rows and the leaderboard pairs, which the file does not carry.
 `per_task` entries may also be `{task: [new, ref]}` or `{task: {"new": .., "ref": ..}}`. Scores are on the 0-100 scale.
 """
 
@@ -19,6 +21,7 @@ from __future__ import annotations
 
 import json
 import math
+import random
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -73,23 +76,27 @@ def sign_test_p(wins: int, losses: int) -> float:
 
 
 def paired_stats(scores: dict[str, tuple[float, float]], n_boot: int = N_BOOT, seed: int = SEED, tie_eps: float = 0.005) -> dict:
-    """Mean difference with a percentile bootstrap CI over TASKS, wins / losses / ties (a tie is |difference| < tie_eps = 0.005 points, as in the lab) and the sign test for {task: (new, ref)}."""
-    diffs = np.array([n - r for n, r in scores.values()], dtype=np.float64)
-    if len(diffs) == 0:
+    """Mean difference with a percentile bootstrap CI over TASKS, wins / losses / ties (a tie is |difference| < tie_eps = 0.005 points, as in the lab) and the sign test for {task: (new, ref)}.
+
+    The bootstrap is the lab's (runs/retrieval/v2 mteb_paired.py): random.Random(seed), n_boot resamples of the tasks with replacement, sorted resample means, interval
+    [boots[int(0.025 n_boot)], boots[int(0.975 n_boot) - 1]].
+    """
+    d = [n - r for n, r in scores.values()]
+    if not d:
         return {"n": 0}
-    rng = np.random.default_rng(seed)
-    boots = diffs[rng.integers(0, len(diffs), size=(n_boot, len(diffs)))].mean(axis=1)
-    wins, losses = int((diffs > tie_eps).sum()), int((diffs < -tie_eps).sum())
+    rng = random.Random(seed)
+    boots = sorted(sum(d[rng.randrange(len(d))] for _ in d) / len(d) for _ in range(n_boot))
+    wins, losses = sum(x > tie_eps for x in d), sum(x < -tie_eps for x in d)
     return {
-        "n": int(len(diffs)),
-        "mean_new": float(np.mean([n for n, _ in scores.values()])),
-        "mean_ref": float(np.mean([r for _, r in scores.values()])),
-        "mean_diff": float(diffs.mean()),
-        "ci_lo": float(np.quantile(boots, 0.025)),
-        "ci_hi": float(np.quantile(boots, 0.975)),
+        "n": len(d),
+        "mean_new": sum(n for n, _ in scores.values()) / len(d),
+        "mean_ref": sum(r for _, r in scores.values()) / len(d),
+        "mean_diff": sum(d) / len(d),
+        "ci_lo": boots[int(0.025 * n_boot)],
+        "ci_hi": boots[int(0.975 * n_boot) - 1],
         "wins": wins,
         "losses": losses,
-        "ties": int(len(diffs) - wins - losses),
+        "ties": len(d) - wins - losses,
         "sign_p": sign_test_p(wins, losses),
     }
 

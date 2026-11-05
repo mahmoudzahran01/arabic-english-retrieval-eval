@@ -75,7 +75,25 @@ def test_committed_paired_file_is_consistent_with_recomputation():
         assert (st["wins"], st["losses"], st["ties"]) == (pre["wins"], pre["losses"], pre["ties"])
         assert st["sign_p"] == pytest.approx(pre["sign_test_p_two_sided"])
         lo, hi = pre["ci95_task_bootstrap"]
-        assert abs(st["ci_lo"] - lo) < 0.15 and abs(st["ci_hi"] - hi) < 0.15  # different RNG streams, same interval up to bootstrap noise
+        # the report uses the lab's bootstrap (random.Random(13), sorted means), so the interval is the file's, not just close to it
+        assert st["ci_lo"] == pytest.approx(lo, abs=1e-9) and st["ci_hi"] == pytest.approx(hi, abs=1e-9)
+
+
+def test_committed_intervals_print_as_in_the_lab_notes():
+    from report.tabcommon import sfmt
+
+    by = {(c.new, c.ref): c for c in pd_.load(V2 / "mteb_paired.json")}
+    m3 = pd_.paired_stats(by[("final_m3", "BAAI__bge-m3")].scores)
+    small = pd_.paired_stats(by[("final_small", "mzahran1__arabic-english-e5-small-retrieval")].scores)
+    assert (sfmt(m3["ci_lo"], 2), sfmt(m3["ci_hi"], 2)) == ("$-$0.34", "+0.93")  # file: [-0.339, 0.9274]
+    assert (sfmt(small["ci_lo"], 2), sfmt(small["ci_hi"], 2)) == ("+0.43", "+1.92")  # file: [0.4275, 1.9226]
+
+
+def test_round_half_up_rounds_ties_away_from_zero():
+    from report.tabcommon import round_half_up
+
+    assert round_half_up(0.4275, 2) == "0.43" and round_half_up(-0.425, 2) == "-0.43" and round_half_up(72.285, 2) == "72.29"
+    assert round_half_up(2.5, 0) == "3" and round_half_up(0.0049, 2) == "0.00"
 
 
 def test_from_leaderboard_builds_pairs_for_known_models():
