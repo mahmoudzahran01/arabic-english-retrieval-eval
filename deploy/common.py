@@ -32,7 +32,10 @@ def mem_available_gb(meminfo: str = "/proc/meminfo") -> float | None:
     return None
 
 
-def wait_for_memory(min_gb: float = 15.0, poll_s: int = 30, timeout_s: int = 6 * 3600) -> None:
+MIN_MEM_GB = float(os.environ.get("V2_MIN_MEM_GB", "25"))  # the Spark rule: MemAvailable >= 25 GB before each job
+
+
+def wait_for_memory(min_gb: float = MIN_MEM_GB, poll_s: int = 30, timeout_s: int = 6 * 3600) -> None:
     """Block until MemAvailable >= min_gb (the Spark is shared with a training job; see deploy/README.md)."""
     t0 = time.time()
     while True:

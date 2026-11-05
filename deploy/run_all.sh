@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Export, evaluate and benchmark every deployment variant of one model. Run on the Spark (CPU only), one step at a time:
-# each step waits for MemAvailable >= 15 GiB first (deploy.common.wait_for_memory), and no step exceeds ~6 GB RSS.
+# each step waits for MemAvailable >= 25 GiB first (deploy.common.wait_for_memory), and no step exceeds ~6 GB RSS.
 #
 #   source deploy/spark_env.sh
 #   bash deploy/run_all.sh v2-small "$V2_MODELS/f5_s_kd_s13" e5 quality

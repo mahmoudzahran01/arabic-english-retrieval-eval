@@ -19,7 +19,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .common import dir_size_mb, load_encoder, peak_rss_mb, percentile, set_threads, variant_size_mb, wait_for_memory
+from .common import MIN_MEM_GB, dir_size_mb, load_encoder, peak_rss_mb, percentile, set_threads, variant_size_mb, wait_for_memory
 
 WORKLOADS = {  # name: (kind, batch size, timed calls, warm-up calls)
     "query_b1": ("q", 1, 200, 20),
@@ -83,7 +83,7 @@ def main() -> None:
     ap.add_argument("--data-dir", default=os.environ.get("ARR_RUNS_DIR", "runs") + "/retrieval/data")
     ap.add_argument("--workloads", nargs="+", default=list(WORKLOADS))
     ap.add_argument("--out", required=True)
-    ap.add_argument("--min-mem-gb", type=float, default=15.0)
+    ap.add_argument("--min-mem-gb", type=float, default=MIN_MEM_GB)
     args = ap.parse_args()
     set_threads(args.threads)
     wait_for_memory(args.min_mem_gb)

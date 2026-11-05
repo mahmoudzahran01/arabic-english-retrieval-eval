@@ -25,7 +25,7 @@ import shutil
 import time
 from pathlib import Path
 
-from .common import dir_size_mb, set_threads, wait_for_memory
+from .common import MIN_MEM_GB, dir_size_mb, set_threads, wait_for_memory
 
 OPSET = 17
 # variant name -> (MatMul weights only?, per-channel scales?)
@@ -159,7 +159,7 @@ def main() -> None:
     ap.add_argument("--out", required=True)
     ap.add_argument("--variants", nargs="+", default=["fp32", *QUANT_VARIANTS, "w8"], choices=["fp32", *QUANT_VARIANTS, "w8"])
     ap.add_argument("--threads", type=int, default=8)
-    ap.add_argument("--min-mem-gb", type=float, default=15.0)
+    ap.add_argument("--min-mem-gb", type=float, default=MIN_MEM_GB)
     args = ap.parse_args()
     set_threads(args.threads)
     wait_for_memory(args.min_mem_gb)
