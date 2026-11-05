@@ -14,6 +14,37 @@ This repository contains:
 * **A RAG-evaluation study**: LLM judges calibrated against planted errors (Cohen's kappa 0.42 -> 0.97), a deterministic wrong-language check that caught a defect
   Ragas missed, and an end-to-end acceptable-answer rate that went from 59.4% to 85.0%.
 
+## v2: three embedders for Arabic and English (draft, not published yet)
+
+The second round fine-tunes **bge-m3** on LLM-translated queries (TyDi QA, SQuAD, ARCD), blends it back toward the original weights (WiSE-FT) so that it forgets less,
+and distils the result into two smaller models (**v2-base**, **v2-small**) that start from multilingual-e5-base and -small. The selection rules were written down before
+the runs, and two seeds were trained after the recipe was frozen. Read the numbers with the caveats below the table.
+
+<!-- v2-results:start -->
+| Model | Params | Benchmark ar->en | Benchmark macro | MTEB(ara) mean | MTEB(ara) difference to the reference [95% CI] |
+|---|---:|---:|---:|---:|---|
+| **v2-m3** | 568M | 71.2 | 82.2 | 72.29 | +0.31 [-0.34, +0.93] vs bge-m3 |
+| bge-m3 (reference) | 568M | 63.3 | 74.8 | 71.98 |  |
+| multilingual-e5-large | 560M | n/a | n/a | 71.44 |  |
+| **v2-base** | 278M | 66.6 | 80.2 | 68.91 | +1.02 [-0.52, +2.37] vs mE5-base |
+| multilingual-e5-base (reference) | 278M | 49.9 | 72.4 | 67.89 |  |
+| **v2-small** | 118M | 59.7 | 76.9 | 66.20 | +0.57 [-1.24, +2.19] vs mE5-small |
+| multilingual-e5-small (reference) | 118M | 41.4 | 66.9 | 65.63 |  |
+
+Benchmark: this repository's test split (MRR@10 x 100; macro = mean of the four directions); v2-m3 is one training seed, v2-base and v2-small are weight averages of three student seeds. MTEB(ara): the 19 tasks of MTEB(ara, v1), mean over tasks; the interval resamples the tasks, so it is wide.
+
+* **On MTEB(ara), v2-m3 and bge-m3 are a statistical tie** (72.29 vs 71.98; difference +0.31, 95% interval -0.34 to +0.93; v2-m3 wins on 10 tasks, loses on 8, ties on 1; sign test p = 0.81). Two more seeds, trained after the recipe was frozen, score 72.28 and 72.27. What v2-m3 adds is cross-lingual retrieval on the benchmark: ar->en 71.2 against 63.3 for bge-m3 (+7.8 points, interval +6.7 to +9.0).
+* **It does not lead every slice.** multilingual-e5-large scores 75.3 on the MTEB(ara) Arabic-English subsets, against 75.0 for v2-m3. v2-base and v2-small beat their off-the-shelf bases by +16.7 and +18.3 points on benchmark ar->en, but their MTEB(ara) gains (+1.02, +0.57) have intervals that include zero; only v2-small over the first release (+1.19, +0.43 to +1.92) excludes it. v2-small's mean over task types (65.42) is below multilingual-e5-small's (65.70).
+* **The gain is paid for on Arabic-only tasks.** Mr.TyDi re-ranking changes by -3.4 points for v2-m3 against bge-m3, -8.9 for v2-base and -10.4 for v2-small against their bases; MIRACL retrieval by -1.0, -2.3 and -4.1. Behind the unchanged cross-encoder reranker of the first release, v2-m3 and bge-m3 are level on ar->en (75.3 and 75.3).
+* **A disclosed leak.** 893 of the 1,000 Arabic dev queries of MIRACL-HardNegatives are exact copies of TyDi QA training questions (data that bge-m3 also trained on), and 9 kept training rows (8 distinct questions) equal such a query. Dropping them moves every model's score by +0.2 to +0.3 points, so no comparison changes. The audit, the corrected clean / flagged split and all intervals are in the report.
+<!-- v2-results:end -->
+
+* **Report:** [`report/main.pdf`](report/main.pdf) (ACL format; every number in it is generated from the committed result files by `report/make_tables.py`).
+* **Benchmark used for MTEB(ara):** [TODO: link to the MTEB(ara) benchmark].
+* **Models on Hugging Face:** [TODO: repository names of v2-m3, v2-base and v2-small]. **Licence of the weights:** [TODO: MIT or CC BY-SA 4.0, the author decides].
+* **Demo:** [TODO: link to the Space once it is published]; the code is in [`demo/`](demo/) (CPU only, ONNX).
+* **Deployment:** [`deploy/`](deploy/) exports the models to ONNX and measures size, latency and the quality cost of int8 and weight-only 8-bit variants on a CPU.
+
 ## Use the models
 
 Both fine-tuned models are on Hugging Face: [`mzahran1/arabic-english-e5-small-retrieval`](https://huggingface.co/mzahran1/arabic-english-e5-small-retrieval) (embedder) and
