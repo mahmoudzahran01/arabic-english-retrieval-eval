@@ -1,0 +1,200 @@
+{
+ "v2-m3": {
+  "st6_orig": {
+   "path": "/v2/models/final_m3",
+   "sentence_transformers": "6.2.0",
+   "torch": "2.15.0a0+875d815502.nv26.10",
+   "module_classes": [
+    "sentence_transformers.base.modules.transformer.Transformer",
+    "sentence_transformers.sentence_transformer.modules.pooling.Pooling",
+    "sentence_transformers.base.modules.normalize.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "cls",
+   "dimension": 1024,
+   "norm_min": 0.9999998211860657,
+   "norm_max": 1.0000001192092896
+  },
+  "st6_compat": {
+   "path": "/v2/upload/v2-m3",
+   "sentence_transformers": "6.2.0",
+   "torch": "2.15.0a0+875d815502.nv26.10",
+   "module_classes": [
+    "sentence_transformers.models.Transformer",
+    "sentence_transformers.models.Pooling",
+    "sentence_transformers.models.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "cls",
+   "dimension": 1024,
+   "norm_min": 0.9999998211860657,
+   "norm_max": 1.0000001192092896
+  },
+  "st5_orig": {
+   "path": "/home/mzahran1/projects/qubit-ai-lab/runs/retrieval/v2/models/final_m3",
+   "sentence_transformers": "5.3.0",
+   "torch": "2.15.0+cpu",
+   "module_classes": [
+    "sentence_transformers.base.modules.transformer.Transformer",
+    "sentence_transformers.sentence_transformer.modules.pooling.Pooling",
+    "sentence_transformers.base.modules.normalize.Normalize"
+   ],
+   "loads": false,
+   "error": "ModuleNotFoundError: No module named 'sentence_transformers.base'"
+  },
+  "st5_compat": {
+   "path": "/home/mzahran1/projects/qubit-ai-lab/runs/retrieval/v2/upload/v2-m3",
+   "sentence_transformers": "5.3.0",
+   "torch": "2.15.0+cpu",
+   "module_classes": [
+    "sentence_transformers.models.Transformer",
+    "sentence_transformers.models.Pooling",
+    "sentence_transformers.models.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "cls",
+   "dimension": 1024,
+   "norm_min": 0.9999999403953552,
+   "norm_max": 1.0000001192092896
+  },
+  "max_abs_diff_st6orig_vs_st5compat": 4.2514875531196594e-07,
+  "max_abs_diff_st6orig_vs_st6compat": 0.0,
+  "min_cosine": 0.9999998211860657,
+  "passes": true
+ },
+ "v2-base": {
+  "st6_orig": {
+   "path": "/v2/models/final_base",
+   "sentence_transformers": "6.2.0",
+   "torch": "2.15.0a0+875d815502.nv26.10",
+   "module_classes": [
+    "sentence_transformers.base.modules.transformer.Transformer",
+    "sentence_transformers.sentence_transformer.modules.pooling.Pooling",
+    "sentence_transformers.base.modules.normalize.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "mean",
+   "dimension": 768,
+   "norm_min": 0.9999998807907104,
+   "norm_max": 1.0000001192092896
+  },
+  "st6_compat": {
+   "path": "/v2/upload/v2-base",
+   "sentence_transformers": "6.2.0",
+   "torch": "2.15.0a0+875d815502.nv26.10",
+   "module_classes": [
+    "sentence_transformers.models.Transformer",
+    "sentence_transformers.models.Pooling",
+    "sentence_transformers.models.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "mean",
+   "dimension": 768,
+   "norm_min": 0.9999998807907104,
+   "norm_max": 1.0000001192092896
+  },
+  "st5_orig": {
+   "path": "/home/mzahran1/projects/qubit-ai-lab/runs/retrieval/v2/models/final_base",
+   "sentence_transformers": "5.3.0",
+   "torch": "2.15.0+cpu",
+   "module_classes": [
+    "sentence_transformers.base.modules.transformer.Transformer",
+    "sentence_transformers.sentence_transformer.modules.pooling.Pooling",
+    "sentence_transformers.base.modules.normalize.Normalize"
+   ],
+   "loads": false,
+   "error": "ModuleNotFoundError: No module named 'sentence_transformers.base'"
+  },
+  "st5_compat": {
+   "path": "/home/mzahran1/projects/qubit-ai-lab/runs/retrieval/v2/upload/v2-base",
+   "sentence_transformers": "5.3.0",
+   "torch": "2.15.0+cpu",
+   "module_classes": [
+    "sentence_transformers.models.Transformer",
+    "sentence_transformers.models.Pooling",
+    "sentence_transformers.models.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "mean",
+   "dimension": 768,
+   "norm_min": 0.9999998807907104,
+   "norm_max": 1.0000001192092896
+  },
+  "max_abs_diff_st6orig_vs_st5compat": 7.599592208862305e-07,
+  "max_abs_diff_st6orig_vs_st6compat": 0.0,
+  "min_cosine": 0.9999998807907104,
+  "passes": true
+ },
+ "v2-small": {
+  "st6_orig": {
+   "path": "/v2/models/final_small",
+   "sentence_transformers": "6.2.0",
+   "torch": "2.15.0a0+875d815502.nv26.10",
+   "module_classes": [
+    "sentence_transformers.base.modules.transformer.Transformer",
+    "sentence_transformers.sentence_transformer.modules.pooling.Pooling",
+    "sentence_transformers.base.modules.normalize.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "mean",
+   "dimension": 384,
+   "norm_min": 0.9999999403953552,
+   "norm_max": 1.0
+  },
+  "st6_compat": {
+   "path": "/v2/upload/v2-small",
+   "sentence_transformers": "6.2.0",
+   "torch": "2.15.0a0+875d815502.nv26.10",
+   "module_classes": [
+    "sentence_transformers.models.Transformer",
+    "sentence_transformers.models.Pooling",
+    "sentence_transformers.models.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "mean",
+   "dimension": 384,
+   "norm_min": 0.9999999403953552,
+   "norm_max": 1.0
+  },
+  "st5_orig": {
+   "path": "/home/mzahran1/projects/qubit-ai-lab/runs/retrieval/v2/models/final_small",
+   "sentence_transformers": "5.3.0",
+   "torch": "2.15.0+cpu",
+   "module_classes": [
+    "sentence_transformers.base.modules.transformer.Transformer",
+    "sentence_transformers.sentence_transformer.modules.pooling.Pooling",
+    "sentence_transformers.base.modules.normalize.Normalize"
+   ],
+   "loads": false,
+   "error": "ModuleNotFoundError: No module named 'sentence_transformers.base'"
+  },
+  "st5_compat": {
+   "path": "/home/mzahran1/projects/qubit-ai-lab/runs/retrieval/v2/upload/v2-small",
+   "sentence_transformers": "5.3.0",
+   "torch": "2.15.0+cpu",
+   "module_classes": [
+    "sentence_transformers.models.Transformer",
+    "sentence_transformers.models.Pooling",
+    "sentence_transformers.models.Normalize"
+   ],
+   "loads": true,
+   "max_seq_length": 256,
+   "pooling": "mean",
+   "dimension": 384,
+   "norm_min": 0.9999999403953552,
+   "norm_max": 1.0
+  },
+  "max_abs_diff_st6orig_vs_st5compat": 3.073364496231079e-07,
+  "max_abs_diff_st6orig_vs_st6compat": 0.0,
+  "min_cosine": 0.9999998807907104,
+  "passes": true
+ }
+}

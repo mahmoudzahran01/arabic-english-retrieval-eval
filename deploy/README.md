@@ -134,6 +134,27 @@ Large artefacts (ONNX files, embeddings) are **not in git**: they live on the ma
 * **Peak RSS** is the peak of the whole benchmark process (python, pandas and the sampled texts, plus the batch-32 x 512-token activations); "RSS after load" is the same process right after loading the model.
 * **Latency caveats**: shared 20-core ARM server (load average stored in every json, typically 6 to 12 during the runs), single run per cell, not an x86 CPU; tokenisation is included.
 
+## Sentence-transformers 5.x compatibility folders
+
+Models saved with sentence-transformers 6 write `sentence_transformers.base.*` module paths into `modules.json`, and sentence-transformers 5.x cannot import them
+(`ModuleNotFoundError: No module named 'sentence_transformers.base'`). `st_compat/` rebuilds each final model as a folder that loads on both: the weights and the tokenizer are plain
+Hugging Face files, so only the three modules (Transformer, Pooling, Normalize) are re-created with the 5.x classes and saved again (`build_compat.py`, run with sentence-transformers 5.3).
+The Spark folders are `runs/retrieval/v2/upload/{v2-m3,v2-base,v2-small}` (from `final_m3`, `final_base`, `final_small`; the model cards are copied unchanged). The `model.safetensors` files are
+byte-identical to the originals.
+
+`check_compat.py` loads a folder with whatever sentence-transformers is installed (CPU only) and embeds 13 fixed texts: Arabic and English queries and passages with and without
+prefixes, diacritics, numerals, an emoji, code, and two inputs far beyond 256 tokens. `compare_compat.py` compares the two sides: the originals under sentence-transformers 6.2 (the lab docker image, GPU hidden)
+against the compatibility folders under 5.3. Criteria: the 5.3 folder loads, the largest absolute difference of any embedding component is below 1e-5, and `max_seq_length` and the pooling mode are equal.
+Run `bash deploy/st_compat/run_compat.sh` on the Spark; the raw output is in `deploy/results/st_compat/`.
+
+| model | ST 6.2 loads original | ST 5.3 loads original | ST 5.3 loads compat | ST 6.2 loads compat | max_seq_length (6 orig / 5 compat) | pooling (6 orig / 5 compat) | max abs diff (6 orig vs 5 compat) | min cosine | check |
+|---|---|---|---|---|---|---|---|---|---|
+| v2-m3 | yes | no | yes | yes | 256 / 256 | cls / cls | 4.25e-07 | 0.99999982 | PASS |
+| v2-base | yes | no | yes | yes | 256 / 256 | mean / mean | 7.60e-07 | 0.99999988 | PASS |
+| v2-small | yes | no | yes | yes | 256 / 256 | mean / mean | 3.07e-07 | 0.99999988 | PASS |
+
+Loading the compatibility folders under 6.2 as well gives embeddings identical to the originals (largest difference 0.0 for all three).
+
 ## Reproduce
 
 ```bash

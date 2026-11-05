@@ -35,4 +35,4 @@ for m in $MODELS; do up="${m%%:*}"; specs5+=("$up.orig=$LAB/models/${m##*:}" "$u
 memgate; "$V5" "$WORK/check_compat.py" --label st5 --out "$WORK/out" "${specs5[@]}"
 st6 "${specs6[@]}"
 
-"$V5" "$WORK/compare_compat.py" "$WORK/out" v2-m3 v2-base v2-small --json "$WORK/out/compat_check.json"
+"$V5" "$WORK/compare_compat.py" "$WORK/out" v2-m3 v2-base v2-small --json "$WORK/out/compat_check.json" | tee "$WORK/out/compat_check.md"
