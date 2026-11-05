@@ -1,19 +1,31 @@
 OK      v2-m3 beats bge-m3 on ar->en (paired CI above 0)
 OK      v2-m3 beats bge-m3 on en->ar (paired CI above 0)
-OK      v2-base vs bge-m3 on ar->en: paired CI includes 0
+OK      v2-base beats bge-m3 on ar->en (paired CI above 0)
 OK      v2-base beats bge-m3 on macro (paired CI above 0)
-OK      KD helps ar->en for the base student (paired CI above 0)
-OK      KD helps ar->en for the small student (paired CI above 0)
+OK      v2-base beats mE5-base on ar->en (paired CI above 0)
+OK      v2-small beats mE5-small on ar->en (paired CI above 0)
+OK      v2-small beats v1 on ar->en (paired CI above 0)
+OK      v2-small is below bge-m3 on ar->en (paired CI below 0)
+OK      the distilled base student beats its plain fine-tune on ar->en (paired CI above 0)
+OK      the distilled small student beats its plain fine-tune on ar->en (paired CI above 0)
 OK      the students stay below the v2-m3 teacher on ar->en
-OK      WiSE 0.75 costs macro points relative to the raw fine-tune (CI below 0)
-OK      v2-m3 is more than the bar below bge-m3 on MIRACL-HN
-OK      v2-m3 is below bge-m3 on Mr.TyDi rerank
+OK      the WiSE blend costs macro points relative to the raw fine-tune (CI below 0)
+OK      v2-m3 is about one point below bge-m3 on MIRACL-HN (between 0.5 and 1.5)
+OK      v2-m3 misses the one-point bar on Mr.TyDi rerank (more than 2 points below bge-m3)
 OK      v2-m3 is above bge-m3 on SemRel24
-OK      bge-m3 has the highest MTEB(ara) Mean (Task)
+OK      v2-base loses more than 8 points on Mr.TyDi rerank relative to its base
+OK      v2-small loses more than 8 points on Mr.TyDi rerank relative to its base
+OK      v2-m3 has the highest MTEB(ara) Mean (Task) of all scored models (numerically)
 OK      v1 scores below multilingual-e5-small on MTEB(ara) Mean (Task)
+OK      multilingual-e5-large is ahead of v2-m3 on the ar-en cross-lingual subsets (no overall first place)
+OK      v2-base leads the models up to 278M on the ar-en cross-lingual subsets
+OK      v2-small has a lower Mean (TaskType) than mE5-small
+OK      v2-base has a higher Mean (TaskType) than mE5-base
+OK      the confirmatory seeds reproduce the MTEB mean of seed 13 to within 0.1
 OK      dev: KD weight 3 and KD-only are at least as good as weight 1
-OK      replay/preservation do not beat plain WiSE 0.75 on held-out MIRACL-ar by more than 0.1
+OK      replay, preservation, freezing and LoRA do not beat the raw fine-tune on held-out MIRACL-ar by more than 0.3
 OK      v2-m3 is below bge-m3 on the clean MIRACL queries
+OK      every model scores lower on the clean MIRACL queries than on the flagged ones
 OK      v2-small: ONNX fp32 answers a single query faster than PyTorch fp32
 OK      v2-small: dynamic int8 is faster per query than ONNX fp32
 OK      v2-small: weight-only 8-bit is slower per query than ONNX fp32
@@ -31,14 +43,32 @@ OK      v2-base: ONNX fp32 is numerically equivalent to PyTorch fp32
 OK      scaling: the full translation set beats no new translations on dev ar->en by more than one point
 OK      scaling: the smallest added batch already gives more than half of the full dev ar->en gain
 OK      negative results: no listed change raises dev macro by more than 0.5 points
-OK      negative results: no listed bge-m3 recipe change beats the plain fine-tune on dev macro
-OK      MTEB(ara): the new v2-m3 vs bge-m3 Mean (Task) difference has a CI that includes 0
-OK      MTEB(ara): v2-m3 vs bge-m3 wins and losses are balanced (sign test p > 0.05)
-OK      MTEB(ara): recomputed mean difference agrees with the file's precomputed value
-OK      MTEB(ara): recomputed wins/losses agree with the file
+OK      negative results: no listed bge-m3 recipe change beats the plain fine-tune on dev macro by more than 0.15
+OK      the soup at the pick's alpha is not better on dev macro than the single seed
+OK      MTEB(ara): v2-m3 vs bge-m3: CI of the Mean (Task) difference includes 0
+OK      MTEB(ara): v2-m3 vs bge-m3: wins and losses are balanced (sign test p > 0.05)
+OK      MTEB(ara): v2-m3 vs bge-m3: recomputed mean difference agrees with the file
+OK      MTEB(ara): v2-m3 vs bge-m3: recomputed wins/losses/ties agree with the file
+OK      MTEB(ara): confirmatory seed 16 vs bge-m3: CI of the Mean (Task) difference includes 0
+OK      MTEB(ara): confirmatory seed 16 vs bge-m3: wins and losses are balanced (sign test p > 0.05)
+OK      MTEB(ara): confirmatory seed 16 vs bge-m3: recomputed mean difference agrees with the file
+OK      MTEB(ara): confirmatory seed 16 vs bge-m3: recomputed wins/losses/ties agree with the file
+OK      MTEB(ara): confirmatory seed 17 vs bge-m3: CI of the Mean (Task) difference includes 0
+OK      MTEB(ara): confirmatory seed 17 vs bge-m3: wins and losses are balanced (sign test p > 0.05)
+OK      MTEB(ara): confirmatory seed 17 vs bge-m3: recomputed mean difference agrees with the file
+OK      MTEB(ara): confirmatory seed 17 vs bge-m3: recomputed wins/losses/ties agree with the file
+OK      MTEB(ara): v2-base vs mE5-base: CI includes 0
+OK      MTEB(ara): v2-small vs mE5-small: CI includes 0
+OK      MTEB(ara): v2-small vs v1: CI excludes 0
+OK      MTEB(ara): the clearest baseline gap (bge-m3 vs mE5-base) has a CI above 0
 OK      MTEB(ara): v2-m3 loses on no Arabic<->English subset task relative to bge-m3
 OK      MTEB(ara): v2-m3 gains on the Arabic<->English subsets (CI above 0)
 OK      MTEB(ara): the Arabic-only subset difference between v2-m3 and bge-m3 has a CI that includes 0
-OK      MTEB(ara): the leaderboard's clearest gap (bge-m3 vs mE5-base) has a CI above 0
+OK      the baseline models score the same on the leaderboard and in the v2 board (within 0.01)
+OK      the training-data summary of the report equals the lab's exclusion summary
+OK      with the reranker, v2-m3 and bge-m3 are level on ar->en (paired CI includes 0)
+OK      with the reranker, v2-m3 and bge-m3 are within one point on macro
+OK      the exact leak touches fewer than 1% of the MIRACL-HN queries
+OK      confirmatory seeds: test ar->en within 1.5 points of the development seed 13
 OK      more translated data does not raise macro for the small students
 OK      more translated data raises macro for bge-m3

@@ -7,6 +7,9 @@ Entries (verbatim text, no paraphrase; the report prints them in the appendix):
   rule_1       the ~14:00 section with the pre-registered replay / preservation selection rule
   amendment_1  the ~19:05 section (validation-suite selection) and its ~19:20 correction
   amendment_2  the ~21:35 section (alpha extension and LoRA rerun)
+  prereg_3     the ~22:10 section (confirmatory seeds, student rule, post-hoc curve, paired MTEB statistics), written before those runs
+  freeze       the 22:46 bullets (recipe frozen, suite pick) and the 23:13 bullet (confirmatory seeds start)
+  contam_fix   the 2026-11-05 07:2x correction of the contamination labels (exact copies); its counts are parsed into `numbers`
 An entry that cannot be found is written with `"missing": true`, so the report shows a TODO instead of silently dropping it.
 """
 
@@ -47,6 +50,25 @@ def _alpha_rule(lines: list[str]) -> tuple[str, str] | None:
     return None
 
 
+def _bullets(lines: list[str], prefixes: list[str]) -> list[str]:
+    return [ln for ln in lines if any(ln.startswith(p) for p in prefixes)]
+
+
+def _contam_numbers(text: str) -> dict:
+    """Counts quoted by the correction entry: exact copies, queries, and what the Jaccard detector flagged."""
+    out: dict[str, int] = {}
+    m = re.search(r"(\d+)/(\d+) queries are EXACT normalised copies", text)
+    if m:
+        out["exact_copies"], out["queries"] = int(m.group(1)), int(m.group(2))
+    m = re.search(r"the detector flagged (\d+)", text)
+    if m:
+        out["jaccard_flagged"] = int(m.group(1))
+    m = re.search(r"(\d+) kept training rows \((\d+) distinct questions", text)
+    if m:
+        out["leaked_rows"], out["leaked_distinct"] = int(m.group(1)), int(m.group(2))
+    return out
+
+
 def extract(text: str) -> list[dict]:
     lines = text.splitlines()
     out: list[dict] = []
@@ -79,6 +101,12 @@ def extract(text: str) -> list[dict]:
             [r"- 21:23 drive15"],
             "Amendment 2: alpha extension and LoRA rerun",
         ),
+        (
+            "prereg_3",
+            r"## \d{4}-\d{2}-\d{2} ~\d{2}:\d{2} - PRE-REGISTRATION 3",
+            [r"- 22:16 drive16"],
+            "Pre-registration 3: confirmatory seeds, student rule, post-hoc curve",
+        ),
     ]
     for ident, head, stops, title in specs:
         sec = _section(lines, head, stops)
@@ -95,6 +123,27 @@ def extract(text: str) -> list[dict]:
                 "missing": False,
             }
         )
+    fr = _bullets(lines, ["- 22:46 RECIPE FROZEN", "- 22:46 SUITE PICK", "- 23:13 CONFIRMATORY REPLICATION starts"])
+    out.append(
+        {
+            "id": "freeze",
+            "title": "Recipe frozen, suite pick, start of the confirmatory seeds",
+            "timestamp": "2026-11-04 22:46",
+            "text": "\n".join(fr),
+            "missing": len(fr) < 3,
+        }
+    )
+    cf = _bullets(lines, ["- 2026-11-05 07:2x CORRECTION"])
+    out.append(
+        {
+            "id": "contam_fix",
+            "title": "Correction of the contamination labels (exact copies)",
+            "timestamp": "2026-11-05 07:2x",
+            "text": "\n".join(cf),
+            "missing": not cf,
+            "numbers": _contam_numbers("\n".join(cf)),
+        }
+    )
     return out
 
 

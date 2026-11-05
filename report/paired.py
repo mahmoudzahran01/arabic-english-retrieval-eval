@@ -72,8 +72,8 @@ def sign_test_p(wins: int, losses: int) -> float:
     return min(1.0, 2 * tail)
 
 
-def paired_stats(scores: dict[str, tuple[float, float]], n_boot: int = N_BOOT, seed: int = SEED, tie_eps: float = 1e-9) -> dict:
-    """Mean difference with a percentile bootstrap CI over TASKS, wins / losses / ties and the sign test for {task: (new, ref)}."""
+def paired_stats(scores: dict[str, tuple[float, float]], n_boot: int = N_BOOT, seed: int = SEED, tie_eps: float = 0.005) -> dict:
+    """Mean difference with a percentile bootstrap CI over TASKS, wins / losses / ties (a tie is |difference| < tie_eps = 0.005 points, as in the lab) and the sign test for {task: (new, ref)}."""
     diffs = np.array([n - r for n, r in scores.values()], dtype=np.float64)
     if len(diffs) == 0:
         return {"n": 0}

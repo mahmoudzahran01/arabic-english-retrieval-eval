@@ -166,10 +166,10 @@ def plot(points: list[Point], selected: float | None, out_stem: Path) -> list[Pa
     top.set_ylabel("MRR@10 x100 (TEST)", fontsize=7.5)
     bot.set_ylabel("guard score x100", fontsize=7.5)
     bot.set_xlabel("fine-tuned share alpha (0 = bge-m3, 1 = raw fine-tune)", fontsize=7.5)
-    note = "post hoc: computed after the alpha was selected"
+    note = "post hoc curve"
     if selected is not None:
-        note += f"; dashed = selected alpha {selected:g}"
-    top.set_title(note + "; circle = bge-m3", fontsize=6, loc="left")
+        note += f"; dashed: selected alpha {selected:g}"
+    top.set_title(note + "; circle: bge-m3", fontsize=6.5, loc="left")
     if missing:
         bot.text(0.02, 0.04, "no data for: " + ", ".join(missing), transform=bot.transAxes, fontsize=5.5, color="red")
     FIG_DIR.mkdir(parents=True, exist_ok=True)

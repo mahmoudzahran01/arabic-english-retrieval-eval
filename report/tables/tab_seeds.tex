@@ -1,14 +1,10 @@
 \begin{tabular}{@{}lrr@{}}
 \toprule
-TEST & ar$\to$en & macro \\
+TEST, mean $\pm$ s.d. over three development seeds & ar$\to$en & macro \\
 \midrule
-v2-m3 raw FT, seed 13 & 73.9 & 84.8 \\
-v2-m3 raw FT, seed 14 & 73.2 & 84.3 \\
-v2-m3 raw FT, seed 15 & 72.7 & 84.3 \\
-\midrule
-mean $\pm$ s.d. (3 seeds) & 73.3 $\pm$ 0.6 & 84.5 $\pm$ 0.3 \\
-\midrule
-v2-m3 WiSE 0.75, seeds 14 and 15 & \multicolumn{2}{c}{\TODO{blends pending}} \\
-v2-base / v2-small, seeds 14 and 15 & \multicolumn{2}{c}{\TODO{runs pending}} \\
+raw fine-tune ($\alpha{=}1$) & 73.3 $\pm$ 0.6 & 84.5 $\pm$ 0.3 \\
+v2-m3 recipe (WiSE) & 70.9 $\pm$ 0.3 & 82.2 $\pm$ 0.1 \\
+v2-base students & 65.9 $\pm$ 0.2 & 79.9 $\pm$ 0.1 \\
+v2-small students & 59.3 $\pm$ 0.3 & 76.8 $\pm$ 0.0 \\
 \bottomrule
 \end{tabular}

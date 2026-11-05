@@ -67,9 +67,9 @@ def test_tables_exist_and_are_well_formed(built):
 
 def test_main_table_values_match_the_result_files(built):
     out, _ = built
-    row = next(line for line in (out / "tab_main.tex").read_text().splitlines() if line.startswith("v2-m3 (WiSE"))
+    row = next(line for line in (out / "tab_main.tex").read_text().splitlines() if line.startswith("v2-m3 &"))
     cells = [c.strip(" \\") for c in row.split("&")]
-    j = mt.load_json(mt.V2 / "wm_a75.test.json")
+    j = mt.load_json(mt.V2 / "final_m3.test.json")
     assert any(mt.pct(j["directions"]["ar->en"]["mrr@10"]) in c for c in cells)
 
 
@@ -89,7 +89,9 @@ def test_no_hand_typed_results_in_the_prose():
     body = re.sub(r"\$[^$]*\$", "", body)  # math such as alpha, >=
     body = re.sub(r"\\newcommand.*", "", body)
     # identifiers, not results: metric names (MRR@10), workload names (batch 32), run names (seed 13), a model name
-    body = re.sub(r"[0-9.]+\\columnwidth|amendments? \d|@\d+|\d-bit|batch \d+|seeds? \d+(?: and \d+)?|Gemma-4-26B-A4B", "", body)
+    body = re.sub(
+        r"[0-9.]+\\columnwidth|amendments? \d|@\d+|\d-bit|batch \d+|seeds? \d+(?: and \d+)?|Gemma-4-26B-A4B|CC BY-SA 4\.0", "", body
+    )
     hits = re.findall(r"(?<![\\\w.])\d+(?:[.,]\d+)?(?!\w)", body)
     allowed = {"11", "118M", "278M", "568M"}  # model sizes quoted by name are parameters of the architectures, not results
     bad = [h for h in hits if h not in allowed]

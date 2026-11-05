@@ -1,16 +1,27 @@
 \begin{tabular}{@{}lrrcrr@{}}
 \toprule
-Mean (Task) difference, new $-$ ref & tasks & diff & 95\% CI (tasks) & W/L/T & sign p \\
+Mean (Task) difference, new $-$ ref & tasks & diff & \NumCiLevel\% CI (tasks) & W/L/T & sign p \\
 \midrule
-v2-m3 vs bge-m3 & 19 & +0.1 & [$-$1.1, +1.1] & 9/9/1 & 1.00 \\
-\quad ar-en cross-lingual subsets & 6 & +2.7 & [+1.1, +4.3] & 5/0/1 & 0.06 \\
-\quad ar-only subsets & 17 & $-$0.4 & [$-$1.6, +0.7] & 7/10/0 & 0.63 \\
-v2-base vs mE5-base (student) & \multicolumn{5}{c}{\TODO{MTEB(ara) scoring of the students pending}} \\
+first candidate (WiSE $\alpha{=}0.75$) vs bge-m3 & 19 & +0.06 & [$-$1.14, +1.13] & 9/9/1 & 1.00 \\
+v2-m3 vs bge-m3 & 19 & +0.31 & [$-$0.34, +0.92] & 10/8/1 & 0.81 \\
+\quad ar-en cross-lingual subsets & 6 & +1.73 & [+0.70, +2.79] & 5/0/1 & 0.06 \\
+\quad ar-only subsets & 17 & +0.09 & [$-$0.55, +0.69] & 9/8/0 & 1.00 \\
+v2-m3 seed 16 vs bge-m3 & 19 & +0.30 & [$-$0.38, +0.93] & 10/8/1 & 0.81 \\
+v2-m3 seed 17 vs bge-m3 & 19 & +0.29 & [$-$0.38, +0.89] & 10/7/2 & 0.63 \\
+v2-base vs mE5-base & 19 & +1.02 & [$-$0.55, +2.37] & 15/4/0 & 0.02 \\
+\quad ar-en cross-lingual subsets & 6 & +5.14 & [+2.67, +7.41] & 6/0/0 & 0.03 \\
+\quad ar-only subsets & 17 & $-$0.15 & [$-$1.59, +1.10] & 10/7/0 & 0.63 \\
+v2-small vs mE5-small & 19 & +0.57 & [$-$1.27, +2.19] & 11/8/0 & 0.65 \\
+\quad ar-en cross-lingual subsets & 6 & +5.87 & [+3.43, +7.94] & 6/0/0 & 0.03 \\
+\quad ar-only subsets & 17 & $-$0.92 & [$-$2.56, +0.51] & 6/11/0 & 0.33 \\
+v2-small vs v1 & 19 & +1.19 & [+0.45, +1.92] & 15/4/0 & 0.02 \\
+\quad ar-en cross-lingual subsets & 6 & +1.65 & [+0.90, +2.49] & 6/0/0 & 0.03 \\
+\quad ar-only subsets & 17 & +1.04 & [+0.20, +1.85] & 13/4/0 & 0.05 \\
 \midrule
-\multicolumn{6}{@{}l}{\emph{reference pairs from the 10-model leaderboard}} \\
-bge-m3 vs mE5-base & 19 & +4.1 & [+2.8, +5.4] & 17/2/0 & 0.001 \\
-mE5-base vs mE5-small & 19 & +2.3 & [+0.9, +3.7] & 14/5/0 & 0.06 \\
-v1 vs mE5-small & 19 & $-$0.6 & [$-$2.9, +1.4] & 10/9/0 & 1.00 \\
-bge-m3 vs mE5-large & 19 & +0.5 & [$-$0.5, +1.6] & 11/8/0 & 0.65 \\
+\multicolumn{6}{@{}l}{\emph{reference pairs from the leaderboard of baseline models}} \\
+bge-m3 vs mE5-base & 19 & +4.09 & [+2.83, +5.43] & 17/2/0 & 0.001 \\
+mE5-base vs mE5-small & 19 & +2.26 & [+0.93, +3.69] & 14/5/0 & 0.06 \\
+v1 vs mE5-small & 19 & $-$0.62 & [$-$2.92, +1.39] & 10/9/0 & 1.00 \\
+bge-m3 vs mE5-large & 19 & +0.54 & [$-$0.51, +1.61] & 11/8/0 & 0.65 \\
 \bottomrule
 \end{tabular}

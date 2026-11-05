@@ -1,14 +1,17 @@
 \begin{tabular}{@{}lrcrc@{}}
 \toprule
  & \multicolumn{2}{c}{$\Delta$ ar$\to$en} & \multicolumn{2}{c}{$\Delta$ macro} \\
-Comparison (B vs A) & pts & 95\% CI & pts & 95\% CI \\
+Comparison (B vs A) & pts & \NumCiLevel\% CI & pts & \NumCiLevel\% CI \\
 \midrule
 v1 vs mE5-small & +13.7 & [+11.8, +15.6] & +8.8 & [+8.1, +9.6] \\
-v2-small vs v1 & +5.1 & [+3.9, +6.3] & +1.7 & [+1.3, +2.1] \\
-KD effect, small & +2.2 & [+1.3, +3.1] & +1.4 & [+1.1, +1.7] \\
-KD effect, base & +3.8 & [+2.6, +5.0] & +2.9 & [+2.5, +3.3] \\
-v2-m3 vs bge-m3 & +10.1 & [+8.7, +11.6] & +9.6 & [+9.0, +10.3] \\
-WiSE cost (raw to 0.75) & $-$0.4 & [$-$1.0, +0.2] & $-$0.4 & [$-$0.7, $-$0.2] \\
-v2-base vs bge-m3 & +1.2 & [$-$0.9, +3.1] & +5.0 & [+4.2, +5.8] \\
+v2-small vs mE5-small & +18.3 & [+16.4, +20.2] & +10.0 & [+9.3, +10.7] \\
+v2-small vs v1 & +4.6 & [+3.4, +5.9] & +1.2 & [+0.7, +1.7] \\
+v2-base vs mE5-base & +16.7 & [+14.7, +18.6] & +7.8 & [+7.1, +8.5] \\
+v2-base vs bge-m3 & +3.2 & [+1.3, +5.2] & +5.4 & [+4.6, +6.1] \\
+v2-small vs bge-m3 & $-$3.6 & [$-$5.7, $-$1.5] & +2.2 & [+1.4, +2.9] \\
+v2-m3 vs bge-m3 & +7.8 & [+6.7, +9.0] & +7.5 & [+6.9, +8.0] \\
+distilled vs plain FT, small & +1.7 & [+0.6, +2.9] & +0.9 & [+0.5, +1.4] \\
+distilled vs plain FT, base & +5.8 & [+4.4, +7.3] & +3.3 & [+2.8, +3.9] \\
+WiSE blend vs raw fine-tune & $-$2.7 & [$-$3.7, $-$1.7] & $-$2.6 & [$-$3.0, $-$2.2] \\
 \bottomrule
 \end{tabular}

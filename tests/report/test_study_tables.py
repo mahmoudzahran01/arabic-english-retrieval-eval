@@ -82,7 +82,7 @@ def test_extract_prereg_finds_entries_and_cuts_at_the_right_lines():
     )
     assert "CORRECTION" in e["amendment_1"]["text"] and "RE-PRIORITISATION" not in e["amendment_1"]["text"]
     assert e["amendment_2"]["timestamp"] == "2026-11-04 21:35" and "drive15" not in e["amendment_2"]["text"]
-    assert not any(x["missing"] for x in e.values())
+    assert not any(x["missing"] for k, x in e.items() if k in ("alpha_rule", "rule_1", "amendment_1", "amendment_2"))
     assert all(x["missing"] for x in extract_prereg.extract("nothing here"))
 
 
@@ -113,8 +113,8 @@ def test_confirmatory_table_pending_then_discovered(v2dir):
     _system(v2dir, "fin_s15", "test", 0.9)  # not a confirmatory seed: must be ignored
     assert list(h.confirmatory_systems()) == ["fin"] and sorted(h.confirmatory_systems()["fin"]) == [16, 17]
     tex = h.tab_confirmatory()
-    assert "fin, seed 16" in tex and "fin, seed 17" in tex and "mean of 2 seeds" in tex
-    assert h.nums["NumConfSeeds"] == "16, 17" and h.nums["NumConfArEnMean"] == "71.0"
+    assert "seed 16" in tex and "seed 17" in tex and "mean of 2 seeds" in tex and "seed 15" not in tex
+    assert h.nums["NumConfSeeds"] == "16 and 17" and h.nums["NumConfArEnMean"] == "71.0"
     assert h.nums["NumConfDeltaArEn"].startswith("+")
 
 
@@ -152,3 +152,28 @@ def test_scaling_and_negative_tables_from_run_files(v2dir, monkeypatch):
     assert "KD & 0.0 & +1.2 & -- & no" in neg
     assert "Replay & $-$0.4 & $-$0.2 & $-$0.4 & no" in neg and "run pending" in neg
     assert h.nums["NumNegRows"] == "2"
+
+
+PROGRESS_LATE = """
+## 2026-11-04 ~22:10 - PRE-REGISTRATION 3 (coordinator additions A-D), written BEFORE any of these runs.
+A. CONFIRMATORY REPLICATION: seeds 16 and 17.
+- 22:16 drive16.sh REWRITTEN (log line, not part of the entry)
+- 22:46 RECIPE FROZEN at 2026-11-04T22:46:54+03:00: family wise, alpha 0.4.
+- 22:46 SUITE PICK (pre-registered rule): w_m3b_a40.
+- 23:13 CONFIRMATORY REPLICATION starts (recipe frozen at 2026-11-04T22:46:54+03:00).
+- 2026-11-05 07:2x CORRECTION (exact checks): MIRACL-HN.v2 ar dev: 893/1000 queries are EXACT normalised copies of TyDi-ar train questions, the detector flagged 814. (3) After exclude_qids, 9 kept training rows (8 distinct questions, all slice train_tydi_ar) equal dev queries.
+"""
+
+
+def test_extract_prereg_late_entries_and_contamination_counts():
+    e = {x["id"]: x for x in extract_prereg.extract(PROGRESS + PROGRESS_LATE)}
+    assert e["prereg_3"]["timestamp"] == "2026-11-04 22:10" and "drive16" not in e["prereg_3"]["text"]
+    assert not e["freeze"]["missing"] and "22:46:54" in e["freeze"]["text"] and "23:13" in e["freeze"]["text"]
+    assert e["contam_fix"]["numbers"] == {
+        "exact_copies": 893,
+        "queries": 1000,
+        "jaccard_flagged": 814,
+        "leaked_rows": 9,
+        "leaked_distinct": 8,
+    }
+    assert extract_prereg.extract(PROGRESS)[-1]["missing"]  # the correction entry is absent from the old notebook text

@@ -69,6 +69,11 @@ def dir_value(sysd: dict, d: str) -> float:
     return sysd["json"]["directions"][d]["mrr@10"]
 
 
+def load_board() -> dict[str, dict]:
+    """MTEB(ara) per-task scores of the scored models (results/retrieval_v2/mteb_board.json) keyed by model name."""
+    return {r["model"]: r for r in (load_json(V2 / "mteb_board.json") or [])}
+
+
 def dev_value(stem: str, d: str) -> float | None:
     j = load_json(V2 / f"{stem}.dev.json")
     return j["directions"][d]["mrr@10"] if j and d in j.get("directions", {}) else None

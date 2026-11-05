@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
+from report.guard_tables import GUARD_DEFAULTS, GUARD_TASKS, GuardTables  # noqa: E402
 from report.study_tables import CONF_DEFAULTS, CURVE_DEFAULTS, PAIRED_DEFAULTS, STUDY_DEFAULTS, StudyTables  # noqa: E402
 from report.tabcommon import (  # noqa: E402,F401
     DEPLOY,
@@ -43,27 +44,32 @@ from deploy import summarize as DS  # noqa: E402
 OUT = ROOT / "report" / "tables"
 DS_THREADS_LOW, DS_THREADS_HIGH = 2, 8
 
-# key -> (name in the table, result file stem)
+# key -> (name in the table, result file stem); the v2 models are the final ones of the study: v2-m3 = WiSE blend of the seed-13 fine-tune (alpha from
+# models/final_m3/merge.json), v2-base / v2-small = 3-seed soups of the distilled students (final_base / final_small)
 SYSTEMS = {
     "e5s": ("mE5-small", "base_e5-small"),
-    "v1": ("v1 (e5-small FT)", "v1_s13"),
+    "v1": ("v1 (e5-small FT, seed 13)", "v1_s13"),
     "s_nokd": ("e5-small FT, no KD", "f4_s_e1_s13"),
-    "v2s": ("v2-small (KD)", "f5_s_kd_s13"),
+    "v2s": ("v2-small", "st_s_soup"),
+    "e5b": ("mE5-base", "base_e5-base"),
     "b_nokd": ("e5-base FT, no KD", "f4_b_e1_s13"),
-    "v2b": ("v2-base (KD)", "f5_b_kd_s13"),
+    "v2b": ("v2-base", "st_b_soup"),
     "m3": ("bge-m3", "base_bge-m3"),
-    "v2m_raw": ("v2-m3 raw FT", "m3_b_s13"),
-    "v2m": ("v2-m3 (WiSE 0.75)", "wm_a75"),
+    "v2m_raw": ("bge-m3 raw fine-tune", "m3_b_s13"),
+    "v2m": ("v2-m3", "final_m3"),
 }
-GROUPS = [["e5s", "v1", "s_nokd", "v2s"], ["b_nokd", "v2b"], ["m3", "v2m_raw", "v2m"]]
-DELTAS = [  # label, A (baseline), B (new)
-    ("v1 vs mE5-small", "e5s", "v1"),
-    ("v2-small vs v1", "v1", "v2s"),
-    ("KD effect, small", "s_nokd", "v2s"),
-    ("KD effect, base", "b_nokd", "v2b"),
-    ("v2-m3 vs bge-m3", "m3", "v2m"),
-    ("WiSE cost (raw to 0.75)", "v2m_raw", "v2m"),
-    ("v2-base vs bge-m3", "m3", "v2b"),
+GROUPS = [["e5s", "v1", "s_nokd", "v2s"], ["e5b", "b_nokd", "v2b"], ["m3", "v2m_raw", "v2m"]]
+DELTAS = [  # macro key, label, A (baseline), B (new)
+    ("VOneVsESmall", "v1 vs mE5-small", "e5s", "v1"),
+    ("VTwoSVsESmall", "v2-small vs mE5-small", "e5s", "v2s"),
+    ("VTwoSVsVOne", "v2-small vs v1", "v1", "v2s"),
+    ("VTwoBVsEBase", "v2-base vs mE5-base", "e5b", "v2b"),
+    ("VTwoBVsBge", "v2-base vs bge-m3", "m3", "v2b"),
+    ("VTwoSVsBge", "v2-small vs bge-m3", "m3", "v2s"),
+    ("VTwoMVsBge", "v2-m3 vs bge-m3", "m3", "v2m"),
+    ("DistSmall", "distilled vs plain FT, small", "s_nokd", "v2s"),
+    ("DistBase", "distilled vs plain FT, base", "b_nokd", "v2b"),
+    ("WiseCost", "WiSE blend vs raw fine-tune", "v2m_raw", "v2m"),
 ]
 DEPLOY_VARIANTS = {"torch-fp32": "Torch", "onnx-fp32": "Onnx", "onnx-int8": "Dyn", "onnx-int8-pc": "Pc", "onnx-w8": "Wo"}
 DEPLOY_MODELS = {"v2-small": "Small", "v2-base": "Base"}
@@ -75,11 +81,9 @@ PENDING_DEFAULTS = [  # macros used in main.tex whose values come from runs that
     *[f"Num{kind}{m}{v}" for kind in ("Size", "QLat") for m in DEPLOY_MODELS.values() for v in DEPLOY_VARIANTS.values()],
     *[f"NumDelta{v}{m}{suffix}" for v in ("Onnx", "Dyn", "Pc", "Wo") for m in DEPLOY_MODELS.values() for suffix in ("", "ArEn")],
 ]
-GUARD_MODELS = [("mE5-small", "e5-small"), ("v1", "v1"), ("mE5-base", "e5-base"), ("bge-m3", "bge-m3"), ("v2-m3 (WiSE 0.75)", "m3w75")]
-GUARD_TASKS = [("MIRACLRetrievalHardNegatives.v2", "MIRACL-HN"), ("NamaaMrTydiReranking", "Mr.TyDi rerank"), ("SemRel24STS", "SemRel24")]
 
 
-class Tables(StudyTables):
+class Tables(GuardTables, StudyTables):
     def __init__(self) -> None:
         self.dir_of = DS.default_direction_map()
         self.sys = {k: load_system(stem) for k, (_, stem) in SYSTEMS.items()}
@@ -118,8 +122,6 @@ class Tables(StudyTables):
                 ci = self.ci_single(k)
                 cells.append(f"[{pct(ci['macro']['lo'])}, {pct(ci['macro']['hi'])}]" if ci else todo("CI"))
                 rows.append(f"{esc(name)} & " + " & ".join(cells) + r" \\")
-        rows.append(r"\midrule")
-        rows.append(rf"mE5-base (not fine-tuned) & \multicolumn{{6}}{{c}}{{{todo('baseline not yet scored on the TEST split')}}} \\")
         head = " & ".join(DIR_TEX[d] for d in (*DIRS, "macro")) + r" & 95\% CI (macro)"
         return (
             "\\begin{tabular}{@{}l"
@@ -133,54 +135,72 @@ class Tables(StudyTables):
 
     def tab_deltas(self) -> str:
         rows = []
-        for label, a, b in DELTAS:
+        for key, label, a, b in DELTAS:
             sa, sb = self.sys[a], self.sys[b]
             if not sa or not sb or not sa["perq"] or not sb["perq"]:
                 rows.append(f"{esc(label)} & \\multicolumn{{4}}{{c}}{{{todo('result missing')}}} \\\\")
                 continue
             ci = DS.macro_bootstrap(sa["perq"], sb["perq"], self.dir_of)
             cells = []
-            for d in ("ar->en", "macro"):
+            for d, dn in (("ar->en", "ArEn"), ("macro", "Macro")):
                 delta = dir_value(sb, d) - dir_value(sa, d)
                 cells += [spct(delta), f"[{spct(ci[d]['lo'])}, {spct(ci[d]['hi'])}]"]
+                self.num(f"NumDelta{key}{dn}", spct(delta))
+                self.num(f"NumDelta{key}{dn}Lo", spct(ci[d]["lo"]))
+                self.num(f"NumDelta{key}{dn}Hi", spct(ci[d]["hi"]))
             rows.append(f"{esc(label)} & " + " & ".join(cells) + r" \\")
-            self.num("Delta" + re.sub(r"[^A-Za-z]", "", label.title()), spct(dir_value(sb, "ar->en") - dir_value(sa, "ar->en")))
         return (
             "\\begin{tabular}{@{}lrcrc@{}}\n\\toprule\n & \\multicolumn{2}{c}{$\\Delta$ "
             + DIR_TEX["ar->en"]
             + "} & \\multicolumn{2}{c}{$\\Delta$ macro} \\\\\n"
-            "Comparison (B vs A) & pts & 95\\% CI & pts & 95\\% CI \\\\\n\\midrule\n" + "\n".join(rows) + "\n\\bottomrule\n\\end{tabular}\n"
+            "Comparison (B vs A) & pts & \\NumCiLevel\\% CI & pts & \\NumCiLevel\\% CI \\\\\n\\midrule\n"
+            + "\n".join(rows)
+            + "\n\\bottomrule\n\\end{tabular}\n"
         )
 
     # -------------------------------------------------------------------------------------------- ablations (dev)
+    def curve_alphas(self) -> dict[str, float]:
+        """result stem -> alpha (fine-tuned share) of the post-hoc WiSE curve (results/retrieval_v2/alpha_curve.json)."""
+        raw = load_json(V2 / "alpha_curve.json") or {}
+        return {p["model"]: float(p["alpha"]) for p in raw.get("points", []) if "model" in p and "alpha" in p}
+
+    def pick_alpha(self) -> float | None:
+        a = (load_json(V2 / "models" / "final_m3" / "merge.json") or {}).get("alpha")
+        return float(a) if a is not None else None
+
     def tab_ablation(self) -> str:
         def row(label: str, stem: str) -> str:
             j = load_json(V2 / f"{stem}.dev.json")
             if j is None:
-                return f"{esc(label)} & \\multicolumn{{3}}{{c}}{{{todo('missing')}}} \\\\"
+                return f"{label} & \\multicolumn{{3}}{{c}}{{{todo('missing')}}} \\\\"
             dm = load_json(V2 / f"{stem}.devM.json") or (load_json(V2 / "bge-m3.devM.json") if stem == "base_bge-m3" else None)
             m = j["directions"]
             devm = pct(dm["slices"]["dev_miracl_ar"]["mrr@10"]) if dm else "--"
-            return f"{esc(label)} & {pct(m['ar->en']['mrr@10'])} & {pct(m['macro']['mrr@10'])} & {devm} \\\\"
+            return f"{label} & {pct(m['ar->en']['mrr@10'])} & {pct(m['macro']['mrr@10'])} & {devm} \\\\"
 
+        alphas, pick = self.curve_alphas(), self.pick_alpha()
+        wise = []
+        for stem, a in sorted(alphas.items(), key=lambda kv: kv[1]):
+            if a == 0:
+                lab = rf"bge-m3 ($\alpha{{=}}{a:g}$)"
+            elif a == 1:
+                lab = rf"raw fine-tune ($\alpha{{=}}{a:g}$)"
+            else:
+                lab = rf"WiSE $\alpha{{=}}{a:g}$" + (" (pick)" if pick is not None and abs(a - pick) < 1e-9 else "")
+            wise.append((lab, stem))
         blocks = [
             (
-                "e5-base student (teacher: raw FT bge-m3)",
-                [("no KD", "f4_b_e1_s13"), ("KD $w{=}1$", "f5_b_kd_s13"), ("KD $w{=}3$", "f5_b_kd3_s13"), ("KD only", "f5_b_kdonly_s13")],
-            ),
-            (
-                "bge-m3 fine-tuned itself",
+                "e5-base student",
                 [
-                    ("bge-m3 (no FT)", "base_bge-m3"),
-                    ("raw FT", "m3_b_s13"),
-                    ("WiSE $\\alpha{=}0.75$", "wm_a75"),
-                    ("WiSE $\\alpha{=}0.50$", "wm_a50"),
+                    ("no KD, one epoch", "f4_b_e1_s13"),
+                    ("KD from the raw fine-tune, $w{=}\\NumKdWeight$", "f5_b_kd_s13"),
+                    ("KD $w{=}3$", "f5_b_kd3_s13"),
+                    ("KD only", "f5_b_kdonly_s13"),
+                    ("KD only, two epochs", "f5_b_kdonly_e2_s13"),
+                    ("final recipe: teacher v2-m3, 3-seed soup", "st_b_soup"),
                 ],
             ),
-            (
-                "bge-m3 + MIRACL-ar replay / preservation",
-                [("replay", "m3_r_s13"), ("preservation", "m3_p_s13"), ("preservation, WiSE 0.75", "w_m3_p_s13_a75")],
-            ),
+            ("bge-m3 fine-tuned, WiSE blends (seed 13)", wise),
         ]
         out = [
             "\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nDEV selection set & "
@@ -200,28 +220,28 @@ class Tables(StudyTables):
 
     # -------------------------------------------------------------------------------------------- seeds / data volume
     def tab_seeds(self) -> str:
-        rows, vals = [], []
-        for seed in (13, 14, 15):
-            s = load_system(f"m3_b_s{seed}")
-            if s:
-                vals.append((dir_value(s, "ar->en"), dir_value(s, "macro")))
-                rows.append(f"v2-m3 raw FT, seed {seed} & {pct(vals[-1][0])} & {pct(vals[-1][1])} \\\\")
-            else:
-                rows.append(f"v2-m3 raw FT, seed {seed} & \\multicolumn{{2}}{{c}}{{{todo('run pending')}}} \\\\")
-        if len(vals) == 3:
+        """Development seeds (13 to 15): the raw fine-tune, the WiSE pick recipe and the two distilled students; per-seed values of the pick are in the confirmatory table."""
+        groups = [
+            ("raw fine-tune ($\\alpha{=}1$)", ["m3_b_s13", "m3_b_s14", "m3_b_s15"], "Raw"),
+            ("v2-m3 recipe (WiSE)", ["final_m3", "w_m3b_a40_s14", "w_m3b_a40_s15"], "Wise"),
+            ("v2-base students", ["st_b_s13", "st_b_s14", "st_b_s15"], "StB"),
+            ("v2-small students", ["st_s_s13", "st_s_s14", "st_s_s15"], "StS"),
+        ]
+        rows = []
+        for label, stems, key in groups:
+            vals = [(dir_value(s, "ar->en"), dir_value(s, "macro")) for s in (load_system(x) for x in stems) if s]
+            if len(vals) < len(stems):
+                rows.append(f"{label} & \\multicolumn{{2}}{{c}}{{{todo('seeds missing')}}} \\\\")
+                continue
             a = np.array(vals)
-            rows.append(r"\midrule")
             rows.append(
-                f"mean $\\pm$ s.d. (3 seeds) & {pct(a[:, 0].mean())} $\\pm$ {pct(a[:, 0].std(ddof=1))} & {pct(a[:, 1].mean())} $\\pm$ {pct(a[:, 1].std(ddof=1))} \\\\"
+                f"{label} & {pct(a[:, 0].mean())} $\\pm$ {pct(a[:, 0].std(ddof=1))} & {pct(a[:, 1].mean())} $\\pm$ {pct(a[:, 1].std(ddof=1))} \\\\"
             )
-            self.num("NumSeedRangeArEn", pct(a[:, 0].max() - a[:, 0].min()))
-            self.num("NumSeedRangeMacro", pct(a[:, 1].max() - a[:, 1].min()))
-            self.num("NumSeedSdArEn", pct(a[:, 0].std(ddof=1)))
-        rows.append(r"\midrule")
-        rows.append(f"v2-m3 WiSE 0.75, seeds 14 and 15 & \\multicolumn{{2}}{{c}}{{{todo('blends pending')}}} \\\\")
-        rows.append(f"v2-base / v2-small, seeds 14 and 15 & \\multicolumn{{2}}{{c}}{{{todo('runs pending')}}} \\\\")
+            self.num(f"NumSeed{key}ArEn", pct(a[:, 0].mean()))
+            self.num(f"NumSeed{key}Sd", pct(a[:, 0].std(ddof=1)))
+            self.num(f"NumSeed{key}Range", pct(a[:, 0].max() - a[:, 0].min()))
         return (
-            "\\begin{tabular}{@{}lrr@{}}\n\\toprule\nTEST & "
+            "\\begin{tabular}{@{}lrr@{}}\n\\toprule\nTEST, mean $\\pm$ s.d. over three development seeds & "
             + DIR_TEX["ar->en"]
             + " & macro \\\\\n\\midrule\n"
             + "\n".join(rows)
@@ -248,178 +268,77 @@ class Tables(StudyTables):
 
     # -------------------------------------------------------------------------------------------- MTEB(ara)
     def tab_mteb(self) -> str:
+        """Leaderboard: the ten baseline models of results/mteb_ara/leaderboard.json plus the v2 models scored by the same pipeline (mteb_board.json)."""
         lb = load_json(MTEB / "leaderboard.json")
         if lb is None:
             return todo("leaderboard.json missing")
-        cols = [
-            ("Mean (Task)", "Task"),
-            ("Mean (TaskType)", "Type"),
-            ("Retrieval", "Retr."),
-            ("Reranking", "Rerank"),
-            ("STS", "STS"),
-            ("Classification", "Cls."),
-            ("Mean ar-only subsets", "ar"),
-            ("Mean ar-en cross-lingual subsets", "ar-en"),
+        board = self.board()
+        cols = [  # (leaderboard key, board key, header)
+            ("Mean (Task)", "Mean(Task)", "Task"),
+            ("Mean (TaskType)", "Mean(TaskType)", "Type"),
+            ("Retrieval", "type:Retrieval", "Retr."),
+            ("Reranking", "type:Reranking", "Rerank"),
+            ("STS", "type:STS", "STS"),
+            ("Classification", "type:Classification", "Cls."),
+            ("Mean ar-only subsets", "ar-only subsets", "ar"),
+            ("Mean ar-en cross-lingual subsets", "ar-en cross-lingual subsets", "ar-en"),
         ]
+        entries: list[tuple[str, bool, list[float]]] = [
+            (r["model_name"].split("/")[-1], False, [r[c] for c, _, _ in cols]) for r in lb["summary"]
+        ]
+        v2_rows = [
+            ("final_m3", "v2-m3"),
+            ("w_m3b_a40_s16", "v2-m3, confirmatory seed 16"),
+            ("w_m3b_a40_s17", "v2-m3, confirmatory seed 17"),
+            ("final_base", "v2-base"),
+            ("final_small", "v2-small"),
+        ]
+        for model, name in v2_rows:
+            if model in board:
+                entries.append((name, True, [board[model][b] for _, b, _ in cols]))
+        entries.sort(key=lambda e: -e[2][0])
+        best = [max(e[2][i] for e in entries) for i in range(len(cols))]
         rows = []
-        for r in lb["summary"]:
-            name = r["model_name"].split("/")[-1]
-            rows.append(esc(name) + " & " + " & ".join(f"{r[c]:.1f}" for c, _ in cols) + r" \\")
-        pend = " & ".join([todo("pending")] + [""] * (len(cols) - 1))
-        extra = self.mteb_extra_rows()  # v2 models with per-task scores in mteb_paired.json
-        for name in ("v2-m3", "v2-base", "v2-small"):
-            if not any(r.startswith(name) for r in extra):
-                extra.append(f"{name} & {pend} \\\\")
-        top = lb["summary"][0]
-        self.num("NumMtebTasks", str(top["n_tasks"]))
+        for name, is_v2, vals in entries:
+            cells = [rf"\textbf{{{v:.1f}}}" if abs(v - best[i]) < 0.05 else f"{v:.1f}" for i, v in enumerate(vals)]
+            rows.append((r"\textbf{" + esc(name) + "}" if is_v2 else esc(name)) + " & " + " & ".join(cells) + r" \\")
+        self.num("NumMtebTasks", str(lb["summary"][0]["n_tasks"]))
         self.num("NumMtebModels", str(len(lb["summary"])))
+        names = {
+            "BAAI/bge-m3": "Bge",
+            "intfloat/multilingual-e5-large": "ELarge",
+            "intfloat/multilingual-e5-base": "EBase",
+            "intfloat/multilingual-e5-small": "ESmall",
+            "mzahran1/arabic-english-e5-small-retrieval": "VOne",
+        }
         for r in lb["summary"]:
-            if r["model_name"].endswith("bge-m3"):
-                self.num("NumMtebBgeTask", f"{r['Mean (Task)']:.1f}")
-            if r["model_name"].startswith("mzahran1/"):
-                self.num("NumMtebVOneTask", f"{r['Mean (Task)']:.1f}")
+            nm = names.get(r["model_name"])
+            if nm:
+                self.num(f"NumMteb{nm}Task", f"{r['Mean (Task)']:.2f}")
+                self.num(f"NumMteb{nm}Type", f"{r['Mean (TaskType)']:.2f}")
+                self.num(f"NumMteb{nm}Cross", f"{r['Mean ar-en cross-lingual subsets']:.1f}")
+        for model, nm in (
+            ("final_m3", "VTwoM"),
+            ("final_base", "VTwoB"),
+            ("final_small", "VTwoS"),
+            ("w_m3b_a40_s16", "SixteenSeed"),
+            ("w_m3b_a40_s17", "SeventeenSeed"),
+        ):
+            if model in board:
+                self.num(f"NumMteb{nm}Task", f"{board[model]['Mean(Task)']:.2f}")
+                self.num(f"NumMteb{nm}Type", f"{board[model]['Mean(TaskType)']:.2f}")
+                self.num(f"NumMteb{nm}Cross", f"{board[model]['ar-en cross-lingual subsets']:.1f}")
+        head = " & ".join(h for _, _, h in cols)
         return (
             "\\begin{tabular}{@{}l"
             + "r" * len(cols)
             + "@{}}\n\\toprule\nModel & "
-            + " & ".join(h for _, h in cols)
-            + " \\\\\n\\midrule\n"
-            + "\n".join(rows)
-            + "\n\\midrule\n"
-            + "\n".join(extra)
-            + "\n\\bottomrule\n\\end{tabular}\n"
-        )
-
-    # -------------------------------------------------------------------------------------------- guards
-    def guard_scores(self) -> dict[str, dict[str, float]]:
-        out: dict[str, dict[str, float]] = {}
-        for _, folder in GUARD_MODELS:
-            out[folder] = {}
-            for task, _ in GUARD_TASKS:
-                j = load_json(MTEB / "guards" / folder / f"{task}.json")
-                if j is not None:
-                    split = next(iter(j["scores"]))
-                    sub = next(iter(j["scores"][split]))
-                    out[folder][task] = j["scores"][split][sub][j["main_score"]]
-        return out
-
-    def tab_guards(self) -> str:
-        g = self.guard_scores()
-        rows = []
-        for label, folder in GUARD_MODELS:
-            cells = [pct(g[folder][t]) if t in g[folder] else todo("missing") for t, _ in GUARD_TASKS]
-            rows.append(f"{esc(label)} & " + " & ".join(cells) + r" \\")
-        if all(t in g["m3w75"] and t in g["bge-m3"] for t, _ in GUARD_TASKS):
-            rows.append(r"\midrule")
-            rows.append(r"v2-m3 $-$ bge-m3 & " + " & ".join(spct(g["m3w75"][t] - g["bge-m3"][t]) for t, _ in GUARD_TASKS) + r" \\")
-            self.num("NumGuardMiraclGap", spct(g["m3w75"][GUARD_TASKS[0][0]] - g["bge-m3"][GUARD_TASKS[0][0]]))
-            self.num("NumGuardNamaaGap", spct(g["m3w75"][GUARD_TASKS[1][0]] - g["bge-m3"][GUARD_TASKS[1][0]]))
-            self.num("NumGuardSemRelGap", spct(g["m3w75"][GUARD_TASKS[2][0]] - g["bge-m3"][GUARD_TASKS[2][0]]))
-        # the guards were re-run by the v2 pipeline (fp16, batch 32); how far are they from the benchmark's own leaderboard run?
-        lb = load_json(MTEB / "leaderboard.json")
-        if lb:
-            by_model = {r["model_name"].split("/")[-1]: r for r in lb["per_task"]}
-            lb_name = {
-                "e5-small": "multilingual-e5-small",
-                "e5-base": "multilingual-e5-base",
-                "bge-m3": "bge-m3",
-                "v1": "arabic-english-e5-small-retrieval",
-            }
-            diffs = [
-                abs(100 * g[f][t] - by_model[lb_name[f]][t])
-                for f in lb_name
-                for t, _ in GUARD_TASKS
-                if t in g.get(f, {}) and t in by_model.get(lb_name[f], {})
-            ]
-            if diffs:
-                self.num("NumGuardVsLeaderboardMax", f"{max(diffs):.1f}")
-        short = {"MIRACL-HN": "Miracl", "Mr.TyDi rerank": "Namaa", "SemRel24": "SemRel"}
-        names = {"e5-small": "ESmall", "v1": "VOne", "e5-base": "EBase", "bge-m3": "Bge", "m3w75": "VTwoM"}
-        for folder, nm in names.items():
-            for t, tshort in GUARD_TASKS:
-                if t in g.get(folder, {}):
-                    self.num(f"NumGuard{nm}{short[tshort]}", pct(g[folder][t]))
-        head = " & ".join(esc(s) for _, s in GUARD_TASKS)
-        return (
-            "\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nModel & "
             + head
             + " \\\\\n\\midrule\n"
             + "\n".join(rows)
             + "\n\\bottomrule\n\\end{tabular}\n"
         )
 
-    def clean_split(self) -> tuple[str, dict]:
-        labels = load_json(V2 / "guard_split" / "_labels.json")
-        if labels is None:
-            return todo("guard_split missing"), {}
-        models = [
-            ("bge-m3", "bge-m3"),
-            ("mE5-base", "e5-base"),
-            ("v1", "v1"),
-            ("v2-m3 raw FT", "m3_b_s13"),
-            ("v2-m3 (WiSE 0.75)", "wm_a75"),
-        ]
-        rows, stats = [], {}
-        for label, stem in models:
-            j = load_json(V2 / "guard_split" / f"{stem}.json")
-            if j is None:
-                rows.append(f"{esc(label)} & \\multicolumn{{5}}{{c}}{{{todo('missing')}}} \\\\")
-                continue
-            cells = []
-            for task in ("miracl", "namaa"):
-                lab = labels[task]
-                ids = list(j[task])
-                v = np.array([j[task][i] for i in ids])
-                clean = np.array([lab[i] == "" for i in ids])
-                cells += [pct(v.mean()), pct(v[clean].mean()), pct(v[~clean].mean()) if (~clean).any() else "--"]
-                n_clean, n_contam = int(clean.sum()), int((~clean).sum())
-                stats[(stem, task)] = (v.mean(), v[clean].mean(), n_clean, n_contam)
-                stats[(task, "n")] = (n_clean, n_contam)
-            rows.append(f"{esc(label)} & " + " & ".join(cells) + r" \\")
-        n = {t: stats.get((t, "n")) for t in ("miracl", "namaa")}
-        head2 = rf"\multicolumn{{3}}{{c}}{{MIRACL-HN (n={n['miracl'][0]}+{n['miracl'][1]})}} & \multicolumn{{3}}{{c}}{{Mr.TyDi rerank (n={n['namaa'][0]}+{n['namaa'][1]})}} \\"
-        tab = (
-            "\\begin{tabular}{@{}lrrrrrr@{}}\n\\toprule\n & " + head2 + "\n"
-            "Model & all & clean & contam. & all & clean & contam. \\\\\n\\midrule\n" + "\n".join(rows) + "\n\\bottomrule\n\\end{tabular}\n"
-        )
-        return tab, stats
-
-    def numbers_contamination(self, stats: dict) -> None:
-        labels = load_json(V2 / "guard_split" / "_labels.json")
-        audit = load_json(V2 / "data" / "audit_ood.json")
-        filt = load_json(V2 / "data" / "audit_ood_filtered.json")
-        if audit:
-            a = audit["MIRACLRetrievalHardNegatives.v2/ar/dev"]
-            self.num("NumMiraclQueries", thousands(a["queries"]))
-            self.num("NumMiraclNearDup", thousands(a["queries_near_duplicate_of_a_train_query"]))
-            self.num("NumMiraclNearDupPct", f"{100 * a['queries_near_duplicate_of_a_train_query'] / a['queries']:.0f}")
-        if filt:
-            self.num(
-                "NumMiraclNearDupAfter", str(filt["MIRACLRetrievalHardNegatives.v2/ar/dev"]["queries_near_duplicate_of_a_train_query"])
-            )
-        if labels:
-            m, nm = labels["miracl"], labels["namaa"]
-            self.num("NumMiraclContamFull", thousands(sum(v != "" for v in m.values())))
-            self.num("NumMiraclCleanN", thousands(sum(v == "" for v in m.values())))
-            self.num("NumNamaaContam", str(sum(v != "" for v in nm.values())))
-            self.num("NumNamaaQueries", thousands(len(nm)))
-        # honest flag: the contamination-split run measured absolute scores below the MTEB protocol's (passage titles missing)
-        g = self.guard_scores()
-        bge_all = stats.get(("bge-m3", "miracl"), (None,))[0]
-        official = g.get("bge-m3", {}).get("MIRACLRetrievalHardNegatives.v2")
-        if bge_all is not None and official is not None and abs(bge_all - official) > 0.01:
-            self.num(
-                "TodoCleanProtocol",
-                todo(f"split scores are {pct(official - bge_all)} pts below the MTEB protocol for bge-m3 (titles missing); rerun pending"),
-            )
-        else:
-            self.num("TodoCleanProtocol", "")
-        clean = {k: v for k, v in stats.items() if k[1] == "miracl" and k[0] in ("bge-m3", "wm_a75")}
-        if len(clean) == 2:
-            self.num("NumCleanGapMiracl", spct(clean[("wm_a75", "miracl")][1] - clean[("bge-m3", "miracl")][1]))
-            self.num("NumAllGapSplitMiracl", spct(clean[("wm_a75", "miracl")][0] - clean[("bge-m3", "miracl")][0]))
-
-    # -------------------------------------------------------------------------------------------- data
     def tab_data(self) -> str:
         ex = load_json(V2 / "data" / "exclude_summary.json")
         if ex is None:
@@ -467,6 +386,7 @@ class Tables(StudyTables):
     def numbers_headline(self) -> None:
         names = {
             "e5s": "ESmall",
+            "e5b": "EBase",
             "v1": "VOne",
             "v2s": "VTwoS",
             "v2b": "VTwoB",
@@ -497,10 +417,15 @@ class Tables(StudyTables):
             if j:
                 self.num(f"Num{nm}OwnLangEnAr", pct(j["xquad_en2ar"]["wrong_lang_top1"], 0))
                 self.num(f"Num{nm}OwnLangArEn", pct(j["xquad_ar2en"]["wrong_lang_top1"], 0))
-        wm = load_json(V2 / "models" / "wm_a75" / "merge.json")
-        if wm:
-            self.num("NumWiseAlpha", f"{wm['alpha']:.2f}")
-        for key, stem in (("M", "m3_b_s13"), ("B", "f5_b_kd_s13"), ("S", "f5_s_kd_s13")):
+        alpha = self.pick_alpha()
+        if alpha is not None:
+            self.num("NumWiseAlpha", f"{alpha:g}")
+            self.num("NumWiseKept", f"{100 * alpha:.0f}")
+            self.num("NumWiseOriginal", f"{100 * (1 - alpha):.0f}")
+        first = (load_json(V2 / "models" / "wm_a75" / "merge.json") or {}).get("alpha")
+        if first is not None:
+            self.num("NumWiseAlphaFirst", f"{first:g}")
+        for key, stem in (("M", "m3_b_s13"), ("B", "st_b_s13"), ("S", "st_s_s13")):
             a = (load_json(V2 / "models" / stem / "lab_retrieval.json") or {}).get("args")
             if a:
                 self.num(f"NumLr{key}", f"{a['lr']:g}".replace("e-0", "e{-}").replace("e-", "e{-}"))
@@ -508,6 +433,14 @@ class Tables(StudyTables):
                 self.num(f"NumScale{key}", f"{a['scale']:g}")
                 self.num(f"NumMaxLen{key}", str(a["max_len"]))
                 self.num(f"NumTemp{key}", f"{a['t_scale']:g}")
+                self.num(f"NumEpochs{key}", f"{a['epochs']:g}")
+        v1 = [load_json(ROOT / "results" / "retrieval" / f"e5s_hard1_xl_e1_s{s}.test.json") for s in (13, 14, 15)]
+        if all(v1):  # the published v1 recipe, three seeds (the committed v1 result snapshot)
+            ar = np.array([j["directions"]["ar->en"]["mrr@10"] for j in v1])
+            mac = np.array([j["directions"]["macro"]["mrr@10"] for j in v1])
+            self.num("NumVOneSeedArEn", pct(ar.mean()))
+            self.num("NumVOneSeedSd", pct(ar.std(ddof=1)))
+            self.num("NumVOneSeedMacro", pct(mac.mean()))
         m = load_json(V2 / "models" / "m3_b_s13" / "lab_retrieval.json")
         if m:
             self.num("NumMiniBatch", str(m["args"]["mini_batch"]))
@@ -523,6 +456,7 @@ class Tables(StudyTables):
             "guard_bar_ar2en_test": "NumGuardBarArEn",
             "bootstrap_resamples": "NumBootstrap",
             "ci_level_percent": "NumCiLevel",
+            "reranker_depth": "NumRerankDepth",
         }
         for key, macro in names.items():
             if key in pr:
@@ -534,9 +468,44 @@ class Tables(StudyTables):
             self.num("NumMargin", f"{a['margin']:g}")
             self.num("NumRankLo", str(a["rank_lo"]))
             self.num("NumRankHi", str(a["rank_hi"]))
-        k = (load_json(V2 / "models" / "f5_b_kd_s13" / "lab_retrieval.json") or {}).get("args", {})
+        k = (load_json(V2 / "models" / "st_b_s13" / "lab_retrieval.json") or {}).get("args", {})
         if k:
             self.num("NumKdWeight", f"{k['kd']:g}")
+        self.numbers_cost(pr)
+        self.numbers_suite()
+
+    def numbers_suite(self) -> None:
+        """The validation-suite selection: pick, its score, the best-scoring selectable model and the gap that the tie band decided (results/retrieval_v2/suite_pick.json)."""
+        sp = load_json(V2 / "suite_pick.json")
+        if not sp:
+            return
+        rows = [r for r in sp["rows"] if r.get("selectable")]
+        top = max(rows, key=lambda r: r["score"])
+        pick = next(r for r in rows if r["name"] == sp["pick"])
+        self.num("NumSuitePickScore", f"{pick['score']:.4f}")
+        self.num("NumSuiteTopScore", f"{top['score']:.4f}")
+        self.num("NumSuiteGap", f"{top['score'] - pick['score']:.4f}")
+        self.num("NumSuiteTopFamily", esc(top["family"]))
+        self.num("NumSuitePool", str(len(rows)))
+        m = re.search(r"tie band \(< ([0-9.]+)\)", sp.get("rule", ""))
+        if m:
+            self.num("NumSuiteTieBand", m.group(1))
+
+    def numbers_cost(self, pr: dict) -> None:
+        """Compute used by the study: training hours summed over the committed per-run train.json files, MTEB scoring time, wall-clock estimate (lab notebook)."""
+        secs = [j.get("train_seconds") for j in (load_json(p) for p in sorted(V2.glob("*.train.json"))) if j]
+        secs = [x for x in secs if x]
+        if secs:
+            self.num("NumGpuRuns", str(len(secs)))
+            self.num("NumGpuTrainHours", f"{sum(secs) / 3600:.1f}")
+        mt = load_json(V2 / "mteb_eval_time.json")
+        if mt:
+            self.num("NumGpuMtebHours", f"{mt['hours']:.1f}")
+        if "gpu_wallclock_hours" in pr:
+            self.num("NumGpuWallHours", f"{pr['gpu_wallclock_hours']['value']:g}")
+        conf = load_json(V2 / "confirmatory.json")
+        if conf and conf.get("recipe_frozen_at"):
+            self.num("NumFrozenAt", conf["recipe_frozen_at"].replace("T", " ").replace("+03:00", " (UTC+3)"))
 
     def numbers_style(self) -> None:
         """Machine-translated XQuAD ar->en queries versus the human ones (same passages): a constant offset for every model?"""
@@ -627,38 +596,91 @@ class Tables(StudyTables):
             return dir_value(S[k], d) if S[k] else None
 
         out: list[tuple[str, bool | None]] = []
-        c = ci("m3", "v2m", "ar->en")
-        out.append(("v2-m3 beats bge-m3 on ar->en (paired CI above 0)", None if c is None else c["lo"] > 0))
-        c = ci("m3", "v2m", "en->ar")
-        out.append(("v2-m3 beats bge-m3 on en->ar (paired CI above 0)", None if c is None else c["lo"] > 0))
-        c = ci("m3", "v2b", "ar->en")
-        out.append(("v2-base vs bge-m3 on ar->en: paired CI includes 0", None if c is None else c["lo"] <= 0 <= c["hi"]))
-        c = ci("m3", "v2b", "macro")
-        out.append(("v2-base beats bge-m3 on macro (paired CI above 0)", None if c is None else c["lo"] > 0))
-        for a, b, nm in (("b_nokd", "v2b", "base"), ("s_nokd", "v2s", "small")):
-            c = ci(a, b, "ar->en")
-            out.append((f"KD helps ar->en for the {nm} student (paired CI above 0)", None if c is None else c["lo"] > 0))
+        for a_, b_, d_, desc in (
+            ("m3", "v2m", "ar->en", "v2-m3 beats bge-m3 on ar->en (paired CI above 0)"),
+            ("m3", "v2m", "en->ar", "v2-m3 beats bge-m3 on en->ar (paired CI above 0)"),
+            ("m3", "v2b", "ar->en", "v2-base beats bge-m3 on ar->en (paired CI above 0)"),
+            ("m3", "v2b", "macro", "v2-base beats bge-m3 on macro (paired CI above 0)"),
+            ("e5b", "v2b", "ar->en", "v2-base beats mE5-base on ar->en (paired CI above 0)"),
+            ("e5s", "v2s", "ar->en", "v2-small beats mE5-small on ar->en (paired CI above 0)"),
+            ("v1", "v2s", "ar->en", "v2-small beats v1 on ar->en (paired CI above 0)"),
+            ("m3", "v2s", "ar->en", "v2-small is below bge-m3 on ar->en (paired CI below 0)"),
+        ):
+            c = ci(a_, b_, d_)
+            out.append((desc, None if c is None else (c["hi"] < 0 if "below" in desc else c["lo"] > 0)))
+        for a_, b_, nm in (("b_nokd", "v2b", "base"), ("s_nokd", "v2s", "small")):
+            c = ci(a_, b_, "ar->en")
+            out.append(
+                (f"the distilled {nm} student beats its plain fine-tune on ar->en (paired CI above 0)", None if c is None else c["lo"] > 0)
+            )
         a, b = val("v2m", "ar->en"), val("v2b", "ar->en")
         out.append(("the students stay below the v2-m3 teacher on ar->en", None if a is None or b is None else a > b > 0))
         c = ci("v2m_raw", "v2m", "macro")
-        out.append(("WiSE 0.75 costs macro points relative to the raw fine-tune (CI below 0)", None if c is None else c["hi"] < 0))
+        out.append(("the WiSE blend costs macro points relative to the raw fine-tune (CI below 0)", None if c is None else c["hi"] < 0))
         g = self.guard_scores()
-        mi, na, se = (t for t, _ in GUARD_TASKS)
+        mi, na, se = (t for t, _, _ in GUARD_TASKS)
         try:
-            out.append(("v2-m3 is more than the bar below bge-m3 on MIRACL-HN", g["m3w75"][mi] - g["bge-m3"][mi] < -0.01))
-            out.append(("v2-m3 is below bge-m3 on Mr.TyDi rerank", g["m3w75"][na] < g["bge-m3"][na]))
-            out.append(("v2-m3 is above bge-m3 on SemRel24", g["m3w75"][se] > g["bge-m3"][se]))
+            gm, gb = g["final_m3"], g["BAAI__bge-m3"]
+            out.append(("v2-m3 is about one point below bge-m3 on MIRACL-HN (between 0.5 and 1.5)", 0.5 < gb[mi] - gm[mi] < 1.5))
+            out.append(("v2-m3 misses the one-point bar on Mr.TyDi rerank (more than 2 points below bge-m3)", gb[na] - gm[na] > 2.0))
+            out.append(("v2-m3 is above bge-m3 on SemRel24", gm[se] > gb[se]))
+            for model, ref, nm in (
+                ("final_base", "intfloat__multilingual-e5-base", "v2-base"),
+                ("final_small", "intfloat__multilingual-e5-small", "v2-small"),
+            ):
+                out.append((f"{nm} loses more than 8 points on Mr.TyDi rerank relative to its base", g[ref][na] - g[model][na] > 8.0))
         except KeyError:
             out.append(("guard scores present", None))
         lb = load_json(MTEB / "leaderboard.json")
-        if lb:
-            names = [r["model_name"] for r in lb["summary"]]
-            by = {r["model_name"].split("/")[-1]: r["Mean (Task)"] for r in lb["summary"]}
-            out.append(("bge-m3 has the highest MTEB(ara) Mean (Task)", names[0].endswith("bge-m3")))
+        board = self.board()
+        if lb and board:
+            by = {r["model_name"].split("/")[-1]: r for r in lb["summary"]}
+            base_best = max(r["Mean (Task)"] for r in lb["summary"])
+            out.append(
+                (
+                    "v2-m3 has the highest MTEB(ara) Mean (Task) of all scored models (numerically)",
+                    board["final_m3"]["Mean(Task)"] > base_best,
+                )
+            )
             out.append(
                 (
                     "v1 scores below multilingual-e5-small on MTEB(ara) Mean (Task)",
-                    by["arabic-english-e5-small-retrieval"] < by["multilingual-e5-small"],
+                    by["arabic-english-e5-small-retrieval"]["Mean (Task)"] < by["multilingual-e5-small"]["Mean (Task)"],
+                )
+            )
+            cross = {r["model_name"].split("/")[-1]: r["Mean ar-en cross-lingual subsets"] for r in lb["summary"]}
+            out.append(
+                (
+                    "multilingual-e5-large is ahead of v2-m3 on the ar-en cross-lingual subsets (no overall first place)",
+                    cross["multilingual-e5-large"] > board["final_m3"]["ar-en cross-lingual subsets"],
+                )
+            )
+            small = [
+                v for k, v in cross.items() if k in ("multilingual-e5-base", "multilingual-e5-small", "arabic-english-e5-small-retrieval")
+            ]
+            out.append(
+                (
+                    "v2-base leads the models up to 278M on the ar-en cross-lingual subsets",
+                    board["final_base"]["ar-en cross-lingual subsets"] > max(small),
+                )
+            )
+            out.append(
+                (
+                    "v2-small has a lower Mean (TaskType) than mE5-small",
+                    board["final_small"]["Mean(TaskType)"] < by["multilingual-e5-small"]["Mean (TaskType)"],
+                )
+            )
+            out.append(
+                (
+                    "v2-base has a higher Mean (TaskType) than mE5-base",
+                    board["final_base"]["Mean(TaskType)"] > by["multilingual-e5-base"]["Mean (TaskType)"],
+                )
+            )
+            seeds = [board[m]["Mean(Task)"] for m in ("w_m3b_a40_s16", "w_m3b_a40_s17") if m in board]
+            out.append(
+                (
+                    "the confirmatory seeds reproduce the MTEB mean of seed 13 to within 0.1",
+                    all(abs(x - board["final_m3"]["Mean(Task)"]) < 0.1 for x in seeds),
                 )
             )
         d = {
@@ -670,18 +692,24 @@ class Tables(StudyTables):
             out.append(("dev: KD weight 3 and KD-only are at least as good as weight 1", m["kd3"] >= m["kd1"] and m["kdonly"] >= m["kd1"]))
         dm = {
             k: (load_json(V2 / f"{k}.devM.json") or {}).get("slices", {}).get("dev_miracl_ar", {}).get("mrr@10")
-            for k in ("wm_a75", "m3_r_s13", "m3_p_s13", "w_m3_r_s13_a75", "w_m3_p_s13_a75")
+            for k in ("m3_b_s13", "m3_r_s13", "m3_p_s13", "m3_fr_s13", "m3_lo_s13")
         }
         if all(v is not None for v in dm.values()):
             out.append(
                 (
-                    "replay/preservation do not beat plain WiSE 0.75 on held-out MIRACL-ar by more than 0.1",
-                    max(v for k, v in dm.items() if k != "wm_a75") <= dm["wm_a75"] + 0.001,
+                    "replay, preservation, freezing and LoRA do not beat the raw fine-tune on held-out MIRACL-ar by more than 0.3",
+                    max(v for k, v in dm.items() if k != "m3_b_s13") <= dm["m3_b_s13"] + 0.003,
                 )
             )
         cl = getattr(self, "_stats", {})
-        if ("bge-m3", "miracl") in cl and ("wm_a75", "miracl") in cl:
-            out.append(("v2-m3 is below bge-m3 on the clean MIRACL queries", cl[("wm_a75", "miracl")][1] < cl[("bge-m3", "miracl")][1]))
+        if ("bge-m3", "miracl") in cl and ("final_m3", "miracl") in cl:
+            out.append(("v2-m3 is below bge-m3 on the clean MIRACL queries", cl[("final_m3", "miracl")][1] < cl[("bge-m3", "miracl")][1]))
+            out.append(
+                (
+                    "every model scores lower on the clean MIRACL queries than on the flagged ones",
+                    all(v[1] < v[4] for k, v in cl.items() if k[1] == "miracl" and len(v) == 5),
+                )
+            )
         quality, bench = DS.load_quality(DEPLOY), DS.load_bench(DEPLOY)
         for model in DEPLOY_MODELS:
             rows = {r["variant"]: r for r in DS.quality_rows(quality, model, self.dir_of)}
@@ -724,7 +752,7 @@ class Tables(StudyTables):
     # -------------------------------------------------------------------------------------------- driver
     def write(self) -> None:
         OUT.mkdir(parents=True, exist_ok=True)
-        clean_tab, stats = self.clean_split()
+        clean_tab, stats, clean_paired = self.clean_split()
         tabs = {
             "tab_main": self.tab_main(),
             "tab_deltas": self.tab_deltas(),
@@ -734,6 +762,8 @@ class Tables(StudyTables):
             "tab_mteb": self.tab_mteb(),
             "tab_guards": self.tab_guards(),
             "tab_clean": clean_tab,
+            "tab_clean_paired": clean_paired,
+            "tab_rerank": self.tab_rerank(),
             "tab_data": self.tab_data(),
             "tab_deploy": self.tab_deploy(),
             "tab_scaling": self.tab_scaling(),
@@ -752,7 +782,7 @@ class Tables(StudyTables):
         self.numbers_style()
         self.numbers_protocol()
         self.num("TodoCurveFigure", "" if has_curve else todo("WiSE curve: alpha_curve.json pending"))
-        for name in (*PAIRED_DEFAULTS, *CURVE_DEFAULTS, *CONF_DEFAULTS, *STUDY_DEFAULTS):
+        for name in (*PAIRED_DEFAULTS, *CURVE_DEFAULTS, *CONF_DEFAULTS, *STUDY_DEFAULTS, *GUARD_DEFAULTS):
             self.nums.setdefault(name, todo("pending"))
         for name in PENDING_DEFAULTS:  # anything the text uses but no result file provides yet is shown as a red TODO
             self.nums.setdefault(name, todo("pending"))
