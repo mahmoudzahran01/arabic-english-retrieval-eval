@@ -89,7 +89,7 @@ Dropping the leaked queries changes every model's MIRACL-HN score by \NumLeakEff
 \caption{Training queries of the v2 recipe before and after the contamination filter.}\label{tab:data}
 \end{table}
 
-\section{Models and Selection Protocol}
+\section{Models and Selection Protocol}\label{sec:models}
 We evaluate one recipe at three sizes; it is described for completeness, not as a contribution.
 All models minimise an InfoNCE loss over in-batch passages plus one mined hard negative per query, taken from ranks \NumRankLo--\NumRankHi{} of a baseline retriever in the same language pool, keeping only candidates at least \NumMargin{} cosine below the positive.
 \textbf{v2-m3} fine-tunes bge-m3 with a cached multiple-negatives loss \citep{gao2021cachedmnrl} (batch \NumBsM, mini-batch \NumMiniBatch, scale \NumScaleM, learning rate \NumLrM, one epoch, maximum length \NumMaxLenM) and blends the result with the original weights, $\theta=\alpha\,\theta_{\text{FT}}+(1-\alpha)\,\theta_{\text{bge-m3}}$; the selected $\alpha$ is \NumWiseAlpha{} (\NumWiseOriginal\% original weights).
@@ -266,7 +266,7 @@ The MTEB(ara) means of the two seeds (\NumMtebSixteenSeedTask{}, \NumMtebSevente
 We export v2-small and v2-base to ONNX (fp32, opset \NumOpset, pooling and normalisation inside the graph) and compare three ways of shrinking them for CPU serving:
 ONNX Runtime dynamic int8 with per-tensor or per-channel weight scales \citep[activations quantised on the fly, cf.][]{zafrir2019q8bert}, and weight-only 8-bit block quantisation of the MatMul weights that leaves the activations in fp32.
 Quality is measured as MRR@10 on the same test split against the PyTorch fp32 model, on CPU, with paired bootstrap intervals.
-\textbf{These measurements were made on the first distilled candidates} (single seed, teacher the raw fine-tune), not on the final soups: sizes and latencies depend only on the architecture, but the quantisation deltas are indicative for the final models and were not re-measured.
+The measurements are on the final v2-small and v2-base (the three-seed student soups of Section~\ref{sec:models}); an earlier round on single-seed student candidates ordered the variants the same way, with dynamic int8 costing \NumRoundOneDynSmall{} and \NumRoundOneDynBase{} macro points.
 Latency was measured on the \NumSparkCpus-core ARM CPU of a shared server (not an x86 laptop or cloud VM), one process, \NumThreadsLow{} and \NumThreadsHigh{} threads; numbers are therefore indicative.
 
 Table~\ref{tab:deploy} shows that the ONNX fp32 graphs reproduce the PyTorch results (\NumDeltaOnnxSmall{} and \NumDeltaOnnxBase{} macro points) and cut single-query latency (\NumThreadsLow{} threads) from \NumQLatSmallTorch{} to \NumQLatSmallOnnx{} ms for v2-small and from \NumQLatBaseTorch{} to \NumQLatBaseOnnx{} ms for v2-base.
@@ -278,7 +278,7 @@ We therefore recommend ONNX fp32 when latency matters, weight-only 8-bit when do
 \begin{table*}[t]
 \centering\tabfont
 \input{tables/tab_deploy}
-\caption{CPU deployment variants, measured on the first distilled candidates (see text). MiB: size on disk; RSS: peak resident memory of the benchmark process (\NumThreadsHigh{} threads; includes the python and data-loading baseline of that process); q@1: p50 latency of a single query (\NumThreadsLow{} threads, ms); p/s: passages per second (batch 32, \NumThreadsHigh{} threads); MRR: test macro MRR@10 $\times100$; $\Delta$: difference to PyTorch fp32 in points (macro, and \ardir{}).}\label{tab:deploy}
+\caption{CPU deployment variants of the final v2-small and v2-base. MiB: size on disk; RSS: peak resident memory of the benchmark process (\NumThreadsHigh{} threads; includes the python and data-loading baseline of that process); q@1: p50 latency of a single query (\NumThreadsLow{} threads, ms); p/s: passages per second (batch 32, \NumThreadsHigh{} threads); MRR: test macro MRR@10 $\times100$; $\Delta$: difference to PyTorch fp32 in points (macro, and \ardir{}).}\label{tab:deploy}
 \end{table*}
 
 \section{Data Card and Licences}
@@ -301,7 +301,7 @@ Training queries are machine-translated and not human-verified; the offset check
 The guard analysis shows a real regression on MIRACL and Mr.TyDi, large for the students, and the clean MIRACL subset is small; the contamination labels have known blind spots and \NumLeakRows{} kept training rows equal evaluation queries.
 MTEB(ara, v1) has \NumMtebTasks{} tasks; its aggregate cannot resolve differences of about a point (Table~\ref{tab:paired}), and resampling tasks ignores query-level noise.
 The selection rules were amended during the work (Appendix~\ref{app:prereg}), the first candidate had been scored on MTEB before the suite existed, and the suite shares a source with one MTEB task; the post-hoc WiSE curve and the exploratory seeds should not be read as confirmatory.
-Deployment quality deltas were measured on earlier student candidates; latency comes from one machine type, with other jobs running, and does not include serving overhead.
+Latency comes from one machine type, shared with a training job (load average \NumLoadLow{} to \NumLoadHigh{} during the runs), and does not include serving overhead; v2-m3 was not exported.
 No RAG-level evaluation is done here, and the reranker pairing uses a reranker that was not retrained.
 
 \section{Reproducibility and Cost}

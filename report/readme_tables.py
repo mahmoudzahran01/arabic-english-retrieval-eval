@@ -57,7 +57,7 @@ class ReadmeTables:
             f"95% interval {n('NumPairedMCiLo')} to {n('NumPairedMCiHi')}; v2-m3 wins on {n('NumPairedMWins')} tasks, loses on {n('NumPairedMLosses')}, "
             f"ties on {n('NumPairedMTies')}; sign test p = {n('NumPairedMSignP')}). Two more seeds, trained after the recipe was frozen, score "
             f"{n('NumMtebSixteenSeedTask')} and {n('NumMtebSeventeenSeedTask')}. What v2-m3 adds is cross-lingual retrieval on the benchmark: "
-            f"ar->en {n('NumVTwoMArEn')} against {n('NumBgeArEn')} for bge-m3 ({n('NumDeltaVTwoMVsBgeArEn')} points, interval "
+            f"ar->en {n('NumVTwoMArEn')} against {n('NumBgeArEn')} for bge-m3 (paired difference {n('NumDeltaVTwoMVsBgeArEn')} points, interval "
             f"{n('NumDeltaVTwoMVsBgeArEnLo')} to {n('NumDeltaVTwoMVsBgeArEnHi')}).",
             f"* **It does not lead every slice.** multilingual-e5-large scores {n('NumMtebELargeCross')} on the MTEB(ara) Arabic-English subsets, "
             f"against {n('NumMtebVTwoMCross')} for v2-m3. v2-base and v2-small beat their off-the-shelf bases by {n('NumDeltaVTwoBVsEBaseArEn')} and "

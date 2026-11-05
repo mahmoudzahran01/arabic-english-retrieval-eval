@@ -81,6 +81,9 @@ PENDING_DEFAULTS = [  # macros used in main.tex whose values come from runs that
     "NumOpset",
     *[f"Num{kind}{m}{v}" for kind in ("Size", "QLat") for m in DEPLOY_MODELS.values() for v in DEPLOY_VARIANTS.values()],
     *[f"NumDelta{v}{m}{suffix}" for v in ("Onnx", "Dyn", "Pc", "Wo") for m in DEPLOY_MODELS.values() for suffix in ("", "ArEn")],
+    *[f"NumRoundOneDyn{m}" for m in DEPLOY_MODELS.values()],
+    "NumLoadLow",
+    "NumLoadHigh",
 ]
 
 
@@ -581,6 +584,16 @@ class Tables(GuardTables, StudyTables, ReadmeTables):
                 b2 = bench.get((model, v, DS_THREADS_LOW))
                 if b2:
                     self.num(f"NumQLat{nm}{vn}", f"{b2['workloads']['query_b1']['p50_ms']:.0f}")
+        # the first round (single-seed student candidates, results/round1_candidates) and the load of the shared machine during the final round
+        first = DS.load_quality(DEPLOY / "round1_candidates")
+        for model, nm in DEPLOY_MODELS.items():
+            q1 = {r["variant"]: r for r in DS.quality_rows(first, model, self.dir_of)}
+            if "delta" in q1.get("onnx-int8", {}):
+                self.num(f"NumRoundOneDyn{nm}", spct(q1["onnx-int8"]["delta"]["macro"], 2))
+        loads = [x for b in bench.values() for x in (b.get("loadavg_start"), b.get("loadavg_end")) if isinstance(x, int | float)]
+        if loads:
+            self.num("NumLoadLow", f"{min(loads):.0f}")
+            self.num("NumLoadHigh", f"{max(loads):.0f}")
 
     # -------------------------------------------------------------------------------------------- qualitative claims
     def check_claims(self) -> list[tuple[str, bool | None]]:
