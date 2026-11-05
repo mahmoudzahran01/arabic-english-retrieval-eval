@@ -484,6 +484,58 @@
    "mono": null
   }
  },
+ "minishlab__potion-multilingual-128M": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 16.573,
+   "cross": null,
+   "mono": 16.573
+  },
+  "XQuADRetrieval": {
+   "all": 75.412,
+   "cross": null,
+   "mono": 75.412
+  },
+  "MLQARetrieval": {
+   "all": 24.099,
+   "cross": 20.33,
+   "mono": 31.636999999999997
+  },
+  "BelebeleRetrieval": {
+   "all": 53.66966666666667,
+   "cross": 47.831500000000005,
+   "mono": 65.346
+  },
+  "XPQARetrieval": {
+   "all": 22.47,
+   "cross": 18.5115,
+   "mono": 30.386999999999997
+  },
+  "WebFAQRetrieval": {
+   "all": 38.379000000000005,
+   "cross": null,
+   "mono": 38.379000000000005
+  },
+  "NamaaMrTydiReranking": {
+   "all": 62.663000000000004,
+   "cross": null,
+   "mono": 62.663000000000004
+  },
+  "STS17": {
+   "all": 58.10995,
+   "cross": 51.1134,
+   "mono": 65.1065
+  },
+  "STS22.v2": {
+   "all": 59.1206,
+   "cross": null,
+   "mono": 59.1206
+  },
+  "SemRel24STS": {
+   "all": 45.1331,
+   "cross": null,
+   "mono": 45.1331
+  }
+ },
  "mzahran1__arabic-english-e5-small-retrieval": {
   "MIRACLRetrievalHardNegatives.v2": {
    "all": 66.308,
@@ -872,6 +924,103 @@
    "mono": null
   }
  },
+ "sentence-transformers__static-similarity-mrl-multilingual-v1": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 19.705000000000002,
+   "cross": null,
+   "mono": 19.705000000000002
+  },
+  "XQuADRetrieval": {
+   "all": 76.641,
+   "cross": null,
+   "mono": 76.641
+  },
+  "MLQARetrieval": {
+   "all": 28.367333333333335,
+   "cross": 27.7005,
+   "mono": 29.701
+  },
+  "BelebeleRetrieval": {
+   "all": 57.18866666666667,
+   "cross": 54.943999999999996,
+   "mono": 61.678
+  },
+  "XPQARetrieval": {
+   "all": 23.932,
+   "cross": 20.406,
+   "mono": 30.984
+  },
+  "WebFAQRetrieval": {
+   "all": 36.894,
+   "cross": null,
+   "mono": 36.894
+  },
+  "NamaaMrTydiReranking": {
+   "all": 61.748000000000005,
+   "cross": null,
+   "mono": 61.748000000000005
+  },
+  "STS17": {
+   "all": 69.9693,
+   "cross": 69.9014,
+   "mono": 70.0372
+  },
+  "STS22.v2": {
+   "all": 59.21300000000001,
+   "cross": null,
+   "mono": 59.21300000000001
+  },
+  "SemRel24STS": {
+   "all": 50.20250000000001,
+   "cross": null,
+   "mono": 50.20250000000001
+  },
+  "XNLI": {
+   "all": 64.5642,
+   "cross": null,
+   "mono": 64.5642
+  },
+  "ArEntail": {
+   "all": 68.1207,
+   "cross": null,
+   "mono": 68.1207
+  },
+  "AJGT.v2": {
+   "all": 61.924,
+   "cross": null,
+   "mono": 61.924
+  },
+  "TweetEmotionClassification.v2": {
+   "all": 40.8036,
+   "cross": null,
+   "mono": 40.8036
+  },
+  "TweetSarcasmClassification.v2": {
+   "all": 56.7573,
+   "cross": null,
+   "mono": 56.7573
+  },
+  "HotelReviewSentimentClassification.v2": {
+   "all": 42.4118,
+   "cross": null,
+   "mono": 42.4118
+  },
+  "SIB200ClusteringS2S.v2": {
+   "all": 13.2105,
+   "cross": null,
+   "mono": 13.2105
+  },
+  "FloresBitextMining": {
+   "all": 99.27535,
+   "cross": 99.27535,
+   "mono": null
+  },
+  "Tatoeba": {
+   "all": 82.5452,
+   "cross": 82.5452,
+   "mono": null
+  }
+ },
  "silma-ai__silma-embeddding-matryoshka-v0.1": {
   "MIRACLRetrievalHardNegatives.v2": {
    "all": 35.13,
@@ -969,6 +1118,268 @@
    "mono": null
   }
  },
+ "alpha_m3_b_s13": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 72.902,
+   "cross": null,
+   "mono": 72.902
+  },
+  "NamaaMrTydiReranking": {
+   "all": 69.345,
+   "cross": null,
+   "mono": 69.345
+  },
+  "SemRel24STS": {
+   "all": 62.0961,
+   "cross": null,
+   "mono": 62.0961
+  }
+ },
+ "alpha_w_m3b_a30": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 78.467,
+   "cross": null,
+   "mono": 78.467
+  },
+  "NamaaMrTydiReranking": {
+   "all": 77.033,
+   "cross": null,
+   "mono": 77.033
+  },
+  "SemRel24STS": {
+   "all": 60.483200000000004,
+   "cross": null,
+   "mono": 60.483200000000004
+  }
+ },
+ "alpha_w_m3b_a60": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 76.837,
+   "cross": null,
+   "mono": 76.837
+  },
+  "NamaaMrTydiReranking": {
+   "all": 73.696,
+   "cross": null,
+   "mono": 73.696
+  },
+  "SemRel24STS": {
+   "all": 61.4876,
+   "cross": null,
+   "mono": 61.4876
+  }
+ },
+ "alpha_wm_a50": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 77.48899999999999,
+   "cross": null,
+   "mono": 77.48899999999999
+  },
+  "NamaaMrTydiReranking": {
+   "all": 74.708,
+   "cross": null,
+   "mono": 74.708
+  },
+  "SemRel24STS": {
+   "all": 61.207699999999996,
+   "cross": null,
+   "mono": 61.207699999999996
+  }
+ },
+ "final_base": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 70.71,
+   "cross": null,
+   "mono": 70.71
+  },
+  "XQuADRetrieval": {
+   "all": 93.592,
+   "cross": null,
+   "mono": 93.592
+  },
+  "MLQARetrieval": {
+   "all": 60.547666666666665,
+   "cross": 60.440000000000005,
+   "mono": 60.763
+  },
+  "BelebeleRetrieval": {
+   "all": 88.35700000000001,
+   "cross": 87.947,
+   "mono": 89.17699999999999
+  },
+  "XPQARetrieval": {
+   "all": 36.38533333333333,
+   "cross": 33.63549999999999,
+   "mono": 41.885
+  },
+  "WebFAQRetrieval": {
+   "all": 76.822,
+   "cross": null,
+   "mono": 76.822
+  },
+  "NamaaMrTydiReranking": {
+   "all": 68.194,
+   "cross": null,
+   "mono": 68.194
+  },
+  "STS17": {
+   "all": 75.18685,
+   "cross": 76.0383,
+   "mono": 74.33539999999999
+  },
+  "STS22.v2": {
+   "all": 62.39170000000001,
+   "cross": null,
+   "mono": 62.39170000000001
+  },
+  "SemRel24STS": {
+   "all": 59.0235,
+   "cross": null,
+   "mono": 59.0235
+  },
+  "XNLI": {
+   "all": 67.8098,
+   "cross": null,
+   "mono": 67.8098
+  },
+  "ArEntail": {
+   "all": 81.2508,
+   "cross": null,
+   "mono": 81.2508
+  },
+  "AJGT.v2": {
+   "all": 80.095,
+   "cross": null,
+   "mono": 80.095
+  },
+  "TweetEmotionClassification.v2": {
+   "all": 53.0357,
+   "cross": null,
+   "mono": 53.0357
+  },
+  "TweetSarcasmClassification.v2": {
+   "all": 58.3068,
+   "cross": null,
+   "mono": 58.3068
+  },
+  "HotelReviewSentimentClassification.v2": {
+   "all": 50.2157,
+   "cross": null,
+   "mono": 50.2157
+  },
+  "SIB200ClusteringS2S.v2": {
+   "all": 39.9667,
+   "cross": null,
+   "mono": 39.9667
+  },
+  "FloresBitextMining": {
+   "all": 99.86824999999999,
+   "cross": 99.86824999999999,
+   "mono": null
+  },
+  "Tatoeba": {
+   "all": 87.4667,
+   "cross": 87.4667,
+   "mono": null
+  }
+ },
+ "final_m3": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 77.90899999999999,
+   "cross": null,
+   "mono": 77.90899999999999
+  },
+  "XQuADRetrieval": {
+   "all": 95.307,
+   "cross": null,
+   "mono": 95.307
+  },
+  "MLQARetrieval": {
+   "all": 63.81766666666667,
+   "cross": 63.418,
+   "mono": 64.617
+  },
+  "BelebeleRetrieval": {
+   "all": 89.87333333333333,
+   "cross": 88.938,
+   "mono": 91.744
+  },
+  "XPQARetrieval": {
+   "all": 39.184000000000005,
+   "cross": 35.793,
+   "mono": 45.966
+  },
+  "WebFAQRetrieval": {
+   "all": 80.105,
+   "cross": null,
+   "mono": 80.105
+  },
+  "NamaaMrTydiReranking": {
+   "all": 76.049,
+   "cross": null,
+   "mono": 76.049
+  },
+  "STS17": {
+   "all": 76.8116,
+   "cross": 72.7945,
+   "mono": 80.8287
+  },
+  "STS22.v2": {
+   "all": 64.102,
+   "cross": null,
+   "mono": 64.102
+  },
+  "SemRel24STS": {
+   "all": 60.8708,
+   "cross": null,
+   "mono": 60.8708
+  },
+  "XNLI": {
+   "all": 76.3969,
+   "cross": null,
+   "mono": 76.3969
+  },
+  "ArEntail": {
+   "all": 89.1155,
+   "cross": null,
+   "mono": 89.1155
+  },
+  "AJGT.v2": {
+   "all": 83.6461,
+   "cross": null,
+   "mono": 83.6461
+  },
+  "TweetEmotionClassification.v2": {
+   "all": 58.2837,
+   "cross": null,
+   "mono": 58.2837
+  },
+  "TweetSarcasmClassification.v2": {
+   "all": 61.6213,
+   "cross": null,
+   "mono": 61.6213
+  },
+  "HotelReviewSentimentClassification.v2": {
+   "all": 54.3725,
+   "cross": null,
+   "mono": 54.3725
+  },
+  "SIB200ClusteringS2S.v2": {
+   "all": 37.068200000000004,
+   "cross": null,
+   "mono": 37.068200000000004
+  },
+  "FloresBitextMining": {
+   "all": 100.0,
+   "cross": 100.0,
+   "mono": null
+  },
+  "Tatoeba": {
+   "all": 89.0567,
+   "cross": 89.0567,
+   "mono": null
+  }
+ },
  "final_m3_wa75_s13": {
   "MIRACLRetrievalHardNegatives.v2": {
    "all": 75.721,
@@ -1063,6 +1474,297 @@
   "Tatoeba": {
    "all": 89.3067,
    "cross": 89.3067,
+   "mono": null
+  }
+ },
+ "final_small": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 68.278,
+   "cross": null,
+   "mono": 68.278
+  },
+  "XQuADRetrieval": {
+   "all": 92.367,
+   "cross": null,
+   "mono": 92.367
+  },
+  "MLQARetrieval": {
+   "all": 57.361,
+   "cross": 56.69,
+   "mono": 58.703
+  },
+  "BelebeleRetrieval": {
+   "all": 84.42133333333332,
+   "cross": 83.243,
+   "mono": 86.778
+  },
+  "XPQARetrieval": {
+   "all": 33.047333333333334,
+   "cross": 29.4855,
+   "mono": 40.171
+  },
+  "WebFAQRetrieval": {
+   "all": 72.166,
+   "cross": null,
+   "mono": 72.166
+  },
+  "NamaaMrTydiReranking": {
+   "all": 68.867,
+   "cross": null,
+   "mono": 68.867
+  },
+  "STS17": {
+   "all": 70.60849999999999,
+   "cross": 68.7526,
+   "mono": 72.4644
+  },
+  "STS22.v2": {
+   "all": 60.667899999999996,
+   "cross": null,
+   "mono": 60.667899999999996
+  },
+  "SemRel24STS": {
+   "all": 46.1432,
+   "cross": null,
+   "mono": 46.1432
+  },
+  "XNLI": {
+   "all": 68.369,
+   "cross": null,
+   "mono": 68.369
+  },
+  "ArEntail": {
+   "all": 78.9024,
+   "cross": null,
+   "mono": 78.9024
+  },
+  "AJGT.v2": {
+   "all": 77.94539999999999,
+   "cross": null,
+   "mono": 77.94539999999999
+  },
+  "TweetEmotionClassification.v2": {
+   "all": 50.724199999999996,
+   "cross": null,
+   "mono": 50.724199999999996
+  },
+  "TweetSarcasmClassification.v2": {
+   "all": 60.307900000000004,
+   "cross": null,
+   "mono": 60.307900000000004
+  },
+  "HotelReviewSentimentClassification.v2": {
+   "all": 48.4608,
+   "cross": null,
+   "mono": 48.4608
+  },
+  "SIB200ClusteringS2S.v2": {
+   "all": 38.8348,
+   "cross": null,
+   "mono": 38.8348
+  },
+  "FloresBitextMining": {
+   "all": 99.3412,
+   "cross": 99.3412,
+   "mono": null
+  },
+  "Tatoeba": {
+   "all": 80.9819,
+   "cross": 80.9819,
+   "mono": null
+  }
+ },
+ "w_m3b_a40_s16": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 77.97699999999999,
+   "cross": null,
+   "mono": 77.97699999999999
+  },
+  "XQuADRetrieval": {
+   "all": 95.331,
+   "cross": null,
+   "mono": 95.331
+  },
+  "MLQARetrieval": {
+   "all": 63.76933333333333,
+   "cross": 63.444,
+   "mono": 64.42
+  },
+  "BelebeleRetrieval": {
+   "all": 89.86133333333333,
+   "cross": 89.0575,
+   "mono": 91.469
+  },
+  "XPQARetrieval": {
+   "all": 39.090666666666664,
+   "cross": 35.7045,
+   "mono": 45.863
+  },
+  "WebFAQRetrieval": {
+   "all": 80.246,
+   "cross": null,
+   "mono": 80.246
+  },
+  "NamaaMrTydiReranking": {
+   "all": 75.708,
+   "cross": null,
+   "mono": 75.708
+  },
+  "STS17": {
+   "all": 76.98965,
+   "cross": 72.92269999999999,
+   "mono": 81.0566
+  },
+  "STS22.v2": {
+   "all": 64.0185,
+   "cross": null,
+   "mono": 64.0185
+  },
+  "SemRel24STS": {
+   "all": 61.187000000000005,
+   "cross": null,
+   "mono": 61.187000000000005
+  },
+  "XNLI": {
+   "all": 76.2423,
+   "cross": null,
+   "mono": 76.2423
+  },
+  "ArEntail": {
+   "all": 88.9461,
+   "cross": null,
+   "mono": 88.9461
+  },
+  "AJGT.v2": {
+   "all": 83.848,
+   "cross": null,
+   "mono": 83.848
+  },
+  "TweetEmotionClassification.v2": {
+   "all": 58.24399999999999,
+   "cross": null,
+   "mono": 58.24399999999999
+  },
+  "TweetSarcasmClassification.v2": {
+   "all": 61.272400000000005,
+   "cross": null,
+   "mono": 61.272400000000005
+  },
+  "HotelReviewSentimentClassification.v2": {
+   "all": 54.7647,
+   "cross": null,
+   "mono": 54.7647
+  },
+  "SIB200ClusteringS2S.v2": {
+   "all": 37.061699999999995,
+   "cross": null,
+   "mono": 37.061699999999995
+  },
+  "FloresBitextMining": {
+   "all": 100.0,
+   "cross": 100.0,
+   "mono": null
+  },
+  "Tatoeba": {
+   "all": 88.75,
+   "cross": 88.75,
+   "mono": null
+  }
+ },
+ "w_m3b_a40_s17": {
+  "MIRACLRetrievalHardNegatives.v2": {
+   "all": 78.072,
+   "cross": null,
+   "mono": 78.072
+  },
+  "XQuADRetrieval": {
+   "all": 95.14099999999999,
+   "cross": null,
+   "mono": 95.14099999999999
+  },
+  "MLQARetrieval": {
+   "all": 63.72333333333333,
+   "cross": 63.333,
+   "mono": 64.50399999999999
+  },
+  "BelebeleRetrieval": {
+   "all": 89.82733333333333,
+   "cross": 88.9505,
+   "mono": 91.581
+  },
+  "XPQARetrieval": {
+   "all": 38.978,
+   "cross": 35.571,
+   "mono": 45.792
+  },
+  "WebFAQRetrieval": {
+   "all": 80.118,
+   "cross": null,
+   "mono": 80.118
+  },
+  "NamaaMrTydiReranking": {
+   "all": 75.536,
+   "cross": null,
+   "mono": 75.536
+  },
+  "STS17": {
+   "all": 76.90305,
+   "cross": 72.7897,
+   "mono": 81.0164
+  },
+  "STS22.v2": {
+   "all": 64.2559,
+   "cross": null,
+   "mono": 64.2559
+  },
+  "SemRel24STS": {
+   "all": 61.058800000000005,
+   "cross": null,
+   "mono": 61.058800000000005
+  },
+  "XNLI": {
+   "all": 76.50200000000001,
+   "cross": null,
+   "mono": 76.50200000000001
+  },
+  "ArEntail": {
+   "all": 89.098,
+   "cross": null,
+   "mono": 89.098
+  },
+  "AJGT.v2": {
+   "all": 83.7411,
+   "cross": null,
+   "mono": 83.7411
+  },
+  "TweetEmotionClassification.v2": {
+   "all": 58.1944,
+   "cross": null,
+   "mono": 58.1944
+  },
+  "TweetSarcasmClassification.v2": {
+   "all": 61.8163,
+   "cross": null,
+   "mono": 61.8163
+  },
+  "HotelReviewSentimentClassification.v2": {
+   "all": 54.3725,
+   "cross": null,
+   "mono": 54.3725
+  },
+  "SIB200ClusteringS2S.v2": {
+   "all": 36.6893,
+   "cross": null,
+   "mono": 36.6893
+  },
+  "FloresBitextMining": {
+   "all": 100.0,
+   "cross": 100.0,
+   "mono": null
+  },
+  "Tatoeba": {
+   "all": 89.0833,
+   "cross": 89.0833,
    "mono": null
   }
  }

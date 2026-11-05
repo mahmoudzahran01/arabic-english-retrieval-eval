@@ -1,0 +1,40 @@
+{
+ "recipe_frozen_at": "2026-11-04T22:46:54+03:00",
+ "pick": "w_m3b_a40",
+ "family": "wise",
+ "alpha": 0.4,
+ "recipe": "w_m3b_a40",
+ "new_seeds": [
+  "16",
+  "17"
+ ],
+ "blended_models": {
+  "w_m3b_a40_s16": {
+   "test": "w_m3b_a40_s16.test.json",
+   "test_perq": "w_m3b_a40_s16.test.perq.npz",
+   "dev": "w_m3b_a40_s16.dev.json",
+   "mteb": "results_cache_v2/results/w_m3b_a40_s16/"
+  },
+  "w_m3b_a40_s17": {
+   "test": "w_m3b_a40_s17.test.json",
+   "test_perq": "w_m3b_a40_s17.test.perq.npz",
+   "dev": "w_m3b_a40_s17.dev.json",
+   "mteb": "results_cache_v2/results/w_m3b_a40_s17/"
+  }
+ },
+ "raw_models": {
+  "m3_b_s16": {
+   "test": "m3_b_s16.test.json",
+   "test_perq": "m3_b_s16.test.perq.npz",
+   "dev": "m3_b_s16.dev.json",
+   "mteb": "results_cache_v2/results/m3_b_s16/"
+  },
+  "m3_b_s17": {
+   "test": "m3_b_s17.test.json",
+   "test_perq": "m3_b_s17.test.perq.npz",
+   "dev": "m3_b_s17.dev.json",
+   "mteb": "results_cache_v2/results/m3_b_s17/"
+  }
+ },
+ "note": "Confirmatory replication (coordinator addition A): seeds never used in any selection step; reported whatever they show."
+}

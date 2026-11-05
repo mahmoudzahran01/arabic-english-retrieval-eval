@@ -1,0 +1,62 @@
+{
+  "dataset_revision": "69e8f12da6e31d59addadda9a9c8a2e601a0e282",
+  "task_name": "Tatoeba",
+  "mteb_version": "2.26.33",
+  "scores": {
+    "test": [
+      {
+        "precision": 0.8771,
+        "recall": 0.91,
+        "f1": 0.8875,
+        "accuracy": 0.91,
+        "main_score": 0.8875,
+        "hf_subset": "ara-eng",
+        "languages": [
+          "ara-Arab",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.26.33"
+      }
+    ]
+  },
+  "evaluation_time": 2.130279878008878,
+  "kg_co2_emissions": null,
+  "date": 1793829103.910183,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 3.631997969932854e-06,
+      "end": 1.415011561010033,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Dataset transform",
+      "start": 1.4150256889988668,
+      "end": 1.4150285850046203,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding",
+      "start": 1.468424890001188,
+      "end": 1.766535428003408,
+      "split": "test",
+      "subset": "ara-eng"
+    },
+    {
+      "name": "Encoding",
+      "start": 1.784484831005102,
+      "end": 2.0715687830088427,
+      "split": "test",
+      "subset": "ara-eng"
+    },
+    {
+      "name": "Scoring",
+      "start": 2.0717332950007403,
+      "end": 2.120882089002407,
+      "split": "test",
+      "subset": "ara-eng"
+    }
+  ]
+}

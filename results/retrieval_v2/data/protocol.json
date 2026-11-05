@@ -27,5 +27,13 @@
   "ci_level_percent": {
     "value": 95,
     "source": "report/study_tables.py, deploy/summarize.py: percentile bootstrap, 2.5 and 97.5 percentiles"
+  },
+  "gpu_wallclock_hours": {
+    "value": 22,
+    "source": "RESULTS_v2.md section 13 (about 22 h of GPU wall-clock on a shared GB10, an estimate that includes gate waits); copied with results/retrieval_v2/RESULTS_v2.md"
+  },
+  "reranker_depth": {
+    "value": 50,
+    "source": "RESULTS_v2.md section 9: the v1 cross-encoder rr_ft_bce_s13 reranks the top-50 of the first stage (results/retrieval_v2/<system>>>rr_ft_bce_s13.test.json)"
   }
 }

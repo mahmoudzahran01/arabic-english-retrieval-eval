@@ -1,0 +1,87 @@
+{
+  "dataset_revision": "4da4316c6e3287746ab74ff67dd252ad128fceff",
+  "task_name": "ArEntail",
+  "mteb_version": "2.26.33",
+  "scores": {
+    "test": [
+      {
+        "similarity_accuracy": 0.811,
+        "similarity_f1": 0.8125,
+        "similarity_precision": 0.793893,
+        "similarity_recall": 0.832,
+        "similarity_ap": 0.888827,
+        "cosine_accuracy": 0.811,
+        "cosine_f1": 0.8125,
+        "cosine_precision": 0.793893,
+        "cosine_recall": 0.832,
+        "cosine_ap": 0.888827,
+        "manhattan_accuracy": 0.809,
+        "manhattan_f1": 0.809249,
+        "manhattan_precision": 0.780669,
+        "manhattan_recall": 0.84,
+        "manhattan_ap": 0.886216,
+        "euclidean_accuracy": 0.811,
+        "euclidean_f1": 0.812379,
+        "euclidean_precision": 0.786517,
+        "euclidean_recall": 0.84,
+        "euclidean_ap": 0.88881,
+        "dot_accuracy": 0.811,
+        "dot_f1": 0.812439,
+        "dot_precision": 0.79017,
+        "dot_recall": 0.836,
+        "dot_ap": 0.888538,
+        "max_accuracy": 0.811,
+        "max_f1": 0.8125,
+        "max_precision": 0.793893,
+        "max_recall": 0.84,
+        "max_ap": 0.888827,
+        "main_score": 0.888827,
+        "hf_subset": "default",
+        "languages": [
+          "ara-Arab"
+        ],
+        "mteb_version": "2.26.33"
+      }
+    ]
+  },
+  "evaluation_time": 3.5304000889955205,
+  "kg_co2_emissions": null,
+  "date": 1793805498.28428,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 3.7760037230327725e-06,
+      "end": 2.1906861120005487,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Dataset transform",
+      "start": 2.1906981760039343,
+      "end": 2.1913974870039965,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding samples 1",
+      "start": 2.418995651001751,
+      "end": 2.9814355580019765,
+      "split": "test",
+      "subset": "default"
+    },
+    {
+      "name": "Encoding samples 2",
+      "start": 2.98145787800604,
+      "end": 3.47874617799971,
+      "split": "test",
+      "subset": "default"
+    },
+    {
+      "name": "Scoring",
+      "start": 3.478765234001912,
+      "end": 3.511106687001302,
+      "split": "test",
+      "subset": "default"
+    }
+  ]
+}

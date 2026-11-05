@@ -1,0 +1,65 @@
+{
+  "dataset_revision": "f5146bf724c55899ca20502851dc98c5405b67f9",
+  "task_name": "SemRel24STS",
+  "mteb_version": "2.26.33",
+  "scores": {
+    "test": [
+      {
+        "pearson": 0.59638,
+        "spearman": 0.590238,
+        "cosine_pearson": 0.59638,
+        "cosine_spearman": 0.590235,
+        "manhattan_pearson": 0.585594,
+        "manhattan_spearman": 0.585335,
+        "euclidean_pearson": 0.590393,
+        "euclidean_spearman": 0.590198,
+        "main_score": 0.590235,
+        "hf_subset": "arb",
+        "languages": [
+          "arb-Arab"
+        ],
+        "mteb_version": "2.26.33"
+      }
+    ]
+  },
+  "evaluation_time": 1.651539981001406,
+  "kg_co2_emissions": null,
+  "date": 1793837033.604354,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 3.663997631520033e-06,
+      "end": 1.4187121470022248,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Dataset transform",
+      "start": 1.41871854699275,
+      "end": 1.4187197790015489,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding samples 1",
+      "start": 1.422100743991905,
+      "end": 1.5340812490030658,
+      "split": "test",
+      "subset": "arb"
+    },
+    {
+      "name": "Encoding samples 2",
+      "start": 1.534094193004421,
+      "end": 1.6370935869927052,
+      "split": "test",
+      "subset": "arb"
+    },
+    {
+      "name": "Scoring",
+      "start": 1.6371043069957523,
+      "end": 1.6457727929955581,
+      "split": "test",
+      "subset": "arb"
+    }
+  ]
+}

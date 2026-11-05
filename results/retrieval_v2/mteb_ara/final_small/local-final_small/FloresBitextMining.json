@@ -1,0 +1,68 @@
+{
+  "dataset_revision": "2144d16cc15edd22d4a9237d12bff5f31f5c07fc",
+  "task_name": "FloresBitextMining",
+  "mteb_version": "2.26.33",
+  "scores": {
+    "devtest": [
+      {
+        "precision": 0.989625,
+        "recall": 0.993083,
+        "f1": 0.990777,
+        "accuracy": 0.993083,
+        "main_score": 0.990777,
+        "hf_subset": "eng_Latn-arb_Arab",
+        "languages": [
+          "eng-Latn",
+          "arb-Arab"
+        ],
+        "mteb_version": "2.26.33"
+      },
+      {
+        "precision": 0.995553,
+        "recall": 0.997036,
+        "f1": 0.996047,
+        "accuracy": 0.997036,
+        "main_score": 0.996047,
+        "hf_subset": "arb_Arab-eng_Latn",
+        "languages": [
+          "arb-Arab",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.26.33"
+      }
+    ]
+  },
+  "evaluation_time": 2.508375627003261,
+  "kg_co2_emissions": null,
+  "date": 1793837445.100919,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.2829440999921644,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding",
+      "start": 1.874842852994334,
+      "end": 2.103996110992739,
+      "split": "devtest",
+      "subset": "parallel"
+    },
+    {
+      "name": "Encoding",
+      "start": 2.2106530639866833,
+      "end": 2.4322459449904272,
+      "split": "devtest",
+      "subset": "parallel"
+    },
+    {
+      "name": "Scoring",
+      "start": 2.432436457995209,
+      "end": 2.494458893997944,
+      "split": "devtest",
+      "subset": "parallel"
+    }
+  ]
+}

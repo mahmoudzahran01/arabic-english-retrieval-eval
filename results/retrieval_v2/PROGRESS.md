@@ -65,3 +65,87 @@ FROZEN at 11875 translations, Wed Nov  4 03:59:45 AM +03 2026
 - 17:46 coordinator re-prioritisation: (1) MTEB(ara) scoring of final_m3_wa75_s13 FIRST (own scorer score_local.py: no e5 prompts for the bge-m3 family, ModelMeta copied from the registered bge-m3 entry with training_datasets = bge-m3 list + MrTidy/NamaaMrTydi/XQuAD/MIRACL), (2) LoRA r=32 lr 1e-4 and frozen-embeddings+bottom-12 runs judged with the same pre-registered rule (dev, devM, proxy; guards only if one qualifies), (3) seed 15 + blends with TEST, (4) e5-base KD (w=3 vs KD-only vs 2 epochs) then MTEB(ara) scoring of final_base / final_small, (5) docs. Queued in drive12 behind the K3 run.
 - 18:00 KD ablation (e5-base, dev macro / ar->en, teacher = v2-m3 seed 13): w=1 81.2/74.5, w=3 81.8/75.6, KD-ONLY 82.0/76.1 (ar->ar 79.9); the 2-epoch variants are queued. Student recipe for the finals (drive13, after the m3 work): KD-only, T=20, 3 seeds each, WiSE blends of seed 13 against e5-base / e5-small.
 - 18:01 FINAL CANDIDATE saved: runs/retrieval/v2/models/final_m3_wa75_s13 (v2-m3 = bge-m3 fine-tuned on the full filtered v2 data, seed 13, WiSE alpha 0.75 against bge-m3). Scoring on MTEB(ara) now.
+
+## 2026-11-04 ~19:05 - PRE-REGISTRATION: validation suite for the final v2-m3 pick (written BEFORE any candidate is scored on the new components)
+Trigger: coordinator, "0.06 is a tie; the losses (Namaa, MIRACL, XNLI, AJGT) are drift away from bge-m3's general skills; select on a validation suite that mirrors the MTEB(ara)
+task types, never on MTEB". Supersedes select_m3.py (kept as the record of the earlier rule). No MTEB(ara) number and no TEST number is read by this procedure.
+Order of work: s15 -> soup/blends -> suite (interim table) -> LoRA / freeze -> suite (all) -> selection -> ONE MTEB(ara) scoring of the pick -> teacher = pick -> students.
+
+DEVIATION FROM THE BRIEF (flagged to the coordinator): the brief asks for the XNLI-ar VALIDATION split "since MTEB uses test". mteb's XNLI task sets
+eval_splits=["test","validation"] (pylibs/mteb/tasks/pair_classification/multilingual/xnli.py) and the leaderboard number is the mean over both, so the validation split is
+part of the MTEB evaluation. Instead: a seeded 3,000-pair subsample of the XNLI-ar TRAIN split (facebook/xnli, ar/train; machine-translated MNLI; entailment=1,
+contradiction=0, neutral dropped, as mteb does). Never trained on, never part of any MTEB split.
+
+COMPONENTS (6, all x100, higher = better):
+ 1 dev      : v2 extended DEV macro MRR@10 over the 4 directions (ar->en, en->ar, ar->ar, en->en)            [results/NAME.dev.json]
+ 2 devM     : MIRACL-ar TRAIN hold-out (500 queries, selection-only slice, excluded from training), MRR@10                [NAME.devM.json]
+ 3 proxy    : mMARCO-ar dev proxy (1,000 q / 25k docs, seed 13), MRR@10                                                    [results/ood_dev_ar.json]
+ 4 xnli     : average precision of the cosine similarity on 3,000 XNLI-ar TRAIN pairs (seed 13)                            [results/suite/NAME.json]
+ 5 cls      : mean of two 8-shot-per-label logistic-regression probes (mteb protocol: 10 experiments, samples_per_label=8, max_iter=100) on ArSarcasm
+              (iabufarha/ar_sarcasm, licence MIT): (a) sarcasm 2-class, (b) sentiment 3-class. The probe is fitted on rows of the TRAIN split and scored on
+              2,000 other TRAIN rows (seeded hold-out). MTEB scores TweetSarcasmClassification on the ar_sarcasm TEST split; the TRAIN split is disjoint
+              from it (same source, so it is a close proxy by design). AJGT / TweetEmotion / HotelReview are not touched.
+ 6 sts      : Spearman of cosine similarity on the Arabic DEV split of stsb_multi_mt (PhilipMay/stsb_multi_mt, ar/dev, 1,500 pairs; machine-translated STSb; licence
+              "other" - used for validation only, not redistributed). Disjoint from STS17 / STS22 / SemRel24 (the MTEB STS tasks).
+NORMALISATION: per component c, x_c is min-max scaled over the POOL = {all candidates + the reference rows (bge-m3, m3_b_s13 raw, soup raw)}:
+   n_c = (x_c - min_pool) / max(max_pool - min_pool, 1.0 point)     (the 1-point floor keeps a component whose pool range is below the noise level from being inflated)
+SCORE = unweighted mean of the 6 n_c. Reported with the 6 raw components.
+POOL / CANDIDATES (selectable): WiSE alpha in {0.4,0.5,0.6,0.75} of m3_b_s13 (wm_a50, wm_a75 exist; w_m3b_a40, w_m3b_a60 new);
+   SOUP = uniform average of the seed 13/14/15 fine-tunes (m3_b_s13/s14/s15; seed 15 is trained first), then WiSE alpha in {0.4,0.5,0.6,0.75} (soup_a40..a75);
+   LoRA r=32 attention+MLP lr 1e-4 (m3_lo_s13) and freeze-bottom-12 (m3_fr_s13) raw, plus their WiSE blends alpha {0.75,0.5}.  14 selectable models.
+   Reference rows (in the pool for normalisation, shown, NOT selectable): bge-m3, m3_b_s13 raw (alpha=1), soup raw.
+ELIGIBILITY (protects the S_TIER ar->en bar): dev ar->en >= bge-m3 dev ar->en + 5.0 points.
+PICK = the eligible candidate with the highest SCORE.  Ties (|diff| < 0.02) -> fewer ingredients: single-seed WiSE < soup WiSE < LoRA/freeze (then larger alpha).
+The pick is announced here before its MTEB(ara) scoring; that scoring is run once and reported even if it is lower than final_m3_wa75_s13 (72.044). Earlier MTEB(ara)
+scoring of final_m3_wa75_s13 happened BEFORE this suite existed and is not used in the selection.
+3-SEED REPORTING: pick is a soup -> the soup is the reported model (one model; paired bootstrap over queries); otherwise the per-seed blends (13/14/15) of the picked recipe.
+Students: distilled from the FINAL teacher (the pick), KD-only; teacher embeddings are recomputed from the pick (tag m3f).
+Code: lab/retrieval/v2/suite_v2.py (components 4-6), suite_select.py (assembly + rule), runs/retrieval/v2/scripts/drive14.sh (queue).
+- 2026-11-04 ~19:20 CORRECTION to the pre-registration above (still before any candidate has a suite number): PhilipMay/stsb_multi_mt has NO Arabic split (checked on the Hub),
+  so component 6 uses the Arabic STS-B VALIDATION split of Omartificial-Intelligence-Space/Arabic-stsb (apache-2.0; machine-translated STS-B, 1,500 pairs; validation.csv, "score" column).
+  Everything else is unchanged. Data fetched to runs/retrieval/v2/data/suite/ (xnli_ar_train.parquet, ar_sarcasm_train.parquet, stsb_ar_validation.csv).
+- 18:36 RE-PRIORITISATION (coordinator): stopped the DRIVER scripts drive12.sh (pid 3080103) and drive13.sh (pid 3268020) - only the shell drivers, by PID; the running k4 student job (f5_b_kdonly_e2_s13) was left to finish. New queue drive14.sh: seed 15 -> soup/WiSE blends -> validation-suite (interim table) -> LoRA/freeze -> suite -> pick. Students (drive13) will be re-armed AFTER the pick, distilling from the pick (teacher tag m3f). Titled guard_split rerun + guards for raw/a50 re-queued after the pick.
+
+## 2026-11-04 ~21:35 - AMENDMENT 2 to the pre-registered suite selection (coordinator follow-up after DRIVE14_DONE); written BEFORE any of the runs below
+What happened in drive14 (facts, from the logs; the "rc=0" lines of the driver are NOT reliable because run_docker.sh masks the exit code - from now on every step is verified by the existence of its output file):
+ * LoRA: m3_lo_s13 trained all 615/615 steps (56 min) and then CRASHED in train_v2.py at merge_and_unload (AttributeError: 'XLMRobertaModel' has no attribute 'merge_and_unload'): my code
+   kept the in-place-injected XLM-R module instead of the PeftModel handle. Nothing was saved (the adapters died with the process), so the LoRA dev / merges / blends / proxy2 / suite2 all failed on the missing path
+   within seconds. This is a bug in MY code, not a result about LoRA.  proxy2 and suite2 aborted at their FIRST model (LoRA), so the freeze run and its two blends (which trained fine: dev 85.0 / 84.8 / ..., devM 78.8 / 79.7 / ...) have no proxy and suite numbers.
+ * select2's "PICK (interim)" was computed on the 11 complete models only.
+ * Tie rule: the pre-registration says "|diff| < 0.02" (strict). select code used >= best - 0.02 (inclusive). Corrected to strict; exact differences are printed to 4 decimals; the pick report states which clause decided.
+DECISIONS (no re-litigation after this entry):
+ A. LoRA is RERUN with the identical recipe / seed (m3_lo_s13, r=32, lr 1e-4, attention+MLP, 1 epoch, seed 13) after a gated 3-minute merge self-test of the fixed code (adapter saved to disk before the merge). ~57 min. Reason: it is the only
+    pre-registered candidate that constrains the update DURING training (freeze did not help on devM); the GPU would otherwise idle until the pick. It enters the pool exactly as registered (raw + WiSE .75 / .5).
+ B. Order: (1) freeze proxy + suite  ->  (2) select on the pool WITHOUT LoRA -> winning family F by the rule as written (strict tie)  ->  (3) ONE extra pair of alphas for F ONLY: alpha 0.30; alpha 0.35 is added ONLY if the
+    0.30 model fails eligibility (dev ar->en < 78.5 = bge-m3 dev ar->en 73.5 + 5.0); if 0.30 is eligible, 0.35 is NOT run; nothing below 0.30 is tried  ->  (4) LoRA rerun + blends  ->  (5) FINAL select on the FULL pool
+    (all earlier candidates + the 0.30/0.35 point(s) + LoRA models), same normalisation (pool-wide min-max, 1-point floor), same eligibility, same strict tie rule  ->  (6) ONE MTEB(ara) scoring of that pick (= final_m3), reported even if lower.
+    If LoRA wins the final select there is no further alpha extension. The alphas 0.30 / 0.35 are selectable. Family names for the extension: wise -> w_m3b_a30 / a35; soup -> soup_a30 / a35; freeze -> w_m3_fr_s13_a30 / a35.
+ C. Everything else in the first pre-registration (components, normalisation, eligibility, tie-break by ingredients, 3-seed reporting) is unchanged. No MTEB(ara) and no TEST number is read by any of the selection steps.
+- 21:23 drive15.sh started (AMENDMENT 2 queue: freeze proxy/suite -> select -> alpha .30[/.35] for the winning family -> LoRA self-test + rerun -> final select). LoRA code fixed (lora_v2.py: PeftModel handle kept, adapter saved before merge, merge verified).
+
+## 2026-11-04 ~22:10 - PRE-REGISTRATION 3 (coordinator additions A-D, "the user approved them all"); written BEFORE any of these runs. Order: final select -> MTEB(ara) of the pick -> A -> D -> B -> C -> RESULTS_v2.md -> local commits (no attribution).
+A. CONFIRMATORY REPLICATION (the confirmatory numbers of the report; reported whatever they show).
+   * Recipe FROZEN = the (family, alpha) of results/suite_pick.json from the final select. Nothing about it is changed after this line.
+   * Two NEW seeds, 16 and 17, never used in any selection step or training run so far (used: 13, 14, 15 for the m3_b recipe). Identical training arguments to the pick's family
+     (wise/soup: the m3_b recipe = bge-m3, v2 data, same:1 negatives, 1 epoch, lr 1e-5, scale 50, CachedMNRL mini-batch 16, exclude file; freeze / lora: the registered freeze / LoRA arguments),
+     identical WiSE alpha towards bge-m3 (no soup unless the pick is a soup: then seeds 16, 17 AND 18 are trained and averaged into ONE confirmatory soup, a stated deviation from "2 seeds").
+   * Report per seed and for the pair: TEST (4 directions + macro, paired bootstrap CIs vs bge-m3 and vs v1), mixed-index diagnostic, and MTEB(ara) Mean(Task) (all 19 tasks) for each. No dev or suite number is used to choose between them.
+D. STUDENTS from the final teacher (teacher embeddings tag m3f re-computed from final_m3): KD-only, 2 epochs, seeds 13/14/15, e5-base and e5-small. FINAL STUDENT RULE (registered now):
+   final_base / final_small = the uniform 3-seed soup of the students, unless the soup's dev macro is more than 0.5 below the MEAN dev macro of its three seeds (failed averaging), in which case seed 13.
+   Then MTEB(ara) once for each (final_base, final_small) against e5-base 67.888 / e5-small's own cached score. Reported even if lower.
+B. BLEND CURVE (POST-HOC FIGURE, NOT USED FOR SELECTION): m3_b s13 family at alpha in {0, 0.3, 0.4, 0.5, 0.6, 0.75, 1.0}: TEST ar->en, TEST macro, devM, mMARCO proxy, guards MIRACL-HN.v2 (ar) and NamaaMrTydiReranking.
+   Existing results are reused (bge-m3 = alpha 0, m3_b_s13 = alpha 1, wm_a75 / final_m3_wa75_s13, the pick); only missing cheap evals are run (TEST of the blends; MTEB guards only, no other MTEB tasks per alpha). -> results/alpha_curve.json.
+C. MTEB(ara) UNCERTAINTY (CPU only, from the result caches): final_m3 vs bge-m3, the students vs e5-base / e5-small, the confirmatory seeds vs bge-m3: per-task win / loss / tie counts,
+   bootstrap CI of the Mean(Task) difference by resampling the 19 tasks (10,000 resamples, seed 13), exact two-sided paired sign test. -> results/mteb_paired.json.
+Infrastructure: run_docker.sh is NOT touched while this queue runs (coordinator fixes its exit-code masking afterwards); my queue reports completion by DRIVE16_DONE in logs/queues.done.
+- 22:16 drive16.sh REWRITTEN for the coordinator additions A-D (confirmatory seeds 16/17 before the students; blend curve B and MTEB paired stats C after; titled guard split + reranker pairing last). The previous waiting-only drive16 shell (no job started) was stopped by PID.
+- 22:46 RECIPE FROZEN at 2026-11-04T22:46:54+03:00 (before any confirmatory seed is trained): family wise, alpha 0.4, pick w_m3b_a40, per-seed file recipe name w_m3b_a40. Seeds 16/17 are trained only after this line.
+- 22:46 SUITE PICK (pre-registered rule, full pool): w_m3b_a40 (family wise, alpha 0.4). top score soup_a40 0.7612; runner-up w_m3b_a40 0.7486; difference 0.0127 -> within the tie band (< 0.02) among ['soup_a40', 'w_m3b_a40'] -> decided by the INGREDIENTS clause. Saved as runs/retrieval/v2/models/final_m3 (clean sentence-transformers folder). ONE MTEB(ara) scoring now; reported whatever it is.
+- 23:13 CONFIRMATORY REPLICATION starts (recipe frozen at 2026-11-04T22:46:54+03:00): frozen recipe = family wise, alpha 0.4 (pick w_m3b_a40); raw run name prefix m3_b; NEW seeds: 16 17 (never used in any selection or training so far). Training arguments: --base bge-m3 --data v2 --negs same:1 --epochs 1 --lr 1e-5 --scale 50 --loss cached --mini-batch 16 --eval-bs 32 --exclude /lab/runs/retrieval/v2/data/exclude_qids.json --test --keep-model
+- 01:13 teacher embeddings re-computed from final_m3 (tag m3f); students distil from it: KD-only, 2 epochs, 3 seeds, e5-base and e5-small; final student = 3-seed soup unless its dev macro is > 0.5 below the mean of its seeds (pre-registration 3).
+- 02:56 STUDENT PICK (pre-registered rule): final_base = st_b_soup
+- 03:04 STUDENT PICK (pre-registered rule): final_small = st_s_soup
+- 06:38 CORRECTION to the drive16 step guard_split (coordinator-approved): its cache skipped bge-m3, e5-base, m3_b_s13, wm_a75, v1 because their JSONs came from the FIRST guard-split run, which had no passage titles (mixed conditions in one table). The 5 files were moved to results/guard_split/stale_untitled/ (kept) and the 5 models are recomputed WITH titles in one gated job each (bge-m3 first as the sanity check against mteb 78.9).
+- 07:04 guard_split sanity check passed: titled bge-m3 MIRACL-HN nDCG@10 = 79.0 (mteb 78.9).
+- 2026-11-05 07:2x CORRECTION (coordinator's read-only checks exact_overlap.py / exact_leak.py): (1) guard_split labelled queries with the Jaccard detector only; its inverted index skips words with more than 300 postings, so short common-word questions got no candidates. MIRACL-HN.v2 ar dev: 893/1000 queries are EXACT normalised copies of TyDi-ar train questions, the detector flagged 814 (816 with MIRACL train). The labels now also flag exact normalised copies; the report is recomputed on CPU from the cached per-query scores (no GPU). (2) The "42% verbatim" statement in the 05:40 entry was the 408/1000 NEAR-DUPLICATES against v1's training pool, not verbatim copies of the full TyDi train set; the docstrings of contam_v2.py and guard_split.py are corrected. (3) After exclude_qids, 9 kept training rows (8 distinct questions, all slice train_tydi_ar) equal MIRACL-HN.v2 ar dev queries exactly (0.8% of 998 normalised eval queries); NamaaMrTydi: 0. Not retrained; disclosed in RESULTS_v2.md section 2 / 8 / 11 and in the three model cards. New read-only script lab/retrieval/v2/leak_check.py -> results/leak_exact.json (also counts the translated copies via src_qid and the effect on MIRACL-HN without the leaked queries).
+- 2026-11-05 07:4x WRITE-UP DONE (no GPU job started after the approved guard_split rerun): RESULTS_v2.md (runs/retrieval/v2/RESULTS_v2.md, 513 lines, every table generated by lab/retrieval/v2/build_final_v2.py), model-card drafts (cards/ and models/final_*/README.md, licence TBD), results/{alpha_curve,mteb_paired,mteb_board,confirmatory,leak_exact,suite_pick}.json. My queue is fully finished (DRIVE16_DONE, DRIVE17_DONE); run_docker.sh was never modified. Local commits on branch v2-embedder of the Mac repo (worktree ../arabic-english-retrieval-eval-v2embedder): ab4f6fd, 9794e61, 32c2cd8, c9fadcf; nothing pushed, nothing uploaded.
